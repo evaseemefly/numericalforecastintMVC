@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="nfsysModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actioninfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="ActionInfoName" Type="varchar" MaxLength="45" />
+          <Property Name="SubTime" Type="date" />
+          <Property Name="DelFlag" Type="bool" />
+          <Property Name="ModifiedOnTime" Type="date" />
+          <Property Name="Remark" Type="varchar" MaxLength="256" />
+          <Property Name="Url" Type="varchar" MaxLength="256" />
+          <Property Name="AreaName" Type="varchar" MaxLength="45" />
+          <Property Name="ActionMethodName" Type="varchar" MaxLength="45" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="45" />
+          <Property Name="JsFunctionName" Type="varchar" MaxLength="45" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="ActionTypeEnum" Type="int" />
+          <Property Name="IconWidth" Type="int" />
+          <Property Name="IconHeight" Type="int" />
+          <Property Name="IconCls" Type="varchar" MaxLength="45" />
+          <Property Name="IconClassName" Type="varchar" MaxLength="45" />
+          <Property Name="isShow" Type="tinyint" />
+          <Property Name="MethodTypeEnum" Type="int" />
+        </EntityType>
+        <EntityContainer Name="nfsysModelStoreContainer">
+          <EntitySet Name="actioninfo" EntityType="Self.actioninfo" Schema="nfsys" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="nfsysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="actioninfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="ActionInfoName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="SubTime" Type="DateTime" />
+          <Property Name="DelFlag" Type="Boolean" />
+          <Property Name="ModifiedOnTime" Type="DateTime" />
+          <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="AreaName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ActionMethodName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ControllerName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="JsFunctionName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="ActionTypeEnum" Type="Int32" />
+          <Property Name="IconWidth" Type="Int32" />
+          <Property Name="IconHeight" Type="Int32" />
+          <Property Name="IconCls" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="IconClassName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isShow" Type="SByte" />
+          <Property Name="MethodTypeEnum" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="nfsysEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actioninfo" EntityType="Self.actioninfo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="nfsysModelStoreContainer" CdmEntityContainer="nfsysEntities">
+          <EntitySetMapping Name="actioninfo">
+            <EntityTypeMapping TypeName="nfsysModel.actioninfo">
+              <MappingFragment StoreEntitySet="actioninfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ActionInfoName" ColumnName="ActionInfoName" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+                <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="ActionMethodName" ColumnName="ActionMethodName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="JsFunctionName" ColumnName="JsFunctionName" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ActionTypeEnum" ColumnName="ActionTypeEnum" />
+                <ScalarProperty Name="IconWidth" ColumnName="IconWidth" />
+                <ScalarProperty Name="IconHeight" ColumnName="IconHeight" />
+                <ScalarProperty Name="IconCls" ColumnName="IconCls" />
+                <ScalarProperty Name="IconClassName" ColumnName="IconClassName" />
+                <ScalarProperty Name="isShow" ColumnName="isShow" />
+                <ScalarProperty Name="MethodTypeEnum" ColumnName="MethodTypeEnum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

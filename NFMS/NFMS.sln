@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFMS", "NFMS\NFMS.csproj", "{D01B78B8-6D59-42C4-99BA-79AE6E9B9258}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04Intrastructure", "04Intrastructure", "{1FD93183-BEC2-4EB7-92CB-6AF97F145A06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFMS.Model", "NFMS.Model\NFMS.Model.csproj", "{EE0B9D78-22C4-469D-8ECE-59FBB0FFEDD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01UI", "01UI", "{EDFAA8D8-F4DA-4D66-8CD6-81A069DEC4E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D01B78B8-6D59-42C4-99BA-79AE6E9B9258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D01B78B8-6D59-42C4-99BA-79AE6E9B9258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D01B78B8-6D59-42C4-99BA-79AE6E9B9258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D01B78B8-6D59-42C4-99BA-79AE6E9B9258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE0B9D78-22C4-469D-8ECE-59FBB0FFEDD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE0B9D78-22C4-469D-8ECE-59FBB0FFEDD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE0B9D78-22C4-469D-8ECE-59FBB0FFEDD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE0B9D78-22C4-469D-8ECE-59FBB0FFEDD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D01B78B8-6D59-42C4-99BA-79AE6E9B9258} = {EDFAA8D8-F4DA-4D66-8CD6-81A069DEC4E6}
+		{EE0B9D78-22C4-469D-8ECE-59FBB0FFEDD2} = {1FD93183-BEC2-4EB7-92CB-6AF97F145A06}
+	EndGlobalSection
+EndGlobal
