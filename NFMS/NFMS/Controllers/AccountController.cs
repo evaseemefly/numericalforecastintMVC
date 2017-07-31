@@ -18,6 +18,9 @@ namespace NFMS.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        /// <summary>
+        /// ghghghghgh
+        /// </summary>
         public AccountController()
         {
         }
