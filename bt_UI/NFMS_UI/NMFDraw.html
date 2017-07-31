@@ -9,9 +9,10 @@
 		 <link rel="stylesheet" href="css/bootstrap.min.css" />		
 		 <script type="application/javascript" src="js/moment.js"></script>
 		 <!--daterangepicker.js需放在moment的后面-->
-		 <script type="application/javascript" src="js/daterangepicker.js"></script>
-		 <link rel="stylesheet" type="text/css" media="all" href="css/daterangepicker.css">
-		 
+		 <!--<script type="application/javascript" src="js/daterangepicker.js"></script>
+		 <link rel="stylesheet" type="text/css" media="all" href="css/daterangepicker.css">-->
+		 <link rel="stylesheet" type="text/css" media="all" href="css/bootstrap-datetimepicker.css">
+		 <script type="application/javascript" src="js/bootstrap-datetimepicker.js"></script>
 		 
  <style type="text/css">
 
@@ -44,41 +45,130 @@
 	
 	<script type="text/javascript">
       $(document).ready(function() {
-        $('#startDate').daterangepicker({
-          singleDatePicker: true,
-          startDate: moment().subtract(6, 'days')
-        });       
+//      $('#startDate').daterangepicker({
+//        singleDatePicker: true,
+//        startDate: moment().subtract(6, 'days')
+//      });       
+
+		 $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
       });
       </script>
 	</head>
 	<body>
-		<div class="container">
+	<div class="container">
+	<div class="col-md-4">
+		<div class="col-md-4">
+			<button type="button" class="btn btn-lg btn-primary">绘图</button>
+		</div>
+		<div class="col-md-8">
 			<div class="row">
-				<div class="col-md-4">
-					<button type="button" class="btn btn-lg btn-primary">绘图</button>
-					<span class="label label-info">预报时间</span>
-					  <div class="form-group">
-                <label for="startDate">startDate</label>
-                <input type="text" class="form-control" id="startDate" value="07/01/2015">
-              </div>
-               <div class="form-group">
-                <label for="drops">drops</label>
-                <select id="drops" class="form-control">
-                  <option value="down" selected>down</option>
-                  <option value="up">up</option>
-                </select>
-              </div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-4"><span class="label label-info">预报时间</span></div>
+						<div class="col-md-8">
+							<div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+								<input class="form-control" size="16" type="text" value="" readonly>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
+						</div>
+					</div>
+
 				</div>
-				<div class="col-md-4">
-					
-				</div>
-				<div class="col-md-4">
-					
+				
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-4"><span class="label label-info">预报时效</span></div>
+						<div class="col-md-8">
+							<select id="drops" class="form-control">
+								<option value="down" selected>down</option>
+								<option value="up">up</option>
+							</select>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
 
-				 <!--<script type="application/javascript">
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="col-md-4">
+			<button type="button" class="btn btn-lg btn-primary">绘图</button>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-4"><span class="label label-info">预报时间</span></div>
+						<div class="col-md-8">
+							<div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+								<input class="form-control" size="16" type="text" value="" readonly>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-4"><span class="label label-info">预报时效</span></div>
+						<div class="col-md-8">
+							<select id="drops" class="form-control">
+								<option value="down" selected>down</option>
+								<option value="up">up</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="col-md-4">
+			<button type="button" class="btn btn-lg btn-primary">绘图</button>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-4"><span class="label label-info">预报时间</span></div>
+						<div class="col-md-8">
+							<div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+								<input class="form-control" size="16" type="text" value="" readonly>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-4"><span class="label label-info">预报时效</span></div>
+						<div class="col-md-8">
+							<select id="drops" class="form-control">
+								<option value="down" selected>down</option>
+								<option value="up">up</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+		<!--<script type="application/javascript">
 	 		$(function(){
 	 		$('#startDate').datetimepicker({
 //language: 'zh-CN',//显示中文
