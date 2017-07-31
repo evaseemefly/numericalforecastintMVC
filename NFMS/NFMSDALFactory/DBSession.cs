@@ -17,7 +17,7 @@ namespace NFMS.DALFactory
         public DbContext Db
         {
             //通过属性的方式，使用单例模式取得EF上下文对象
-            get { return DBSessionFactory.GetDBContext(); }
+            get { return DBContextFactory.GetDBContext();  }
         }
 
         public bool SaveChanges()

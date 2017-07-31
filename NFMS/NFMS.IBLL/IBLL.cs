@@ -1,6 +1,6 @@
 ﻿//输出的文件为.cs
 
-using PMS.Model;
+using NFMS.Model;
 
 namespace NFMS.IBLL
 {
