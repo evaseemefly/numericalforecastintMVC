@@ -13,10 +13,10 @@ namespace NFMS.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class nfsysEntities : DbContext
+    public partial class NFMSEntities : DbContext
     {
-        public nfsysEntities()
-            : base("name=nfsysEntities")
+        public NFMSEntities()
+            : base("name=NFMSEntities")
         {
         }
     

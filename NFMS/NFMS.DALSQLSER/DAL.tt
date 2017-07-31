@@ -1,0 +1,58 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="Microsoft.VisualStudio.Shell.Interop" #>
+<#@ assembly name="EnvDTE" #>
+<#@ assembly name="EnvDTE80" #>
+<#@ assembly name="VSLangProj" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="Microsoft.VisualStudio.Shell.Interop" #>
+<#@ import namespace="EnvDTE" #>
+<#@ import namespace="EnvDTE80" #>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+//输出的文件为.cs
+<#@ output extension=".cs"#>
+<#@ include file="EF.Utility.CS.ttinclude"#>
+<#
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+CodeRegion region = new CodeRegion(this, 1);
+MetadataTools ef = new MetadataTools(this);
+
+string inputFile = @"..\\NFMS.Model\\NFMSEntities.edmx";
+
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+string namespaceName = code.VsNamespaceSuggestion();
+
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+#>
+using NFMS.Model;
+using NFMS.IDAL;
+
+namespace NFMS.DALMYSQL
+{
+<# foreach (EntityType item in ItemCollection.GetItems<EntityType>().OrderBy(e=>e.Name))
+   {   
+   #>
+   #region IDAL <#=item.Name#>  
+	//<#=item.Name#>数据访问层
+	/// <summary>
+    /// 定义<#=item.Name#>实现类的接口
+    /// 注意：
+    /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
+    /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
+    /// </summary>
+	public class <#=item.Name#>DAL:BaseDAL<<#=item.Name#>>,I<#=item.Name#>DAL
+    {
+    }
+	#endregion
+
+	<#}#>
+
+}
+

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NFMS.Model
+namespace NFMS.IDAL
 {
-    public class Class1
+    public partial interface IDBSession
     {
+        bool SaveChanges();
     }
 }

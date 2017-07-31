@@ -1,0 +1,74 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="Microsoft.VisualStudio.Shell.Interop" #>
+<#@ assembly name="EnvDTE" #>
+<#@ assembly name="EnvDTE80" #>
+<#@ assembly name="VSLangProj" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="Microsoft.VisualStudio.Shell.Interop" #>
+<#@ import namespace="EnvDTE" #>
+<#@ import namespace="EnvDTE80" #>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+//输出的文件为.cs
+<#@ output extension=".cs"#>
+<#@ include file="EF.Utility.CS.ttinclude"#>
+<#
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+CodeRegion region = new CodeRegion(this, 1);
+MetadataTools ef = new MetadataTools(this);
+
+string inputFile = @"..\\NFMS.Model\\NFMSEntities.edmx";
+
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+string namespaceName = code.VsNamespaceSuggestion();
+
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+#>
+using PMS.IDAL;
+
+namespace NFMS.DALFactory
+{
+public partial class DBSession
+    {
+<# foreach (EntityType item in ItemCollection.GetItems<EntityType>().OrderBy(e=>e.Name))
+   {   
+
+   #>
+	#region _<#=item.Name#>DAL 属性 
+	private IDAL.I<#=item.Name#>DAL _<#=item.Name#>DAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取<#=item.Name#>DAL的实例
+        /// </summary>
+        public I<#=item.Name#>DAL <#=item.Name#>DAL
+        {
+            get
+            {
+                if(_<#=item.Name#>DAL==null)
+                {
+                    _<#=item.Name#>DAL = AbstractFactory.Create<#=item.Name#>DAL();
+                }
+                return _<#=item.Name#>DAL;
+            }
+
+            set
+            {
+                _<#=item.Name#>DAL = value;
+            }
+        }
+	#endregion
+	
+
+	<#}#>
+	}
+}
+

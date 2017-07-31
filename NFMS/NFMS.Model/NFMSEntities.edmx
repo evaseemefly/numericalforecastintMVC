@@ -63,7 +63,7 @@
           <Property Name="isShow" Type="SByte" />
           <Property Name="MethodTypeEnum" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="nfsysEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NFMSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="actioninfo" EntityType="Self.actioninfo" />
         </EntityContainer>
       </Schema>
@@ -71,7 +71,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="nfsysModelStoreContainer" CdmEntityContainer="nfsysEntities">
+        <EntityContainerMapping StorageEntityContainer="nfsysModelStoreContainer" CdmEntityContainer="NFMSEntities">
           <EntitySetMapping Name="actioninfo">
             <EntityTypeMapping TypeName="nfsysModel.actioninfo">
               <MappingFragment StoreEntitySet="actioninfo">
