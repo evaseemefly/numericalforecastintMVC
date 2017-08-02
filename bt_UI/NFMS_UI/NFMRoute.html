@@ -1,195 +1,245 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
 		<script type="application/javascript" src="js/jquery-3.2.1.js"></script>
 		<script type="application/javascript" src="js/bootstrap.js"></script>
-		 <link rel="stylesheet" href="css/bootstrap.min.css" />
-		 <!--王豹-->
-		 <script type="application/javascript">
-//		 	$(fucntion(){
-//		 		()
-//		 	})
-//		 	
-		 	$(function () {
-            //1 编辑窗口关闭
-            getTargetIdDiv()
+		<link rel="stylesheet" href="css/demo.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css" type="text/css" />
+		<link rel="stylesheet" href="css/leaflet.css" />
+		<link rel="stylesheet" href="css/style.css" media="all" />
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+		<script src="js/highcharts.js"></script>
+		<script src="js/exporting.js"></script>
+		<script src="js/highcharts-zh_CN.js"></script>
+		<script type="text/javascript" src="js/jquery.ztree.core.js"></script>
 
-        })
-		 	
-		 	
-		 	function getTargetIdDiv(){
-		 		alert($("#my_navbar"))
-		 		console($("#my_navbar"))		 		
-		 	}
-		 </script>
- <style type="text/css">
+		<!--王豹-->
 
-	    		div#mypage {
-    margin-left: 150px;
-}
-	    </style>
-	           <style type="text/css">
-        	@media (min-width: 768px) {
-        		#mysearch{
-        			width:150px;
-        			margin-top:0px;
-        			position: absolute;
-        			z-index:1;
-        			/*height:600px;*/
-        			height:100%;
-        			/*设置右侧导航栏填满屏幕*/
-        		}
-        		/*.page-main{
-        			margin-top:10px;
-        			
-        		}*/
-        	},
-        	/*#mypage{
-        		margin-left:250px;
-        	}*/
-        	
-        
-        	 </style> 
 	</head>
-	
-		<body>
 
-    <nav class="navbar navbar-default navbar-static-top navbar-inverse" style="margin-bottom: 0px;">
-    	<div class="navbar-header" id="my_navbar">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">网站后台管理</a>
-    </div>
-    <!--需要使用无序列表并嵌套在nav中-->
-    <!--向右对齐使用navbar-right-->
-    <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-    	<!--加入徽章效果-->
-       <li class="active"><a href="#"> <span class="badge" style="background:deepskyblue">23</span></a></li> 
-       <li ><a href="#"><span class="badge" style="background:lawngreen"></span>注销</a></li>       
-      </ul>
-    </nav>
-    <!--将折叠的内容放在.navbar-collapse中-->
-<div class="navbar-default navbar-collapse navbar-inverse" style=""  id="mysearch">
-	<ul class="nav">
-		<li>
-			<div class="input-group">
-				<input type="text" class="form-control"/>
-				<span class="input-group-btn">
-					<button type="button" class="btn btn-default">
-						<span class="glyphicon glyphicon-zoom-out"></span>
-					</button>
-				</span>
-			</div>
-		</li>
-		<li>
-			 <!--data-toggle，用于告诉 js需要对按钮做什么-->
-			 <!--collapse即是折叠-->
-			 <!--<a href="#sub1" data-toggle="collapse">系统功能</a>-->
-			 <!--data-target指示要切换到哪一个元素-->
-			<a href="#" data-toggle="collapse" data-target="#sub1">系统功能&nbsp;<span class="glyphicon glyphicon-cog"></span></a>
-			<ul id="sub1" class="nav collapse">
-				<li><a href="#"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;系统信息</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;管理员管理</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-envelope"></span>&nbsp;日志信息</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
-			</ul>
-		</li>
-			<li><a href="#">栏目功能</a></li>
-	</ul>
-</div>
-    <!--<div class="container">-->
-	<div id="mypage" class="page-main" style="background:#23527C;height:100%;">
-		<ol class="breadcrumb">
-  			<li><a href="#">Home</a></li>
-  			<li><a href="#">Library</a></li>
-  			<li class="active">Data</li>
-		</ol>
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">最新订单</div>
-  					<div class="panel-body table-responsive">
-  						<table class="table table-striped table-hover table-bordered">
-  							<thead>
-  								<th>#</th>
-  								<th>订单号</th>
-  								<th>订单日期/th>
-  								<th>总价</th>
-  								<th>状态</th>
-  							</thead>
-  							<tbody>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  							</tbody>
-  						</table>
-  					</div>
+	<body>
+
+		<div class="container">
+			<div class="row row-offcanvas row-offcanvas-right">
+				<div class="col-xs-5 col-sm-4 col-md-4 col-lg-3">
+					<div class="row">
+						<label for="dtp_input2" class="col-md-12 control-label">起航日期:</label>
+					</div>
+					<div class="row">
+						<div class="form-group" style="float: left">
+							<div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy 年 MM月 dd 日" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="12" type="text" value="" readonly>
+								<input type="hidden" id="dtp_input2" value="" /><br/>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<label for="dtp_input2" class="col-md-12 control-label">起航时刻:</label>
+							<button type="button" class="btn btn-default dropdown-toggle  col-md-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            08时 <span class="caret"></span>
+                        </button>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">08时</a>
+								</li>
+								<li>
+									<a href="#">20时 </a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="zTreeDemoBackground left">
+						<ul id="treeDemo" class="ztree"></ul>
+					</div>
 				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">最新订单</div>
-  					<div class="panel-body table-responsive">
-  						<table class="table table-striped table-hover table-bordered">
-  							<thead>
-  								<th>#</th>
-  								<th>订单号</th>
-  								<th>订单日期/th>
-  								<th>总价</th>
-  								<th>状态</th>
-  							</thead>
-  							<tbody>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  							</tbody>
-  						</table>
-  					</div>
+				<div class="col-xs-7 col-sm-8 col-md-8 col-lg-9" style="width: 600;">
+					<div id="basemap">
+						<!-- Map container -->
+					</div>
 				</div>
+
 			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">最新订单</div>
-  					<div class="panel-body table-responsive">
-  						<table class="table table-striped table-hover table-bordered">
-  							<thead>
-  								<th>#</th>
-  								<th>订单号</th>
-  								<th>订单日期/th>
-  								<th>总价</th>
-  								<th>状态</th>
-  							</thead>
-  							<tbody>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  							</tbody>
-  						</table>
-  					</div>
-				</div>
+
+			<div class="row row-offcanvas row-offcanvas-right">
+				<div id="charts" style="min-width: 400px;height: 400px;"></div>
+
 			</div>
 		</div>
-		<div class="row">
-			
-		</div>
-	</div>
-	
-      <!--<div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>-->
 
-   <!-- </div>-->
+		<script src="js/leaflet.js"></script>
+		<script src="js/maptiles.js"></script>
 
-  </body>
+		<script type="text/javascript">
+			$('.form_date').datetimepicker({
+				language: 'zh-CN',
+				weekStart: 1,
+				todayBtn: 1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				minView: 2,
+				forceParse: 0
+			});
+			var chart = new Highcharts.Chart('charts', {
+				title: {
+					text: '不同城市的月平均气温',
+					x: -20
+				},
+				subtitle: {
+					text: '数据来源: WorldClimate.com',
+					x: -20
+				},
+				xAxis: {
+					categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+				},
+				yAxis: {
+					title: {
+						text: '温度 (°C)'
+					},
+					plotLines: [{
+						value: 0,
+						width: 1,
+						color: '#808080'
+					}]
+				},
+				tooltip: {
+					valueSuffix: '°C'
+				},
+				legend: {
+					layout: 'vertical',
+					align: 'right',
+					verticalAlign: 'middle',
+					borderWidth: 0
+				},
+				series: [{
+					name: '东京',
+					data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+				}, {
+					name: '纽约',
+					data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+				}, {
+					name: '柏林',
+					data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+				}, {
+					name: '伦敦',
+					data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+				}]
+			});
+
+			var curMenu = null,
+				zTree_Menu = null;
+			var setting = {
+				view: {
+					showLine: false,
+					showIcon: false,
+					selectedMulti: false,
+					dblClickExpand: false,
+					addDiyDom: addDiyDom
+				},
+				data: {
+					simpleData: {
+						enable: true
+					}
+				},
+				callback: {
+					beforeClick: beforeClick
+				}
+			};
+
+			var zNodes = [{
+					id: 1,
+					pId: 0,
+					name: "要素选择",
+					open: true
+				},
+				{
+					id: 11,
+					pId: 1,
+					name: "气象要素"
+				},
+				{
+					id: 111,
+					pId: 11,
+					name: "风"
+				},
+				{
+					id: 112,
+					pId: 11,
+					name: "压"
+				},
+				{
+					id: 113,
+					pId: 11,
+					name: "湿"
+				},
+				{
+					id: 114,
+					pId: 11,
+					name: "温"
+				},
+				{
+					id: 12,
+					pId: 1,
+					name: "水文要素"
+				},
+				{
+					id: 121,
+					pId: 12,
+					name: "水温"
+				},
+				{
+					id: 121,
+					pId: 12,
+					name: "盐度"
+				},
+				{
+					id: 121,
+					pId: 12,
+					name: "海流"
+				}
+			];
+
+			function addDiyDom(treeId, treeNode) {
+				var spaceWidth = 5;
+				var switchObj = $("#" + treeNode.tId + "_switch"),
+					icoObj = $("#" + treeNode.tId + "_ico");
+				switchObj.remove();
+				icoObj.before(switchObj);
+
+				if(treeNode.level > 1) {
+					var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
+					switchObj.before(spaceStr);
+				}
+			}
+
+			function beforeClick(treeId, treeNode) {
+				if(treeNode.level == 0) {
+					var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+					zTree.expandNode(treeNode);
+					return false;
+				}
+				return true;
+			}
+
+			$(document).ready(function() {
+				var treeObj = $("#treeDemo");
+				$.fn.zTree.init(treeObj, setting, zNodes);
+				zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
+				curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
+				zTree_Menu.selectNode(curMenu);
+
+				treeObj.hover(function() {
+					if(!treeObj.hasClass("showIcon")) {
+						treeObj.addClass("showIcon");
+					}
+				}, function() {
+					treeObj.removeClass("showIcon");
+				});
+			});
+		</script>
+	</body>
 
 </html>
