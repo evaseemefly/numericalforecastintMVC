@@ -1,195 +1,191 @@
+<!--
+	作者：xiaoyuan
+	时间：2017-07-31
+	描述：数值预报及其释用产品查询
+-->
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
 		<script type="application/javascript" src="js/jquery-3.2.1.js"></script>
 		<script type="application/javascript" src="js/bootstrap.js"></script>
-		 <link rel="stylesheet" href="css/bootstrap.min.css" />
-		 <!--肖原-->
-		 <script type="application/javascript">
-//		 	$(fucntion(){
-//		 		()
-//		 	})
-//		 	
-		 	$(function () {
-            //1 编辑窗口关闭
-            getTargetIdDiv()
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="application/javascript" src="js/moment.js"></script>
+		<link rel="stylesheet" type="text/css" media="all" href="css/bootstrap-datetimepicker.css">
+		<script type="application/javascript" src="js/bootstrap-datetimepicker.js"></script>
+		<!--bootstrap-treeview start-->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-treeview.min.css">
+		<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+		<!--bootstrap-treeview end-->
+		<!--bootstrap-dialog start-->
+		<link rel="stylesheet" type="text/css" href="plugins/bootstrap-dialog/bootstrap-dialog.min.css">
+		<script type="text/javascript" src="plugins/bootstrap-dialog/bootstrap-dialog.min.js"></script>
+		<!--bootstrap-dialog end-->
+		<script type="text/javascript" src="js/customPlugin.js"></script>
+		<script type="text/javascript">
+			$(function() {
 
-        })
-		 	
-		 	
-		 	function getTargetIdDiv(){
-		 		alert($("#my_navbar"))
-		 		console($("#my_navbar"))		 		
-		 	}
-		 </script>
- <style type="text/css">
+				onLoad();
 
-	    		div#mypage {
-    margin-left: 150px;
-}
-	    </style>
-	           <style type="text/css">
-        	@media (min-width: 768px) {
-        		#mysearch{
-        			width:150px;
-        			margin-top:0px;
-        			position: absolute;
-        			z-index:1;
-        			/*height:600px;*/
-        			height:100%;
-        			/*设置右侧导航栏填满屏幕*/
-        		}
-        		/*.page-main{
-        			margin-top:10px;
-        			
-        		}*/
-        	},
-        	/*#mypage{
-        		margin-left:250px;
-        	}*/
-        	
-        
-        	 </style> 
+				//页面加载
+				function onLoad() {
+					//渲染树
+					$('#tree').treeview({
+						data: getTree(),
+						levels: 1 //默认展开树的层级
+					});
+				}
+
+				//获取树数据
+				function getTree() {
+					var tree = [{
+							text: "气象要素",
+							icon: "glyphicon glyphicon-cloud",
+							color: "#111111",
+							selectable: false,
+							nodes: [{
+									text: "风",
+									selectable: false,
+									nodes: [{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									}]
+								},
+								{
+									text: "压"
+								},
+								{
+									text: "湿"
+								},
+								{
+									text: "温"
+								}
+							]
+						},
+						{
+							text: "水文要素",
+							selectable: false,
+							nodes: [{
+								text: "海浪"
+							}, {
+								text: "海温"
+							}, {
+								text: "海流"
+							}]
+						},
+						{
+							text: "试用产品",
+							selectable: false,
+							nodes: [{
+								text: "产品1"
+							}, {
+								text: "产品2"
+							}, {
+								text: "产品3"
+							}]
+						}
+					];
+					return tree;
+				}
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				//      $('#startDate').daterangepicker({
+				//        singleDatePicker: true,
+				//        startDate: moment().subtract(6, 'days')
+				//      });       
+
+				$('.form_datetime').datetimepicker({
+					//language:  'fr',
+					weekStart: 1,
+					todayBtn: 1,
+					autoclose: 1,
+					todayHighlight: 1,
+					startView: 2,
+					forceParse: 0,
+					showMeridian: 1
+				});
+			});
+		</script>
+
 	</head>
-	
-		<body>
 
-    <nav class="navbar navbar-default navbar-static-top navbar-inverse" style="margin-bottom: 0px;">
-    	<div class="navbar-header" id="my_navbar">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+	<body>
+		<!--
+	作者：xiaoyuan
+	时间：2017-07-31
+	描述：顶部标题栏
+-->
+		<nav class="navbar navbar-default navbar-static-top navbar-inverse" style="margin-bottom: 0px;">
+			<div class="navbar-header" id="my_navbar">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">网站后台管理</a>
-    </div>
-    <!--需要使用无序列表并嵌套在nav中-->
-    <!--向右对齐使用navbar-right-->
-    <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-    	<!--加入徽章效果-->
-       <li class="active"><a href="#"> <span class="badge" style="background:deepskyblue">23</span></a></li> 
-       <li ><a href="#"><span class="badge" style="background:lawngreen"></span>注销</a></li>       
-      </ul>
-    </nav>
-    <!--将折叠的内容放在.navbar-collapse中-->
-<div class="navbar-default navbar-collapse navbar-inverse" style=""  id="mysearch">
-	<ul class="nav">
-		<li>
-			<div class="input-group">
-				<input type="text" class="form-control"/>
-				<span class="input-group-btn">
-					<button type="button" class="btn btn-default">
-						<span class="glyphicon glyphicon-zoom-out"></span>
-					</button>
-				</span>
+				<a class="navbar-brand" href="#">网站后台管理</a>
 			</div>
-		</li>
-		<li>
-			 <!--data-toggle，用于告诉 js需要对按钮做什么-->
-			 <!--collapse即是折叠-->
-			 <!--<a href="#sub1" data-toggle="collapse">系统功能</a>-->
-			 <!--data-target指示要切换到哪一个元素-->
-			<a href="#" data-toggle="collapse" data-target="#sub1">系统功能&nbsp;<span class="glyphicon glyphicon-cog"></span></a>
-			<ul id="sub1" class="nav collapse">
-				<li><a href="#"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;系统信息</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;管理员管理</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-envelope"></span>&nbsp;日志信息</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+			<!--需要使用无序列表并嵌套在nav中-->
+			<!--向右对齐使用navbar-right-->
+			<ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+				<!--加入徽章效果-->
+				<li class="active">
+					<a href="#"> <span class="badge" style="background:deepskyblue">23</span></a>
+				</li>
+				<li>
+					<a href="#"><span class="badge" style="background:lawngreen"></span>注销</a>
+				</li>
 			</ul>
-		</li>
-			<li><a href="#">栏目功能</a></li>
-	</ul>
-</div>
-    <!--<div class="container">-->
-	<div id="mypage" class="page-main" style="background:#23527C;height:100%;">
-		<ol class="breadcrumb">
-  			<li><a href="#">Home</a></li>
-  			<li><a href="#">Library</a></li>
-  			<li class="active">Data</li>
-		</ol>
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">最新订单</div>
-  					<div class="panel-body table-responsive">
-  						<table class="table table-striped table-hover table-bordered">
-  							<thead>
-  								<th>#</th>
-  								<th>订单号</th>
-  								<th>订单日期/th>
-  								<th>总价</th>
-  								<th>状态</th>
-  							</thead>
-  							<tbody>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  							</tbody>
-  						</table>
-  					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">最新订单</div>
-  					<div class="panel-body table-responsive">
-  						<table class="table table-striped table-hover table-bordered">
-  							<thead>
-  								<th>#</th>
-  								<th>订单号</th>
-  								<th>订单日期/th>
-  								<th>总价</th>
-  								<th>状态</th>
-  							</thead>
-  							<tbody>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  							</tbody>
-  						</table>
-  					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">最新订单</div>
-  					<div class="panel-body table-responsive">
-  						<table class="table table-striped table-hover table-bordered">
-  							<thead>
-  								<th>#</th>
-  								<th>订单号</th>
-  								<th>订单日期/th>
-  								<th>总价</th>
-  								<th>状态</th>
-  							</thead>
-  							<tbody>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  								<tr><td>1</td><td>123456</td><td>2017-05-31</td><td>255.5</td><td>卖家确认订单</td></tr>
-  							</tbody>
-  						</table>
-  					</div>
-				</div>
-			</div>
+		</nav>
+
+		<!--
+    	作者：xiaoyuan
+    	时间：2017-07-31
+    	描述：左侧导航栏
+    -->
+		<!--将折叠的内容放在.navbar-collapse中-->
+		<div class="navbar-default navbar-inverse" style="float: left;width: 15%;height: 100%;position: absolute;" id="mysearch">
+			<label><font color="white" size="3"><b>选择气象要素：</b></font></label>
+			<div class="navbar-collapse" id="tree"></div>
 		</div>
-		<div class="row">
+
+		<!--
+	作者：826168013@qq.com
+	时间：2017-08-01
+	描述：main content area 
+-->
+		<div id="mypage" class="page-main" style="background:#23527C;width:85%;height:100%;float: right;">
+			<!--
+            	作者：826168013@qq.com
+            	时间：2017-08-02
+            	描述：查询检索模块
+            -->
+			<form class="navbar-form" role="search">
+				<div class="form-group">
+					<label><font color="white">Time</font></label>
+					<div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+						<input class="form-control" size="16" type="text" value="" readonly>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-default">Search</button>
+			</form>
 			
+			<!--
+            	作者：826168013@qq.com
+            	时间：2017-08-02
+            	描述：图片展示
+            -->
+            <img id="" src="img/SOUTHEAST.gif"/>
+
 		</div>
-	</div>
-	
-      <!--<div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>-->
-
-   <!-- </div>-->
-
-  </body>
+	</body>
 
 </html>
