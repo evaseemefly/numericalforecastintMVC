@@ -8,7 +8,7 @@
 		<script type="application/javascript" src="js/bootstrap.js"></script>
 		<link rel="stylesheet" href="css/demo.css" />
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css" type="text/css" />
+
 		<link rel="stylesheet" href="css/leaflet.css" />
 		<link rel="stylesheet" href="css/style.css" media="all" />
 		<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
@@ -16,230 +16,377 @@
 		<script src="js/highcharts.js"></script>
 		<script src="js/exporting.js"></script>
 		<script src="js/highcharts-zh_CN.js"></script>
-		<script type="text/javascript" src="js/jquery.ztree.core.js"></script>
+		<!--bootstrap-treeview start-->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-treeview.min.css">
+		<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+		<!--bootstrap-treeview end-->
+		<script type="text/javascript">
+			$(function() {
+
+				onLoad();
+
+				//页面加载
+				function onLoad() {
+					//渲染树
+					$('#tree').treeview({
+						data: getTree(),
+						levels: 1 //默认展开树的层级
+					});
+				}
+
+				//获取树数据
+				function getTree() {
+					var tree = [{
+							text: "气象要素",
+							icon: "glyphicon glyphicon-cloud",
+							color: "#111111",
+							selectable: false,
+							nodes: [{
+									text: "风",
+									selectable: false,
+									nodes: [{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									}]
+								},
+								{
+									text: "压",
+									selectable: false,
+									nodes: [{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									}]
+
+								},
+								{
+									text: "湿",
+									selectable: false,
+									nodes: [{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									}]
+								},
+								{
+									text: "温"
+								}
+							]
+						},
+						{
+							text: "水文要素",
+							selectable: false,
+							nodes: [{
+								text: "海浪"
+							}, {
+								text: "海温"
+							}, {
+								text: "海流"
+							}]
+						},
+						{
+							text: "释用产品",
+							selectable: false,
+							nodes: [{
+								text: "产品1"
+							}, {
+								text: "产品2"
+							}, {
+								text: "产品3"
+							}]
+						}
+					];
+					return tree;
+				}
+			});
+		</script>
 
 		<!--王豹-->
 
 	</head>
 
+	<style>
+		header {
+			background-color: #2AABD2;
+			padding: 5px;
+		}
+		
+		label {
+			;
+			margin: 3px;
+			padding: 3px;
+			padding-left: 0px;
+		}
+		h5{
+			background-color: gainsboro;
+			color: black;
+			padding: 5px;
+			margin: 1px;
+		}
+	</style>
+
 	<body>
 
 		<div class="container">
-			<div class="row row-offcanvas row-offcanvas-right">
-				<div class="col-xs-5 col-sm-4 col-md-4 col-lg-3">
+			<header style="margin-top: 5px;">
+				<h1></h1>
+			</header>
+			<div class="col-md-12" style="float: left;">
+				<div class="col-md-3" style="padding: 0px;">
 					<div class="row">
-						<label for="dtp_input2" class="col-md-12 control-label">起航日期:</label>
-					</div>
-					<div class="row">
-						<div class="form-group" style="float: left">
-							<div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy 年 MM月 dd 日" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-								<input class="form-control" size="12" type="text" value="" readonly>
-								<input type="hidden" id="dtp_input2" value="" /><br/>
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-							</div>
-							<label for="dtp_input2" class="col-md-12 control-label">起航时刻:</label>
-							<button type="button" class="btn btn-default dropdown-toggle  col-md-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            08时 <span class="caret"></span>
-                        </button>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">08时</a>
-								</li>
-								<li>
-									<a href="#">20时 </a>
-								</li>
-							</ul>
+						<label>起航日期:</label>
+						<div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy年 MM月 dd 日" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="">
+							<input class="form-control" size="12" type="text" value="" readonly>
+							<input type="hidden" id="dtp_input2" value="" /><br/>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 						</div>
 					</div>
-					<div class="zTreeDemoBackground left">
-						<ul id="treeDemo" class="ztree"></ul>
+					<div class="row" style="margin-top: 10px;">
+						<label>起航时刻:</label>
+						<button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            08 时 <span class="caret"></span>
+                        </button>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">08时</a>
+							</li>
+							<li>
+								<a href="#">20时 </a>
+							</li>
+						</ul>
+
+					</div>
+					<div class="row">
+						<label>选择要素：</label>
+						<div style="float: left;height: 450px;width: 100%;overflow-y: scroll;overflow-x: scroll;position: absolute;" id="mysearch">
+							
+							<div class="navbar-collapse" id="tree"></div>
+						</div>
 					</div>
 				</div>
-				<div class="col-xs-7 col-sm-8 col-md-8 col-lg-9" style="width: 600;">
-					<div id="basemap">
-						<!-- Map container -->
+				<div class="col-md-9" style="margin-top: 5px;">
+					<div class="row">
+						<div class="btn-group col-md-9" role=group "" style="margin-bottom: 3px;">
+							<button type="button" class="btn btn-default">绘制航线</button>
+							<button type="button" class="btn btn-default">漫游</button>							
+							<button type="button" class="btn btn-default">全球</button>
+							<button type="button" class="btn btn-default">西北太</button>
+							<button type="button" class="btn btn-default">北印度洋</button>
+
+						</div>
+						<div class="col-md-3" align="right">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    常用航线
+    <span class="caret"></span>
+  </button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li>
+									<a href="#">航线1</a>
+								</li>
+								<li>
+									<a href="#">航线2</a>
+								</li>
+								<li>
+									<a href="#">航线3</a>
+								</li>
+
+							</ul>
+						</div>
+
+					</div>
+
+					<div id="basemap" style="height: 500px; width: 100%;">
+					</div>
+					<div class="row col-md-12" style="width: 100%;">
+						<h5>请在地图中绘制航线... </h5>
 					</div>
 				</div>
+				<div class="col-md-12">
+					<div class="row row-offcanvas row-offcanvas-right">
+						<div id="charts" style="min-width: 400px;height: 250px;"></div>
 
+					</div>
+				</div>
 			</div>
 
-			<div class="row row-offcanvas row-offcanvas-right">
-				<div id="charts" style="min-width: 400px;height: 400px;"></div>
+			<script src="js/leaflet.js"></script>
+			<script src="js/maptiles.js"></script>
 
-			</div>
-		</div>
-
-		<script src="js/leaflet.js"></script>
-		<script src="js/maptiles.js"></script>
-
-		<script type="text/javascript">
-			$('.form_date').datetimepicker({
-				language: 'zh-CN',
-				weekStart: 1,
-				todayBtn: 1,
-				autoclose: 1,
-				todayHighlight: 1,
-				startView: 2,
-				minView: 2,
-				forceParse: 0
-			});
-			var chart = new Highcharts.Chart('charts', {
-				title: {
-					text: '不同城市的月平均气温',
-					x: -20
-				},
-				subtitle: {
-					text: '数据来源: WorldClimate.com',
-					x: -20
-				},
-				xAxis: {
-					categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-				},
-				yAxis: {
-					title: {
-						text: '温度 (°C)'
-					},
-					plotLines: [{
-						value: 0,
-						width: 1,
-						color: '#808080'
-					}]
-				},
-				tooltip: {
-					valueSuffix: '°C'
-				},
-				legend: {
-					layout: 'vertical',
-					align: 'right',
-					verticalAlign: 'middle',
-					borderWidth: 0
-				},
-				series: [{
-					name: '东京',
-					data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-				}, {
-					name: '纽约',
-					data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-				}, {
-					name: '柏林',
-					data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-				}, {
-					name: '伦敦',
-					data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-				}]
-			});
-
-			var curMenu = null,
-				zTree_Menu = null;
-			var setting = {
-				view: {
-					showLine: false,
-					showIcon: false,
-					selectedMulti: false,
-					dblClickExpand: false,
-					addDiyDom: addDiyDom
-				},
-				data: {
-					simpleData: {
-						enable: true
-					}
-				},
-				callback: {
-					beforeClick: beforeClick
-				}
-			};
-
-			var zNodes = [{
-					id: 1,
-					pId: 0,
-					name: "要素选择",
-					open: true
-				},
-				{
-					id: 11,
-					pId: 1,
-					name: "气象要素"
-				},
-				{
-					id: 111,
-					pId: 11,
-					name: "风"
-				},
-				{
-					id: 112,
-					pId: 11,
-					name: "压"
-				},
-				{
-					id: 113,
-					pId: 11,
-					name: "湿"
-				},
-				{
-					id: 114,
-					pId: 11,
-					name: "温"
-				},
-				{
-					id: 12,
-					pId: 1,
-					name: "水文要素"
-				},
-				{
-					id: 121,
-					pId: 12,
-					name: "水温"
-				},
-				{
-					id: 121,
-					pId: 12,
-					name: "盐度"
-				},
-				{
-					id: 121,
-					pId: 12,
-					name: "海流"
-				}
-			];
-
-			function addDiyDom(treeId, treeNode) {
-				var spaceWidth = 5;
-				var switchObj = $("#" + treeNode.tId + "_switch"),
-					icoObj = $("#" + treeNode.tId + "_ico");
-				switchObj.remove();
-				icoObj.before(switchObj);
-
-				if(treeNode.level > 1) {
-					var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
-					switchObj.before(spaceStr);
-				}
-			}
-
-			function beforeClick(treeId, treeNode) {
-				if(treeNode.level == 0) {
-					var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-					zTree.expandNode(treeNode);
-					return false;
-				}
-				return true;
-			}
-
-			$(document).ready(function() {
-				var treeObj = $("#treeDemo");
-				$.fn.zTree.init(treeObj, setting, zNodes);
-				zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
-				curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
-				zTree_Menu.selectNode(curMenu);
-
-				treeObj.hover(function() {
-					if(!treeObj.hasClass("showIcon")) {
-						treeObj.addClass("showIcon");
-					}
-				}, function() {
-					treeObj.removeClass("showIcon");
+			<script type="text/javascript">
+				$('.form_date').datetimepicker({
+					language: 'zh-CN',
+					weekStart: 1,
+					todayBtn: 1,
+					autoclose: 1,
+					todayHighlight: 1,
+					startView: 2,
+					minView: 2,
+					forceParse: 0
 				});
-			});
-		</script>
+				var chart = new Highcharts.Chart('charts', {
+					title: {
+						text: '不同城市的月平均气温',
+						x: -20
+					},
+					subtitle: {
+						text: '数据来源: WorldClimate.com',
+						x: -20
+					},
+					xAxis: {
+						categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+					},
+					yAxis: {
+						title: {
+							text: '温度 (°C)'
+						},
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					tooltip: {
+						valueSuffix: '°C'
+					},
+					legend: {
+						layout: 'vertical',
+						align: 'right',
+						verticalAlign: 'middle',
+						borderWidth: 0
+					},
+					series: [{
+						name: '东京',
+						data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+					}, {
+						name: '纽约',
+						data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+					}, {
+						name: '柏林',
+						data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+					}, {
+						name: '伦敦',
+						data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+					}]
+				});
+
+				var curMenu = null,
+					zTree_Menu = null;
+				var setting = {
+					view: {
+						showLine: false,
+						showIcon: false,
+						selectedMulti: false,
+						dblClickExpand: false,
+						addDiyDom: addDiyDom
+					},
+					data: {
+						simpleData: {
+							enable: true
+						}
+					},
+					callback: {
+						beforeClick: beforeClick
+					}
+				};
+
+				var zNodes = [{
+						id: 1,
+						pId: 0,
+						name: "要素选择",
+						open: true
+					},
+					{
+						id: 11,
+						pId: 1,
+						name: "气象要素"
+					},
+					{
+						id: 111,
+						pId: 11,
+						name: "风"
+					},
+					{
+						id: 112,
+						pId: 11,
+						name: "压"
+					},
+					{
+						id: 113,
+						pId: 11,
+						name: "湿"
+					},
+					{
+						id: 114,
+						pId: 11,
+						name: "温"
+					},
+					{
+						id: 12,
+						pId: 1,
+						name: "水文要素"
+					},
+					{
+						id: 121,
+						pId: 12,
+						name: "水温"
+					},
+					{
+						id: 121,
+						pId: 12,
+						name: "盐度"
+					},
+					{
+						id: 121,
+						pId: 12,
+						name: "海流"
+					}
+				];
+
+				function addDiyDom(treeId, treeNode) {
+					var spaceWidth = 5;
+					var switchObj = $("#" + treeNode.tId + "_switch"),
+						icoObj = $("#" + treeNode.tId + "_ico");
+					switchObj.remove();
+					icoObj.before(switchObj);
+
+					if(treeNode.level > 1) {
+						var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
+						switchObj.before(spaceStr);
+					}
+				}
+
+				function beforeClick(treeId, treeNode) {
+					if(treeNode.level == 0) {
+						var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+						zTree.expandNode(treeNode);
+						return false;
+					}
+					return true;
+				}
+
+				$(document).ready(function() {
+					var treeObj = $("#treeDemo");
+					$.fn.zTree.init(treeObj, setting, zNodes);
+					zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
+					curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
+					zTree_Menu.selectNode(curMenu);
+
+					treeObj.hover(function() {
+						if(!treeObj.hasClass("showIcon")) {
+							treeObj.addClass("showIcon");
+						}
+					}, function() {
+						treeObj.removeClass("showIcon");
+					});
+				});
+			</script>
 	</body>
 
 </html>
