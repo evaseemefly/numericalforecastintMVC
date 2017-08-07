@@ -1,0 +1,26 @@
+﻿
+<div class="navbar-default navbar-collapse navbar-inverse" style="" id="mysearch">
+    <ul class="nav">
+        <li>
+            <div class="input-group">
+                <input type="text" class="form-control" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-zoom-out"></span>
+                    </button>
+                </span>
+            </div>
+        </li>
+        <li data-bind="foreach:{data:menuItems,as:'mi'}">
+            <!--data-toggle，用于告诉 js需要对按钮做什么-->
+            <!--collapse即是折叠-->
+            <!--<a href="#sub1" data-toggle="collapse">系统功能</a>-->
+            <!--data-target指示要切换到哪一个元素-->
+            <a href="#" data-toggle="collapse" data-target="#sub1" data-bind="text:mi.ActionInfoName">&nbsp;<span class="glyphicon glyphicon-cog"></span>
+            </a>
+         </li>
+        <li>
+            <a href="#">栏目功能</a>
+        </li>
+    </ul>
+</div>

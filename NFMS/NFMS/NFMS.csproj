@@ -184,25 +184,71 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-treeview.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\daterangepicker.css" />
+    <Content Include="Content\demo.css" />
+    <Content Include="Content\leaflet.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\zTreeStyle\img\diy\1_close.png" />
+    <Content Include="Content\zTreeStyle\img\diy\1_open.png" />
+    <Content Include="Content\zTreeStyle\img\diy\2.png" />
+    <Content Include="Content\zTreeStyle\img\diy\3.png" />
+    <Content Include="Content\zTreeStyle\img\diy\4.png" />
+    <Content Include="Content\zTreeStyle\img\diy\5.png" />
+    <Content Include="Content\zTreeStyle\img\diy\6.png" />
+    <Content Include="Content\zTreeStyle\img\diy\7.png" />
+    <Content Include="Content\zTreeStyle\img\diy\8.png" />
+    <Content Include="Content\zTreeStyle\img\diy\9.png" />
+    <Content Include="Content\zTreeStyle\img\line_conn.gif" />
+    <Content Include="Content\zTreeStyle\img\loading.gif" />
+    <Content Include="Content\zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="Content\zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="Content\zTreeStyle\zTreeStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="Scripts\bootstrap-treeview.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\customPlugin.js" />
+    <Content Include="Scripts\daterangepicker.js" />
+    <Content Include="Scripts\exporting.js" />
+    <Content Include="Scripts\highcharts-zh_CN.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.ztree.core.js" />
+    <Content Include="Scripts\knockout-3.4.2.debug.js" />
+    <Content Include="Scripts\knockout-3.4.2.js" />
+    <Content Include="Scripts\leaflet.js" />
+    <Content Include="Scripts\maptiles.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ViewModels\ActionInfoViewModel.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -214,10 +260,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout-bakup.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index-bakup.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -238,6 +284,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_Navbar_Menu-bacup.cshtml" />
+    <Content Include="Views\Home\_Navbar_Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -249,6 +299,20 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NFMS.BLL\NFMS.BLL.csproj">
+      <Project>{62ce18ab-7854-4587-9233-cb6f878b039e}</Project>
+      <Name>NFMS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NFMS.IBLL\NFMS.IBLL.csproj">
+      <Project>{d12cb602-a58d-4ec1-9ada-e658594fad76}</Project>
+      <Name>NFMS.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NFMS.Model\NFMS.Model.csproj">
+      <Project>{ee0b9d78-22c4-469d-8ece-59fbb0ffedd2}</Project>
+      <Name>NFMS.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

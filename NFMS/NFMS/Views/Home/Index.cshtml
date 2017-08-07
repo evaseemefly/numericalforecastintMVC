@@ -1,31 +1,229 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@section scripts{
+    <script type="text/javascript">
+        function ViewModel(model) {
+            var self = this;
+            self.menuItems = ko.observableArray(model);
+        }
+    </script>
+    }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    @*<div class="container body-content">*@
+    <!--将折叠的内容放在.navbar-collapse中-->
+    
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+   
+    <!--将折叠的内容放在.navbar-collapse中-->
+@Html.Partial("_Navbar_Menu")
+    <!--<div class="container">-->
+    <div id="mypage" class="page-main" style="background:#23527C;height:100%;">
+        <ol class="breadcrumb" style="margin-bottom: 0px;">
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Library</a>
+            </li>
+            <li class="active">Data</li>
+        </ol>
+        <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
+            <div class="col-md-12 pagediv">
+                <div class="panel panel-primary " style="margin-bottom: 0px;">
+                    <div class="panel-heading">预报信息</div>
+                    <div class="panel-body" style="padding:2px">
+                        <div class="form-horizontal col-md-12">
+                            <!--基础信息-->
+                            <div class="form-group col-md-3">
+                                <fieldset>
+                                    <legend>基础信息</legend>
+                                    <div class="form-group">
+                                        <div class="col-md-5">
+                                            <label class="col-md-12 control-label">时效</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select id="drops" class="form-control">
+                                                <option value="00" selected>00时</option>
+                                                <option value="06" selected>06时</option>
+                                                <option value="12" selected>12时</option>
+                                                <option value="18" selected>18时</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:2px">
+                                        <div class="col-md-5">
+                                            <label class="col-md-12 control-label">时间</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select id="drops" class="form-control">
+                                                <option value="00" selected>00时</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!--预报信息-->
+                            <div class="form-group col-md-3">
+                                <fieldset>
+                                    <legend>预报信息</legend>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label class="col-md-12 control-label">预报要素</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select id="drops" class="form-control">
+                                                <option value="00" selected>风向</option>
+                                                <option value="06" selected>风速</option>
+                                                <option value="12" selected>潮位</option>
+                                                <option value="18" selected>波浪</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:2px">
+                                        <div class="col-md-6">
+                                            <label class="col-md-12 control-label">预报层级</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select id="drops" class="form-control">
+                                                <option value="00" selected>表面</option>
+                                                <option value="06" selected>水下</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!--区域信息-->
+                            <div class="form-group col-md-5">
+                                <fieldset>
+                                    <legend>预报区域</legend>
+                                    <div class="form-group">
+                                        <div class="col-md-2" style="padding:4px">
+                                            <label class="col-md-12 control-label">经度</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" placeholder="起始" class="form-control col-md-4">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" placeholder="结束" class="form-control col-md-4">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <!--<button class="btn btn-primary col-md-12">常用区域</button>-->
+                                            <!--注意此处在Button外侧不用再套一个div 因为会默认有一个padding-->
+                                            <!--<div class="btn-group col-md-12">-->
+                                            <button type="button" class="btn btn-primary dropdown-toggle col-md-12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                常用区域 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#">北海</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">东海</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">南海</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a href="#">其他</a>
+                                                </li>
+                                            </ul>
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:2px">
+                                        <div class="col-md-2" style="padding:4px">
+                                            <label class="col-md-12 control-label">纬度</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" placeholder="起始" class="form-control col-md-4">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" placeholder="结束" class="form-control col-md-4">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button class="btn btn-success col-md-12">匡选区域</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!--绘图按钮-->
+                            <div class="form-group col-md-1">
+                                <fieldset>
+                                    <legend>操作</legend>
+                                    <button class="btn btn-danger col-md-12 col-md-offset-5" style="height:85px;">绘图</button>
+                                    <!--<div class="form-group">
+
+                                    </div>-->
+                                </fieldset>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="panel-footer">页脚</div>-->
+                </div>
+            </div>
+            <!--中间的导航栏-->
+            <div class="col-md-12 pagediv">
+                <nav class="navbar navbar-default" style="margin-bottom: 0px;">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">位置</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active">
+                                    <a href="#">
+                                        <span class="glyphicon glyphicon-map-marker
+"></span>全图 <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"><span class="glyphicon glyphicon-screenshot"></span>漫游</a>
+                                </li>
+                                <li>
+                                    <a href="#">西太平洋</a>
+                                </li>
+                                </li>
+                                <li>
+                                    <a href="#">北印度洋</a>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="#"><span class="glyphicon glyphicon-zoom-in"></span>放大</a>
+                                </li>
+                                <li>
+                                    <a href="#"><span class="glyphicon glyphicon-zoom-out"></span>缩小</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+
+            </div>
+            <!--下部的巨幕-->
+            <div class="col-md-12 pagediv" style="">
+                <div class="jumbotron" style="height:600px">
+                    <h1>即将显示地图</h1>
+                    <p>...</p>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
