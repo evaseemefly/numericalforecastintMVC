@@ -4,17 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="nfsysModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="nfsysModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actioninfo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ParentID" Type="int" />
           <Property Name="ActionInfoName" Type="varchar" MaxLength="45" />
-          <Property Name="SubTime" Type="date" />
-          <Property Name="DelFlag" Type="bool" />
-          <Property Name="ModifiedOnTime" Type="date" />
+          <Property Name="SubTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DelFlag" Type="bool" Nullable="false" />
+          <Property Name="ModifiedOnTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
           <Property Name="Remark" Type="varchar" MaxLength="256" />
           <Property Name="Url" Type="varchar" MaxLength="256" />
           <Property Name="AreaName" Type="varchar" MaxLength="45" />
@@ -27,17 +27,19 @@
           <Property Name="IconHeight" Type="int" />
           <Property Name="IconCls" Type="varchar" MaxLength="45" />
           <Property Name="IconClassName" Type="varchar" MaxLength="45" />
-          <Property Name="isShow" Type="tinyint" />
+          <Property Name="isShow" Type="bool" Nullable="false" />
           <Property Name="MethodTypeEnum" Type="int" />
         </EntityType>
         <EntityContainer Name="nfsysModelStoreContainer">
           <EntitySet Name="actioninfo" EntityType="Self.actioninfo" Schema="nfsys" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="nfsysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="NFMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actioninfo" EntityType="nfsysModel.actioninfo" />
+        </EntityContainer>
         <EntityType Name="actioninfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -45,8 +47,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="ParentID" Type="Int32" />
           <Property Name="ActionInfoName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="SubTime" Type="DateTime" />
-          <Property Name="DelFlag" Type="Boolean" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          <Property Name="DelFlag" Type="Boolean" Nullable="false" />
           <Property Name="ModifiedOnTime" Type="DateTime" />
           <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="Url" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
@@ -60,12 +62,9 @@
           <Property Name="IconHeight" Type="Int32" />
           <Property Name="IconCls" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="IconClassName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="isShow" Type="SByte" />
+          <Property Name="isShow" Type="Boolean" Nullable="false" />
           <Property Name="MethodTypeEnum" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="NFMSEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="actioninfo" EntityType="Self.actioninfo" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -75,26 +74,26 @@
           <EntitySetMapping Name="actioninfo">
             <EntityTypeMapping TypeName="nfsysModel.actioninfo">
               <MappingFragment StoreEntitySet="actioninfo">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-                <ScalarProperty Name="ActionInfoName" ColumnName="ActionInfoName" />
-                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
-                <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
-                <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
-                <ScalarProperty Name="ActionMethodName" ColumnName="ActionMethodName" />
-                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
-                <ScalarProperty Name="JsFunctionName" ColumnName="JsFunctionName" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="ActionTypeEnum" ColumnName="ActionTypeEnum" />
-                <ScalarProperty Name="IconWidth" ColumnName="IconWidth" />
-                <ScalarProperty Name="IconHeight" ColumnName="IconHeight" />
-                <ScalarProperty Name="IconCls" ColumnName="IconCls" />
-                <ScalarProperty Name="IconClassName" ColumnName="IconClassName" />
-                <ScalarProperty Name="isShow" ColumnName="isShow" />
                 <ScalarProperty Name="MethodTypeEnum" ColumnName="MethodTypeEnum" />
+                <ScalarProperty Name="isShow" ColumnName="isShow" />
+                <ScalarProperty Name="IconClassName" ColumnName="IconClassName" />
+                <ScalarProperty Name="IconCls" ColumnName="IconCls" />
+                <ScalarProperty Name="IconHeight" ColumnName="IconHeight" />
+                <ScalarProperty Name="IconWidth" ColumnName="IconWidth" />
+                <ScalarProperty Name="ActionTypeEnum" ColumnName="ActionTypeEnum" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="JsFunctionName" ColumnName="JsFunctionName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ActionMethodName" ColumnName="ActionMethodName" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />
+                <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="ActionInfoName" ColumnName="ActionInfoName" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

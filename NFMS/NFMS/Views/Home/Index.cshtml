@@ -1,20 +1,22 @@
-﻿@{
+﻿@model  IEnumerable<NFMS.Model.actioninfo>
+@*@model IEnumerable<NFMS.ViewModel.Bootstrap_TreeNode>*@
+
+@{
     ViewBag.Title = "Home Page";
 }
 @section scripts{
     <script type="text/javascript">
         function ViewModel(model) {
             var self = this;
-            self.menuItems = ko.observableArray(model);
+            //self.menuItems = ko.observableArray(model);
         }
+        $(function () {
+            var viewModel = new ViewModel(@BaseExpand.HtmlHelper.HtmlConvert2Json(Model))
+            var myviewModel = { actions: @BaseExpand.HtmlHelper.HtmlConvert2Json(Model) };
+            ko.applyBindings(myviewModel);
+        })
     </script>
     }
-
-    @*<div class="container body-content">*@
-    <!--将折叠的内容放在.navbar-collapse中-->
-    
-
-   
     <!--将折叠的内容放在.navbar-collapse中-->
 @Html.Partial("_Navbar_Menu")
     <!--<div class="container">-->

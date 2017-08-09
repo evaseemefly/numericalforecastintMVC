@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="application/javascript" src="js/jquery-3.2.1.js"></script>
+		<script type="application/javascript" src="js/bootstrap.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="application/javascript" src="js/knockout-3.4.2.debug.js"></script>
+		<script type="application/javascript">
+	//		 	$(fucntion(){
+	//		 		()
+	//		 	})
+	//		 	
+	$(function() {
+		//1 编辑窗口关闭
+//		getTargetIdDiv()
+		var viewModel = {actions:[{
+			"ActionInfoName": "TEST1",
+			"ActionMethodName": "Index",			
+			"isShow": true
+		},{
+			"ActionInfoName": "TEST2",
+			"ActionMethodName": "Index",			
+			"isShow": true
+		},{
+			"ActionInfoName": "TEST3",
+			"ActionMethodName": "Index",			
+			"isShow": true
+		}]};
+//		ko.observableArray(viewModel);
+		ko.applyBindings(viewModel);
+	})
+
+	function getTargetIdDiv() {
+		//		 		alert($("#my_navbar"))
+		//		 		console($("#my_navbar"))		 		
+	}
+</script>
+		<style type="text/css">
+			div#mypage {
+				margin-left: 150px;
+			}
+			
+			.pagediv {
+				padding-left: 0px;
+				padding-right: 0px;
+			}
+			#mysearch {
+					width: 150px;
+					margin-top: 0px;
+					position: absolute;
+					z-index: 1;
+					/*height:600px;*/
+					height: 100%;
+					/*设置右侧导航栏填满屏幕*/
+				}
+		</style>
+	</head>
+
+	<body>
+	<ul class="nav">
+		<li data-bind="foreach:actions">
+			<!--data-target指示要切换到哪一个元素-->
+			<a href="#" data-bind="text:ActionInfoName">&nbsp;<span class="glyphicon glyphicon-cog"></span>
+			</a>
+		</li>
+	</ul>
+</body>
+
+</html>

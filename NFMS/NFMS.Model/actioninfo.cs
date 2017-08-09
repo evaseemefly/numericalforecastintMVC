@@ -17,8 +17,8 @@ namespace NFMS.Model
         public int ID { get; set; }
         public Nullable<int> ParentID { get; set; }
         public string ActionInfoName { get; set; }
-        public Nullable<System.DateTime> SubTime { get; set; }
-        public Nullable<bool> DelFlag { get; set; }
+        public System.DateTime SubTime { get; set; }
+        public bool DelFlag { get; set; }
         public Nullable<System.DateTime> ModifiedOnTime { get; set; }
         public string Remark { get; set; }
         public string Url { get; set; }
@@ -32,7 +32,7 @@ namespace NFMS.Model
         public Nullable<int> IconHeight { get; set; }
         public string IconCls { get; set; }
         public string IconClassName { get; set; }
-        public Nullable<sbyte> isShow { get; set; }
+        public bool isShow { get; set; }
         public Nullable<int> MethodTypeEnum { get; set; }
     }
 }
