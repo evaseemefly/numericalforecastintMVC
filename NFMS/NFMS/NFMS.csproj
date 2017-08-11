@@ -176,6 +176,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ForecastController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -294,6 +295,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_Navbar_Menu-bacup.cshtml" />
     <Content Include="Views\Home\_Navbar_Menu.cshtml" />
+    <Content Include="Views\Forecast\SelectMapping.cshtml" />
+    <Content Include="Views\Forecast\_OperatorButtons.cshtml" />
+    <Content Include="Views\Forecast\_Navbar.cshtml" />
+    <Content Include="Views\Forecast\_Mapper.cshtml" />
+    <Content Include="Views\Shared\_Layout_Mapper.cshtml" />
+    <Content Include="Views\Shared\_Navbar_Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

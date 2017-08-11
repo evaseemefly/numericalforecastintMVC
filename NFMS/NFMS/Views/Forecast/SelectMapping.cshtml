@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "SelectMapping";
+    Layout = "~/Views/Shared/_Layout_Mapper.cshtml";
+}
+
+<div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
+    @*上部的按钮栏*@
+    <div class="col-md-12 pagediv">
+        @Html.Partial("_OperatorButtons")
+    </div>
+    @*中间的导航栏*@
+    <div class="col-md-12 pagediv">
+        @Html.Partial("_Navbar")
+    </div>
+    @*下部占大面积的巨幕——mapper*@
+    <div class="col-md-12 pagediv">
+        @Html.Partial("_Mapper")
+    </div>
+</div>
+
