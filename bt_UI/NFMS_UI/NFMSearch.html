@@ -1,8 +1,3 @@
-<!--
-	作者：xiaoyuan
-	时间：2017-07-31
-	描述：数值预报及其释用产品查询
--->
 <!DOCTYPE html>
 <html>
 
@@ -19,10 +14,6 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-treeview.min.css">
 		<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
 		<!--bootstrap-treeview end-->
-		<!--bootstrap-dialog start-->
-		<link rel="stylesheet" type="text/css" href="plugins/bootstrap-dialog/bootstrap-dialog.min.css">
-		<script type="text/javascript" src="plugins/bootstrap-dialog/bootstrap-dialog.min.js"></script>
-		<!--bootstrap-dialog end-->
 		<script type="text/javascript" src="js/customPlugin.js"></script>
 		<script type="text/javascript">
 			$(function() {
@@ -49,6 +40,30 @@
 									text: "风",
 									selectable: false,
 									nodes: [{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									},{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									},{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									},{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									},{
 										text: "500hPa"
 									}, {
 										text: "800hPa"
@@ -113,23 +128,45 @@
 				});
 			});
 		</script>
-
+		<style type="text/css">
+			div#mypage {
+				margin-left: 150px;
+			}
+		</style>
+		<style type="text/css">
+			@media (min-width: 768px) {
+				#mysearch {
+					width: 150px;
+					margin-top: 0px;
+					position: absolute;
+					z-index: 1;
+					/*height:600px;*/
+					height: 100%;
+					/*设置右侧导航栏填满屏幕*/
+				}
+			}
+			
+			,
+			/*#mypage{
+        		margin-left:250px;
+        	}*/
+		</style>
 	</head>
 
 	<body>
 		<!--
-	作者：xiaoyuan
-	时间：2017-07-31
-	描述：顶部标题栏
--->
-		<nav class="navbar navbar-default navbar-static-top navbar-inverse" style="margin-bottom: 0px;">
+            	作者：826168013@qq.com
+            	时间：2017-08-03
+            	描述：顶部title
+            -->
+		<nav class="navbar navbar-default navbar-static-top navbar-inverse" style="height: 50px;width: 100%;">
 			<div class="navbar-header" id="my_navbar">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+	        				<span class="sr-only">Toggle navigation</span>
+	        				<span class="icon-bar"></span>
+	        				<span class="icon-bar"></span>
+	        				<span class="icon-bar"></span>
+	      					</button>
 				<a class="navbar-brand" href="#">网站后台管理</a>
 			</div>
 			<!--需要使用无序列表并嵌套在nav中-->
@@ -145,47 +182,87 @@
 			</ul>
 		</nav>
 
-		<!--
-    	作者：xiaoyuan
-    	时间：2017-07-31
-    	描述：左侧导航栏
-    -->
-		<!--将折叠的内容放在.navbar-collapse中-->
-		<div class="navbar-default navbar-inverse" style="float: left;width: 15%;height: 100%;position: absolute;" id="mysearch">
-			<label><font color="white" size="3"><b>选择气象要素：</b></font></label>
-			<div class="navbar-collapse" id="tree"></div>
-		</div>
+		<!--左侧系统菜单栏 
+			将折叠的内容放在.navbar-collapse中-->
+		<div id="content" style="position: absolute;top: 50px;left: 0px;background: peachpuff;width: 100%;height: 100%;">
+			<div id="mysearch" class="navbar-default navbar-inverse" style="position: absolute;left: 0px;top: 0px;height: 100%;width: 10%;" >
+				<ul class="nav">
+					<li>
+						<div class="input-group">
+							<input type="text" class="form-control" />
+							<span class="input-group-btn">
+						<button type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-zoom-out"></span>
+							</button>
+							</span>
+						</div>
+					</li>
+					<li>
+						<!--data-toggle，用于告诉 js需要对按钮做什么-->
+						<!--collapse即是折叠-->
+						<!--<a href="#sub1" data-toggle="collapse">系统功能</a>-->
+						<!--data-target指示要切换到哪一个元素-->
+						<a href="#" data-toggle="collapse" data-target="#sub1">系统功能&nbsp;<span class="glyphicon glyphicon-cog"></span></a>
+						<ul id="sub1" class="nav collapse">
+							<li>
+								<a href="#"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;系统信息</a>
+							</li>
+							<li>
+								<a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;管理员管理</a>
+							</li>
+							<li>
+								<a href="#"><span class="glyphicon glyphicon-envelope"></span>&nbsp;日志信息</a>
+							</li>
+							<li>
+								<a href="#"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">栏目功能</a>
+					</li>
+				</ul>
+			</div>
 
-		<!--
+			<!--内部查询树-->
+			<div class="navbar-default navbar-inverse" style="position: absolute;margin-left: 10%;width: 10%;height: 100%;">
+				<div class="" style="height: 100%;" id="mysearch">
+					<label><font color="white" size="3"><b>选择气象要素：</b></font></label>
+					<div class="" id="tree"></div>
+				</div>
+			</div>
+
+			<!--
 	作者：826168013@qq.com
 	时间：2017-08-01
 	描述：main content area 
 -->
-		<div id="mypage" class="page-main" style="background:#23527C;width:85%;height:100%;float: right;">
-			<!--
+			<div id="mypage" class="page-main" style="position:absolute;margin-left:20%;background:#23527C;height:100%;width: 80%;">
+				<!--
             	作者：826168013@qq.com
             	时间：2017-08-02
             	描述：查询检索模块
             -->
-			<form class="navbar-form" role="search">
-				<div class="form-group">
-					<label><font color="white">Time</font></label>
-					<div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-						<input class="form-control" size="16" type="text" value="" readonly>
-						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+				<form class="navbar-form" role="search">
+					<div class="form-group">
+						<label><font color="white">Time</font></label>
+						<div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+							<input class="form-control" size="16" type="text" value="" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+						</div>
 					</div>
-				</div>
-				<button type="submit" class="btn btn-default">Search</button>
-			</form>
-			
-			<!--
+					<button type="submit" class="btn btn-default">Search</button>
+				</form>
+
+				<!--
             	作者：826168013@qq.com
             	时间：2017-08-02
             	描述：图片展示
             -->
-            <img id="" src="img/SOUTHEAST.gif"/>
+				<img id="" src="img/SOUTHEAST.gif" style="width: 80%;" />
 
-		</div>
+			</div>
+			</div>
 	</body>
 
 </html>
