@@ -1,0 +1,105 @@
+﻿<div class="row" style="">
+    <label><font color="white" size="3"><b>选择气象要素：</b></font></label>
+</div>
+
+<div class="row" style="float:left;height: 800px;width:100%;overflow-y: scroll;overflow-x: scroll;position: absolute;" id="mysearch">
+    <div class="navbar-collapse" id="tree"></div>
+</div>
+
+
+<script src="~/Scripts/bootstrap-treeview.min.js"></script>
+<link href="~/Content/bootstrap-treeview.min.css" rel="stylesheet" />
+<script type="text/javascript">
+			$(function() {
+
+				onLoad();
+
+				//页面加载
+				function onLoad() {
+					//渲染树
+					$('#tree').treeview({
+						data: getTree(),
+						levels: 1 //默认展开树的层级
+					});
+				}
+
+				//获取树数据
+				function getTree() {
+					var tree = [{
+							text: "气象要素",
+							icon: "glyphicon glyphicon-cloud",
+							color: "#111111",
+							selectable: false,
+							nodes: [{
+									text: "风",
+									selectable: false,
+									nodes: [{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									},{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									},{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									},{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									},{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									}]
+								},
+								{
+									text: "压"
+								},
+								{
+									text: "湿"
+								},
+								{
+									text: "温"
+								}
+							]
+						},
+						{
+							text: "水文要素",
+							selectable: false,
+							nodes: [{
+								text: "海浪"
+							}, {
+								text: "海温"
+							}, {
+								text: "海流"
+							}]
+						},
+						{
+							text: "试用产品",
+							selectable: false,
+							nodes: [{
+								text: "产品1"
+							}, {
+								text: "产品2"
+							}, {
+								text: "产品3"
+							}]
+						}
+					];
+					return tree;
+				}
+			});
+</script>

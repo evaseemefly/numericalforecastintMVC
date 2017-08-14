@@ -1,0 +1,42 @@
+﻿<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<div class="" id="content" style="">
+    <div class="row">
+        <form class="navbar-form" role="search">
+            <div class="form-group">
+                <label><font color="white">Time</font></label>
+                <div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+    </div>
+
+    <div class="row" style="background-color:white">
+        <h1>图片图片图片...</h1>
+    </div>
+</div>
+
+<script type="text/javascript">
+			$(document).ready(function() {
+				//      $('#startDate').daterangepicker({
+				//        singleDatePicker: true,
+				//        startDate: moment().subtract(6, 'days')
+				//      });
+
+				$('.form_datetime').datetimepicker({
+					//language:  'fr',
+					weekStart: 1,
+					todayBtn: 1,
+					autoclose: 1,
+					todayHighlight: 1,
+					startView: 2,
+					forceParse: 0,
+					showMeridian: 1
+				});
+			});
+</script>
