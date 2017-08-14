@@ -18,5 +18,10 @@ namespace NFMS.Controllers
         {
             return View();
         }
+
+        public ViewResult jsdkfjksdfj()
+        {
+            return View("SelectMapping");
+        }
     }
 }
