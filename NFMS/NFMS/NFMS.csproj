@@ -301,6 +301,9 @@
     <Content Include="Views\Forecast\_Mapper.cshtml" />
     <Content Include="Views\Shared\_Layout_Mapper.cshtml" />
     <Content Include="Views\Shared\_Navbar_Menu.cshtml" />
+    <Content Include="Views\Forecast\SearchPic.cshtml" />
+    <Content Include="Views\Forecast\_SearchPic_Tree.cshtml" />
+    <Content Include="Views\Forecast\_SearchPic_Content.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

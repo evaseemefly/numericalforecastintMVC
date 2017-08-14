@@ -19,9 +19,9 @@ namespace NFMS.Controllers
             return View();
         }
 
-        public ViewResult jsdkfjksdfj()
+        public ActionResult SearchPic()
         {
-            return View("SelectMapping");
+            return View();
         }
     }
 }
