@@ -15,7 +15,16 @@
     </div>
     @*下部占大面积的巨幕——mapper*@
     <div class="col-md-12 pagediv">
-        @Html.Partial("_Mapper")
+        @Html.Partial("_Select_Mapper")
     </div>
 </div>
+<script src="~/Scripts/Map/leaflet.js"></script>
+<script src="~/Scripts/Map/maptiles.js"></script>
+@section scripts{
+    <script src="~/Scripts/ViewModels/SelectMapperOperateViewModel.js"></script>
 
+<link href="~/Content/Map/leaflet.css" rel="stylesheet" />
+    }
+
+
+@*@RenderSection("scripts", required: false)*@

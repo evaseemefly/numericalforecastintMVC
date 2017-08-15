@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NFMS.ViewModel;
 
 namespace NFMS.Controllers
 {
@@ -17,6 +18,12 @@ namespace NFMS.Controllers
         public ActionResult SelectMapping()
         {
             return View();
+        }
+
+        public ActionResult TestGetData(SelectMapperOperateViewModel model)
+        {
+
+            return null;
         }
 
         public ViewResult jsdkfjksdfj()

@@ -12,13 +12,13 @@
             //self.menuItems = ko.observableArray(model);
         }
         $(function () {
-            var viewModel = new ViewModel(@BaseExpand.HtmlHelper.HtmlConvert2Json(Model))
+            @*var viewModel = new ViewModel(@BaseExpand.HtmlHelper.HtmlConvert2Json(Model))
             var myviewModel = { actions: @BaseExpand.HtmlHelper.HtmlConvert2Json(Model) };
-            ko.applyBindings(myviewModel);
+            ko.applyBindings(myviewModel);*@
         })
     </script>
 }
-
+@RenderSection("scripts", required: false)
 @Html.Partial("_Navbar_Menu")
 <!--<div class="container">-->
 <div id="mypage" class="page-main" style="background:#23527C;height:100%;">
