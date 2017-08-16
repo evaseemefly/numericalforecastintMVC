@@ -1,0 +1,216 @@
+﻿<meta charset="utf-8" />
+<script type="application/javascript" src="~/Scripts/jquery-3.2.1.js"></script>
+<script type="application/javascript" src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/demo.css" rel="stylesheet" />
+<link href="~/Content/style.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-treeview.min.css" rel="stylesheet" />
+<link href="~/Content/leaflet.css" rel="stylesheet" />
+
+<script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script src="~/Scripts/bootstrap-treeview.min.js"></script>
+
+
+<script type="text/javascript">
+			$(function() {
+
+				onLoad();
+
+				//页面加载
+				function onLoad() {
+					//渲染树
+					$('#tree').treeview({
+						data: getTree(),
+						levels: 1 //默认展开树的层级
+					});
+				}
+
+				//获取树数据
+				function getTree() {
+					var tree = [{
+							text: "气象要素",
+							icon: "glyphicon glyphicon-cloud",
+							color: "#111111",
+							selectable: false,
+							nodes: [{
+									text: "风",
+									selectable: false,
+									nodes: [{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									}]
+								},
+								{
+									text: "压",
+									selectable: false,
+									nodes: [{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									}]
+
+								},
+								{
+									text: "湿",
+									selectable: false,
+									nodes: [{
+										text: "500hPa"
+									}, {
+										text: "800hPa"
+									}, {
+										text: "1000hPa"
+									}]
+								},
+								{
+									text: "温"
+								}
+							]
+						},
+						{
+							text: "水文要素",
+							selectable: false,
+							nodes: [{
+								text: "海浪"
+							}, {
+								text: "海温"
+							}, {
+								text: "海流"
+							}]
+						},
+						{
+							text: "释用产品",
+							selectable: false,
+							nodes: [{
+								text: "产品1"
+							}, {
+								text: "产品2"
+							}, {
+								text: "产品3"
+							}]
+						}
+					];
+					return tree;
+				}
+			});
+</script>
+
+<style>
+    header {
+        background-color: #2AABD2;
+        padding: 5px;
+    }
+
+    label {
+        ;
+        margin: 3px;
+        padding: 3px;
+        padding-left: 0px;
+    }
+
+    h5 {
+        background-color: gainsboro;
+        color: black;
+        padding: 5px;
+        margin: 1px;
+    }
+</style>
+
+
+<div class="col-md-12" style="float: left;">
+    <div class="col-md-2" style="padding: 0px;">
+        <div class="row">
+            <label>起航日期:</label>
+            <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy年 MM月 dd 日" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="">
+                <input class="form-control" size="12" type="text" value="" readonly>
+                <input type="hidden" id="dtp_input2" value="" /><br />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <label>起航时刻:</label>
+            <select id="startDrops" class="form-control" style="width:100px">
+                <option value="08" selected>08时</option>
+                <option value="20">20时</option>
+            </select>
+
+        </div>
+        <div class="row">
+            <label>选择要素：</label>
+            <div style="float: left;height: 450px;width: 100%;overflow-y: scroll;overflow-x: scroll;position: absolute;" id="mysearch">
+
+                <div class="navbar-collapse" id="tree"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10" style="margin-top: 5px;">
+        <div class="row">
+            <div class="btn-group col-md-10" role=group "" style="margin-bottom: 3px;">
+                <button type="button" class="btn btn-default">绘制航线</button>
+                <button type="button" class="btn btn-default">漫游</button>
+                <button type="button" class="btn btn-default">全球</button>
+                <button type="button" class="btn btn-default">西北太</button>
+                <button type="button" class="btn btn-default">北印度洋</button>
+
+            </div>
+            <div class="col-md-2" align="right">
+                <button type="button" class="btn btn-primary dropdown-toggle col-md-12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    常用航线 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#">航线1</a>
+                    </li>
+                    <li>
+                        <a href="#">航线2</a>
+                    </li>
+                    <li>
+                        <a href="#">航线3</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">添加航线</a>
+                    </li>
+                </ul>
+                @*<select id="routeDrops" class="form-control" style="width:100px">
+                    <option value="01" selected>航线1</option>
+                    <option value="02">航线2</option>
+                    <option value="03">航线3</option>
+                </select>*@
+                
+            </div>
+
+        </div>
+
+        <div id="basemap" style="height: 550px; width: 100%;">
+        </div>
+        <div class="row col-md-12" style="width: 100%;">
+            <h5>请在地图中绘制航线... </h5>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/leaflet.js"></script>
+<script src="~/Scripts/maptiles.js"></script>
+
+<script type="text/javascript">
+    $('.form_date').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+</script>
+
+

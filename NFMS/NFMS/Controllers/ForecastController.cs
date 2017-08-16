@@ -23,5 +23,10 @@ namespace NFMS.Controllers
         {
             return View("SelectMapping");
         }
+
+        public ViewResult RouteMapping()
+        {
+            return View();
+        }
     }
 }

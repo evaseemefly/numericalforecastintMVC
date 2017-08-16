@@ -301,6 +301,11 @@
     <Content Include="Views\Forecast\_Mapper.cshtml" />
     <Content Include="Views\Shared\_Layout_Mapper.cshtml" />
     <Content Include="Views\Shared\_Navbar_Menu.cshtml" />
+    <Content Include="Views\Forecast\RouteMapping.cshtml" />
+    <Content Include="Views\Forecast\_DrawRoute.cshtml" />
+    <Content Include="Views\Forecast\_MapperRoute.cshtml" />
+    <Content Include="Views\Forecast\_NavbarRoute.cshtml" />
+    <Content Include="Views\Shared\_Layout_Route.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

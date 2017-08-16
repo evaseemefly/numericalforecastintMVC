@@ -1,7 +1,7 @@
  var map = L.map('basemap').setView([25, 120], 4);
-        mapLink = 'mosic/';
+ mapLink = '~/data/mosic/';
         L.tileLayer(
-            'mosic/{z}/{x}/{y}.jpg', {
+            '../data/mosic/{z}/{x}/{y}.jpg', {
             attribution: '',
             maxZoom: 8,
 			minZoom: 2			
