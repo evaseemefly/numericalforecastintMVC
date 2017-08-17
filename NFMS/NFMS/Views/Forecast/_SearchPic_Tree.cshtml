@@ -1,14 +1,57 @@
-﻿<div class="row" style="">
-    <label><font color="white" size="3"><b>选择气象要素：</b></font></label>
-</div>
+﻿<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-treeview.min.js"></script>
+<link href="~/Content/bootstrap-treeview.min.css" rel="stylesheet" />
 
-<div class="row" style="float:left;height: 800px;width:100%;overflow-y: scroll;overflow-x: scroll;position: absolute;" id="mysearch">
+<label><font color="black" size="3"><b>选择查询时间：</b></font></label>
+
+<form class="form-horizontal" style="background-color:aquamarine">
+    <div class="form-group col-md-8">
+        <fieldset>
+            <div class="col-md-12">
+                <div class="input-group date form_datetime" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <select id="drops" class="form-control">
+                    <option value="00" selected>08时</option>
+                    <option value="18" selected>20时</option>
+                </select>
+            </div>
+        </fieldset>
+    </div>
+    <div class="form-group col-md-4">
+        <fieldset>
+            <button class="btn btn-danger col-md-12 col-md-offset-5" style="height:60px;">查询</button>
+        </fieldset>
+    </div>
+</form>
+
+@*<label><font color="black" size="3"><b>选择气象要素：</b></font></label>*@
+
+<div class="" style="height: 800px;width:100%;overflow-y: auto;" id="mysearch">
     <div class="navbar-collapse" id="tree"></div>
 </div>
 
+<script type="text/javascript">
+			$(document).ready(function() {
 
-<script src="~/Scripts/bootstrap-treeview.min.js"></script>
-<link href="~/Content/bootstrap-treeview.min.css" rel="stylesheet" />
+				$('.form_datetime').datetimepicker({
+					//language:  'fr',
+					weekStart: 1,
+					todayBtn: 1,
+					autoclose: 1,
+					todayHighlight: 1,
+					startView: 2,
+					forceParse: 0,
+					showMeridian: 1
+				});
+			});
+</script>
+
 <script type="text/javascript">
 			$(function() {
 
