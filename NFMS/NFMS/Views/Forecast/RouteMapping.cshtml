@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "RouteMapping";
+    Layout = "~/Views/Shared/_Layout_Route.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @*左侧导航栏*@
+        <div class="col-md-12" style="margin-left: 10px">
+            @Html.Partial("_NavbarRoute")
+        </div>
+        @*右侧地图*@
+        @*<div class="col-md-10">
+            @Html.Partial("_MapperRoute")
+        </div>*@
+        @*底部曲线*@
+        <div class="col-md-12">
+            @Html.Partial("_DrawRoute")
+        </div>
+    </div>
+</body>
+</html>

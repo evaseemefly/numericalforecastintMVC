@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="c326dbcfe7d24045b0c4e5e1ca2d695a" Name="Diagram1">
         <EntityTypeShape EntityType="nfsysModel.actioninfo" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="nfsysModel.date_test" Width="1.5" PointX="2.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

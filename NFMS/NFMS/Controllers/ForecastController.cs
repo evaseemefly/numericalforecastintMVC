@@ -31,5 +31,10 @@ namespace NFMS.Controllers
         {
             return View();
         }
+
+        public ViewResult RouteMapping()
+        {
+            return View();
+        }
     }
 }

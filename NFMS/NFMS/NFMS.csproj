@@ -183,6 +183,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\actioninfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -268,7 +269,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout-bakup.cshtml" />
@@ -307,7 +310,11 @@
     <Content Include="Views\Shared\_Navbar_Menu.cshtml" />
     <Content Include="Views\Forecast\SearchPic.cshtml" />
     <Content Include="Views\Forecast\_SearchPic_Tree.cshtml" />
-    <Content Include="Views\Forecast\_SearchPic_Content.cshtml" />
+    <Content Include="Views\Forecast\_SearchPic_Content.cshtml" />    <Content Include="Views\Forecast\RouteMapping.cshtml" />
+    <Content Include="Views\Forecast\_DrawRoute.cshtml" />
+    <Content Include="Views\Forecast\_MapperRoute.cshtml" />
+    <Content Include="Views\Forecast\_NavbarRoute.cshtml" />
+    <Content Include="Views\Shared\_Layout_Route.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,6 +15,9 @@ namespace NFMS.Controllers
         public ActionResult Index()
         {
             var action_list = actionBLL.GetListBy(a => (a.isShow == true) && (a.DelFlag == false)).ToList();
+
+            List<ViewModel.Bootstrap_TreeNode> list_treenode = new List<ViewModel.Bootstrap_TreeNode>();
+            TreeInfo(list_treenode);
             //进行treeNode转换
             /*
              * 1 创建一个XXXXfunc
@@ -25,10 +28,16 @@ namespace NFMS.Controllers
              *          反复迭代，最终返回list_treenode集合，所有对应的父 节点中的子节点放在children这个(List<ViewModel.Bootstrap_TreeNode>）
              * 
              */
-            return View(action_list);
+            //return View(action_list);
             //最终返回的
-            //return View(list_treenode);
+            return View(list_treenode);
             //return View();
+        }
+
+        private void TreeInfo(List<ViewModel.Bootstrap_TreeNode> list_tree)
+        {
+            list_tree[0].id = 0;
+            list_tree[0].text = "trreeee";
         }
 
 
