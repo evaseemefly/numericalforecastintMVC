@@ -20,6 +20,7 @@ namespace NFMS.Controllers
             return View();
         }
 
+        public ActionResult SearchPic()
         public ActionResult TestGetData(SelectMapperOperateViewModel model)
         {
 
@@ -28,7 +29,7 @@ namespace NFMS.Controllers
 
         public ViewResult jsdkfjksdfj()
         {
-            return View("SelectMapping");
+            return View();
         }
     }
 }
