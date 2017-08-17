@@ -30,17 +30,8 @@
           <Property Name="isShow" Type="bool" Nullable="false" />
           <Property Name="MethodTypeEnum" Type="int" />
         </EntityType>
-        <EntityType Name="date_test">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SUBTIME" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DelFlag" Type="bool" />
-        </EntityType>
         <EntityContainer Name="nfsysModelStoreContainer">
-          <EntitySet Name="actioninfo" EntityType="Self.actioninfo" Schema="nfs" store:Type="Tables" />
-          <EntitySet Name="date_test" EntityType="Self.date_test" Schema="nfs" store:Type="Tables" />
+          <EntitySet Name="actioninfo" EntityType="Self.actioninfo" Schema="nfsys" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -48,18 +39,17 @@
       <Schema Namespace="nfsysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="NFMSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="actioninfo" EntityType="nfsysModel.actioninfo" />
-          <EntitySet Name="date_test" EntityType="nfsysModel.date_test" />
         </EntityContainer>
         <EntityType Name="actioninfo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="ParentID" Type="Int32" />
           <Property Name="ActionInfoName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
           <Property Name="DelFlag" Type="Boolean" Nullable="false" />
-          <Property Name="ModifiedOnTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOnTime" Type="DateTime" />
           <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="Url" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="AreaName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -74,14 +64,6 @@
           <Property Name="IconClassName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="isShow" Type="Boolean" Nullable="false" />
           <Property Name="MethodTypeEnum" Type="Int32" />
-        </EntityType>
-        <EntityType Name="date_test">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SUBTIME" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DelFlag" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -111,15 +93,6 @@
                 <ScalarProperty Name="SubTime" ColumnName="SubTime" />
                 <ScalarProperty Name="ActionInfoName" ColumnName="ActionInfoName" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="date_test">
-            <EntityTypeMapping TypeName="nfsysModel.date_test">
-              <MappingFragment StoreEntitySet="date_test">
-                <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
-                <ScalarProperty Name="SUBTIME" ColumnName="SUBTIME" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
