@@ -14,10 +14,11 @@ namespace NFMS.Controllers
 
         public ActionResult Index()
         {
-            var action_list = actionBLL.GetListBy(a => (a.isShow == true) && (a.DelFlag == false)).ToList();
+            var action_list = actionBLL.GetListBy(a => (a.isShow == true) && (a.DelFlag == false)).OrderBy(a=> a.ParentID).ToList();
 
             List<ViewModel.Bootstrap_TreeNode> list_treenode = new List<ViewModel.Bootstrap_TreeNode>();
-            TreeInfo(list_treenode);
+            getHomeTreeNode(action_list, list_treenode, 0);
+           
             //进行treeNode转换
             /*
              * 1 创建一个XXXXfunc
@@ -34,14 +35,49 @@ namespace NFMS.Controllers
             //return View();
         }
 
-        private void TreeInfo(List<ViewModel.Bootstrap_TreeNode> list_tree)
+        /// <summary>
+        /// 添加顶级节点，若不是顶级节点，调用迭代函数添加子节点
+        /// </summary>
+        /// <param name="list_action"></param>
+        /// <param name="list_tree"></param>
+        /// <param name="pid"></param>
+        private void getHomeTreeNode(List<NFMS.Model.actioninfo> list_action, List<ViewModel.Bootstrap_TreeNode> list_tree, int pid)
         {
-            list_tree[0].id = 0;
-            list_tree[0].text = "trreeee";
+            foreach(NFMS.Model.actioninfo item in list_action)
+            {
+                ViewModel.Bootstrap_TreeNode node = new ViewModel.Bootstrap_TreeNode(item.ID, item.ActionInfoName);
+                if (item.ParentID == pid)
+                {
+                    list_tree.Add(node);
+                }
+                else
+                {
+                    addTreeNodes(item, list_tree);
+                }
+            }
         }
 
+        /// <summary>
+        /// 迭代添加子节点
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="list_tree"></param>
+        private void addTreeNodes(NFMS.Model.actioninfo action, List<ViewModel.Bootstrap_TreeNode> list_tree)
+        {
+            ViewModel.Bootstrap_TreeNode node = new ViewModel.Bootstrap_TreeNode(action.ID, action.ActionInfoName);
 
-
+            foreach (ViewModel.Bootstrap_TreeNode item in list_tree)
+            {
+                if (action.ParentID == item.id)
+                {
+                    item.children.Add(node);
+                }
+                else
+                {
+                    addTreeNodes(action, item.children);
+                }
+            }
+        }
 
         public ActionResult About()
         {
