@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using NFMS.IBLL;
 using NFMS.BLL;
+using BaseExpand;
 
 namespace NFMS.Controllers
 {
@@ -17,8 +18,8 @@ namespace NFMS.Controllers
             var action_list = actionBLL.GetListBy(a => (a.isShow == true) && (a.DelFlag == false)).OrderBy(a=> a.ParentID).ToList();
 
             List<ViewModel.Bootstrap_TreeNode> list_treenode = new List<ViewModel.Bootstrap_TreeNode>();
-            getHomeTreeNode(action_list, list_treenode, 0);
-           
+
+
             //进行treeNode转换
             /*
              * 1 创建一个XXXXfunc
@@ -29,10 +30,11 @@ namespace NFMS.Controllers
              *          反复迭代，最终返回list_treenode集合，所有对应的父 节点中的子节点放在children这个(List<ViewModel.Bootstrap_TreeNode>）
              * 
              */
-            //return View(action_list);
+            GetHomeTreeNode(action_list, list_treenode, 0);
+
             //最终返回的
+            //return View(SerializerHelper.SerializerToString(list_treenode));
             return View(list_treenode);
-            //return View();
         }
 
         /// <summary>
@@ -41,7 +43,7 @@ namespace NFMS.Controllers
         /// <param name="list_action"></param>
         /// <param name="list_tree"></param>
         /// <param name="pid"></param>
-        private void getHomeTreeNode(List<NFMS.Model.actioninfo> list_action, List<ViewModel.Bootstrap_TreeNode> list_tree, int pid)
+        private void GetHomeTreeNode(List<NFMS.Model.actioninfo> list_action, List<ViewModel.Bootstrap_TreeNode> list_tree, int pid)
         {
             foreach(NFMS.Model.actioninfo item in list_action)
             {
@@ -49,10 +51,11 @@ namespace NFMS.Controllers
                 if (item.ParentID == pid)
                 {
                     list_tree.Add(node);
+                    AddTreeNodes(item, list_tree);
                 }
                 else
                 {
-                    addTreeNodes(item, list_tree);
+                    AddTreeNodes(item, list_tree);
                 }
             }
         }
@@ -62,7 +65,7 @@ namespace NFMS.Controllers
         /// </summary>
         /// <param name="action"></param>
         /// <param name="list_tree"></param>
-        private void addTreeNodes(NFMS.Model.actioninfo action, List<ViewModel.Bootstrap_TreeNode> list_tree)
+        private void AddTreeNodes(NFMS.Model.actioninfo action, List<ViewModel.Bootstrap_TreeNode> list_tree)
         {
             ViewModel.Bootstrap_TreeNode node = new ViewModel.Bootstrap_TreeNode(action.ID, action.ActionInfoName);
 
@@ -74,7 +77,7 @@ namespace NFMS.Controllers
                 }
                 else
                 {
-                    addTreeNodes(action, item.children);
+                    AddTreeNodes(action, item.children);
                 }
             }
         }

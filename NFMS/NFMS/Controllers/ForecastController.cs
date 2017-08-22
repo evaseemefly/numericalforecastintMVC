@@ -20,7 +20,7 @@ namespace NFMS.Controllers
             return View();
         }
 
-        public ActionResult SearchPic()
+        //public ActionResult SearchPic()
         public ActionResult TestGetData(SelectMapperOperateViewModel model)
         {
 
