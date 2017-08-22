@@ -52,5 +52,12 @@ namespace NFMS.ViewModel
         /// 一个节点数组声明了若干节点。
         /// </summary>
         public List<Bootstrap_TreeNode> children { get; set; }
+
+        public Bootstrap_TreeNode(int pid, string name)
+        {
+            id = pid;
+            text = name;
+            children = new List<Bootstrap_TreeNode>();
+        }
     }
 }
