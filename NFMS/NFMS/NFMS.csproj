@@ -200,6 +200,7 @@
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\demo.css" />
     <Content Include="Content\leaflet.css" />
+    <Content Include="Content\Map\leaflet.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\zTreeStyle\img\diy\1_close.png" />
     <Content Include="Content\zTreeStyle\img\diy\1_open.png" />
@@ -249,12 +250,15 @@
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\leaflet.js" />
     <Content Include="Scripts\maptiles.js" />
+    <Content Include="Scripts\Map\leaflet.js" />
+    <Content Include="Scripts\Map\maptiles.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ViewModels\ActionInfoViewModel.js" />
+    <Content Include="Scripts\ViewModels\SelectMapperOperateViewModel.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -301,10 +305,12 @@
     <Content Include="Views\Forecast\SelectMapping.cshtml" />
     <Content Include="Views\Forecast\_OperatorButtons.cshtml" />
     <Content Include="Views\Forecast\_Navbar.cshtml" />
-    <Content Include="Views\Forecast\_Mapper.cshtml" />
+    <Content Include="Views\Forecast\_Select_Mapper.cshtml" />
     <Content Include="Views\Shared\_Layout_Mapper.cshtml" />
     <Content Include="Views\Shared\_Navbar_Menu.cshtml" />
-    <Content Include="Views\Forecast\RouteMapping.cshtml" />
+    <Content Include="Views\Forecast\SearchPic.cshtml" />
+    <Content Include="Views\Forecast\_SearchPic_Tree.cshtml" />
+    <Content Include="Views\Forecast\_SearchPic_Content.cshtml" />    <Content Include="Views\Forecast\RouteMapping.cshtml" />
     <Content Include="Views\Forecast\_DrawRoute.cshtml" />
     <Content Include="Views\Forecast\_MapperRoute.cshtml" />
     <Content Include="Views\Forecast\_NavbarRoute.cshtml" />
@@ -312,6 +318,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

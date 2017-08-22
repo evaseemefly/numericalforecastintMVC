@@ -1,27 +1,14 @@
-var mymap = L.map('basemap').setView([25, 120], 4);
-// var mymap = L.map('basemap').setView([51.505, -0.09], 13)
-        mapLink = 'mosic/';
+ var map = L.map('basemap').setView([25, 120], 4);
+        mapLink = '~/data/mosic/';
         L.tileLayer(
-            'mosic/{z}/{x}/{y}.jpg', {
+            '../data/mosic/{z}/{x}/{y}.jpg', {
             attribution: '',
             maxZoom: 8,
 			minZoom: 2			
-            }).addTo(mymap);
+            }).addTo(map);
   var status = 0;
   
-  L.marker([25, 120]).addTo(mymap);
-  L.circle([25, 122], {
-				color: 'red',
-				fillColor: '#f03',
-				fillOpacity: 0.5,
-				radius: 500
-			}).addTo(mymap);
-  	L.polygon([
-		[25, 122],
-		[26, 122],
-		[28, 130]
-	]).addTo(mymap);
-//polygon.bindPopup("I am a polygon.");
+  polygon.bindPopup("I am a polygon.");
 	
   var popup = L.popup();
 
@@ -30,7 +17,7 @@ var mymap = L.map('basemap').setView([25, 120], 4);
       popup
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(mymap);
+        .openOn(map);
   }  
   
   var poly_points = [];//区域
@@ -45,7 +32,7 @@ var mymap = L.map('basemap').setView([25, 120], 4);
     poly_points.push(clickLocation);
     //显示折线
     poly_line.addLatLng(e.latlng);
-    mymap.addLayer(poly_line);
+    map.addLayer(poly_line);
       //var point=new L.Point(e.layerPoint.x,e.layerPoint.y);
   }
   

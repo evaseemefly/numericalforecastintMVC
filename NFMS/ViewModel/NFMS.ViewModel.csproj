@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Bootstrap_TreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectMapperOperateViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "SelectMapping";
+    Layout = "~/Views/Shared/_Layout_Mapper.cshtml";
+}
+
+<div class="container-fluid" style="padding:0px;height:800px;margin-left:0px;">
+    @*左侧查询选择树*@
+    <div class="col-md-3" style="padding:0px;">
+        @Html.Partial("_SearchPic_Tree");
+    </div>
+    @*右侧显示面板*@
+    <div class="col-md-9" style="padding:0px;">
+        @Html.Partial("_SearchPic_Content");
+    </div>
+</div>

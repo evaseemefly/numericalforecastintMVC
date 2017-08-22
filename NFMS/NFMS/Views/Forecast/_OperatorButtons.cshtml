@@ -1,4 +1,6 @@
 ﻿
+
+
 <div class="panel panel-primary " style="margin-bottom: 0px;">
     <div class="panel-heading">预报信息</div>
     <div class="panel-body" style="padding:2px">
@@ -12,7 +14,7 @@
                             <label class="col-md-12 control-label">时效</label>
                         </div>
                         <div class="col-md-7">
-                            <select id="drops" class="form-control">
+                            <select id="timelimit" class="form-control" data-bind="value:operator.timelimit">
                                 <option value="00" selected>00时</option>
                                 <option value="06" selected>06时</option>
                                 <option value="12" selected>12时</option>
@@ -26,7 +28,7 @@
                             <label class="col-md-12 control-label">时间</label>
                         </div>
                         <div class="col-md-7">
-                            <select id="drops" class="form-control">
+                            <select id="date" class="form-control" data-bind="value:operator.date">
                                 <option value="00" selected>00时</option>
                             </select>
                         </div>
@@ -43,7 +45,7 @@
                             <label class="col-md-12 control-label">预报要素</label>
                         </div>
                         <div class="col-md-6">
-                            <select id="drops" class="form-control">
+                            <select id="element" class="form-control" data-bind="value:operator.element">
                                 <option value="00" selected>风向</option>
                                 <option value="06" selected>风速</option>
                                 <option value="12" selected>潮位</option>
@@ -57,7 +59,7 @@
                             <label class="col-md-12 control-label">预报层级</label>
                         </div>
                         <div class="col-md-6">
-                            <select id="drops" class="form-control">
+                            <select id="level" class="form-control" data-bind="value:operator.level">
                                 <option value="00" selected>表面</option>
                                 <option value="06" selected>水下</option>
                             </select>
@@ -75,10 +77,10 @@
                             <label class="col-md-12 control-label">经度</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" placeholder="起始" class="form-control col-md-4">
+                            <input id="lon_start" type="text" placeholder="起始" class="form-control col-md-4" data-bind="value:operator.lon_start">
                         </div>
                         <div class="col-md-3">
-                            <input type="text" placeholder="结束" class="form-control col-md-4">
+                            <input id="lon_finish" type="text" placeholder="结束" class="form-control col-md-4" data-bind="value:operator.lon_finish">
                         </div>
                         <div class="col-md-4">
                             <!--<button class="btn btn-primary col-md-12">常用区域</button>-->
@@ -87,7 +89,7 @@
                             <button type="button" class="btn btn-primary dropdown-toggle col-md-12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 常用区域 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
+                            <ul id="area" class="dropdown-menu" data-bind="value:operator.area">
                                 <li>
                                     <a href="#">北海</a>
                                 </li>
@@ -110,10 +112,10 @@
                             <label class="col-md-12 control-label">纬度</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" placeholder="起始" class="form-control col-md-4">
+                            <input id="lat_start" type="text" placeholder="起始" class="form-control col-md-4" data-bind="value:operator.lat_start">
                         </div>
                         <div class="col-md-3">
-                            <input type="text" placeholder="结束" class="form-control col-md-4">
+                            <input id="lat_finish" type="text" placeholder="结束" class="form-control col-md-4"  data-bind="value:operator.lat_finish">
                         </div>
                         <div class="col-md-4">
                             <button class="btn btn-success col-md-12">匡选区域</button>
@@ -125,7 +127,7 @@
             <div class="form-group col-md-1">
                 <fieldset>
                     <legend>操作</legend>
-                    <button class="btn btn-danger col-md-12 col-md-offset-5" style="height:85px;">绘图</button>
+                    <button class="btn btn-danger col-md-12 col-md-offset-5" style="height:85px;" data-bind="click:handleSubmit">绘图</button>
                     <!--<div class="form-group">
 
                     </div>-->
@@ -136,4 +138,12 @@
     </div>
     <!--<div class="panel-footer">页脚</div>-->
 </div>
+
+
+<script type="text/javascript">
+    $(function () {
+        var viewModel = selectMapperOperateViewModel();
+        ko.applyBindings(viewModel);
+    })        
+</script>
 

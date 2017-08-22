@@ -20,93 +20,91 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-treeview.min.css">
 		<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
 		<!--bootstrap-treeview end-->
-		<script type="text/javascript">
-			$(function() {
+		<script type="text/javascript">$(function() {
 
-				onLoad();
+	onLoad();
 
-				//页面加载
-				function onLoad() {
-					//渲染树
-					$('#tree').treeview({
-						data: getTree(),
-						levels: 1 //默认展开树的层级
-					});
-				}
+	//页面加载
+	function onLoad() {
+		//渲染树
+		$('#tree').treeview({
+			data: getTree(),
+			levels: 1 //默认展开树的层级
+		});
+	}
 
-				//获取树数据
-				function getTree() {
-					var tree = [{
-							text: "气象要素",
-							icon: "glyphicon glyphicon-cloud",
-							color: "#111111",
-							selectable: false,
-							nodes: [{
-									text: "风",
-									selectable: false,
-									nodes: [{
-										text: "500hPa"
-									}, {
-										text: "800hPa"
-									}, {
-										text: "1000hPa"
-									}]
-								},
-								{
-									text: "压",
-									selectable: false,
-									nodes: [{
-										text: "500hPa"
-									}, {
-										text: "800hPa"
-									}, {
-										text: "1000hPa"
-									}]
+	//获取树数据
+	function getTree() {
+		var tree = [{
+				text: "气象要素",
+				icon: "glyphicon glyphicon-cloud",
+				color: "#111111",
+				selectable: false,
+				nodes: [{
+						text: "风",
+						selectable: false,
+						nodes: [{
+							text: "500hPa"
+						}, {
+							text: "800hPa"
+						}, {
+							text: "1000hPa"
+						}]
+					},
+					{
+						text: "压",
+						selectable: false,
+						nodes: [{
+							text: "500hPa"
+						}, {
+							text: "800hPa"
+						}, {
+							text: "1000hPa"
+						}]
 
-								},
-								{
-									text: "湿",
-									selectable: false,
-									nodes: [{
-										text: "500hPa"
-									}, {
-										text: "800hPa"
-									}, {
-										text: "1000hPa"
-									}]
-								},
-								{
-									text: "温"
-								}
-							]
-						},
-						{
-							text: "水文要素",
-							selectable: false,
-							nodes: [{
-								text: "海浪"
-							}, {
-								text: "海温"
-							}, {
-								text: "海流"
-							}]
-						},
-						{
-							text: "释用产品",
-							selectable: false,
-							nodes: [{
-								text: "产品1"
-							}, {
-								text: "产品2"
-							}, {
-								text: "产品3"
-							}]
-						}
-					];
-					return tree;
-				}
-			});
-		</script>
+					},
+					{
+						text: "湿",
+						selectable: false,
+						nodes: [{
+							text: "500hPa"
+						}, {
+							text: "800hPa"
+						}, {
+							text: "1000hPa"
+						}]
+					},
+					{
+						text: "温"
+					}
+				]
+			},
+			{
+				text: "水文要素",
+				selectable: false,
+				nodes: [{
+					text: "海浪"
+				}, {
+					text: "海温"
+				}, {
+					text: "海流"
+				}]
+			},
+			{
+				text: "释用产品",
+				selectable: false,
+				nodes: [{
+					text: "产品1"
+				}, {
+					text: "产品2"
+				}, {
+					text: "产品3"
+				}]
+			}
+		];
+		return tree;
+	}
+});</script>
 
 		<!--王豹-->
 
@@ -219,174 +217,174 @@
 			<script src="js/leaflet.js"></script>
 			<script src="js/maptiles.js"></script>
 
-			<script type="text/javascript">
-				$('.form_date').datetimepicker({
-					language: 'zh-CN',
-					weekStart: 1,
-					todayBtn: 1,
-					autoclose: 1,
-					todayHighlight: 1,
-					startView: 2,
-					minView: 2,
-					forceParse: 0
-				});
-				var chart = new Highcharts.Chart('charts', {
-					title: {
-						text: '不同城市的月平均气温',
-						x: -20
-					},
-					subtitle: {
-						text: '数据来源: WorldClimate.com',
-						x: -20
-					},
-					xAxis: {
-						categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-					},
-					yAxis: {
-						title: {
-							text: '温度 (°C)'
-						},
-						plotLines: [{
-							value: 0,
-							width: 1,
-							color: '#808080'
-						}]
-					},
-					tooltip: {
-						valueSuffix: '°C'
-					},
-					legend: {
-						layout: 'vertical',
-						align: 'right',
-						verticalAlign: 'middle',
-						borderWidth: 0
-					},
-					series: [{
-						name: '东京',
-						data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-					}, {
-						name: '纽约',
-						data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-					}, {
-						name: '柏林',
-						data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-					}, {
-						name: '伦敦',
-						data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-					}]
-				});
+			<script type="text/javascript">$('.form_date').datetimepicker( {
+	language: 'zh-CN', weekStart: 1, todayBtn: 1, autoclose: 1, todayHighlight: 1, startView: 2, minView: 2, forceParse: 0
+}
 
-				var curMenu = null,
-					zTree_Menu = null;
-				var setting = {
-					view: {
-						showLine: false,
-						showIcon: false,
-						selectedMulti: false,
-						dblClickExpand: false,
-						addDiyDom: addDiyDom
-					},
-					data: {
-						simpleData: {
-							enable: true
-						}
-					},
-					callback: {
-						beforeClick: beforeClick
-					}
-				};
+);
+var chart=new Highcharts.Chart('charts', {
+	title: {
+		text: '不同城市的月平均气温', x: -20
+	}
+	, subtitle: {
+		text: '数据来源: WorldClimate.com', x: -20
+	}
+	, xAxis: {
+		categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+	}
+	, yAxis: {
+		title: {
+			text: '温度 (°C)'
+		}
+		, plotLines: [ {
+			value: 0, width: 1, color: '#808080'
+		}
+		]
+	}
+	, tooltip: {
+		valueSuffix: '°C'
+	}
+	, legend: {
+		layout: 'vertical', align: 'right', verticalAlign: 'middle', borderWidth: 0
+	}
+	, series: [ {
+		name: '东京', data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+	}
+	, {
+		name: '纽约', data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+	}
+	, {
+		name: '柏林', data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+	}
+	, {
+		name: '伦敦', data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+	}
+	]
+}
 
-				var zNodes = [{
-						id: 1,
-						pId: 0,
-						name: "要素选择",
-						open: true
-					},
-					{
-						id: 11,
-						pId: 1,
-						name: "气象要素"
-					},
-					{
-						id: 111,
-						pId: 11,
-						name: "风"
-					},
-					{
-						id: 112,
-						pId: 11,
-						name: "压"
-					},
-					{
-						id: 113,
-						pId: 11,
-						name: "湿"
-					},
-					{
-						id: 114,
-						pId: 11,
-						name: "温"
-					},
-					{
-						id: 12,
-						pId: 1,
-						name: "水文要素"
-					},
-					{
-						id: 121,
-						pId: 12,
-						name: "水温"
-					},
-					{
-						id: 121,
-						pId: 12,
-						name: "盐度"
-					},
-					{
-						id: 121,
-						pId: 12,
-						name: "海流"
-					}
-				];
+);
+var curMenu=null,
+zTree_Menu=null;
+var setting= {
+	view: {
+		showLine: false, showIcon: false, selectedMulti: false, dblClickExpand: false, addDiyDom: addDiyDom
+	}
+	,
+	data: {
+		simpleData: {
+			enable: true
+		}
+	}
+	,
+	callback: {
+		beforeClick: beforeClick
+	}
+}
 
-				function addDiyDom(treeId, treeNode) {
-					var spaceWidth = 5;
-					var switchObj = $("#" + treeNode.tId + "_switch"),
-						icoObj = $("#" + treeNode.tId + "_ico");
-					switchObj.remove();
-					icoObj.before(switchObj);
+;
+var zNodes=[ {
+	id: 1, pId: 0, name: "要素选择", open: true
+}
 
-					if(treeNode.level > 1) {
-						var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
-						switchObj.before(spaceStr);
-					}
-				}
+,
+{
+	id: 11, pId: 1, name: "气象要素"
+}
 
-				function beforeClick(treeId, treeNode) {
-					if(treeNode.level == 0) {
-						var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-						zTree.expandNode(treeNode);
-						return false;
-					}
-					return true;
-				}
+,
+{
+	id: 111, pId: 11, name: "风"
+}
 
-				$(document).ready(function() {
-					var treeObj = $("#treeDemo");
-					$.fn.zTree.init(treeObj, setting, zNodes);
-					zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
-					curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
-					zTree_Menu.selectNode(curMenu);
+,
+{
+	id: 112, pId: 11, name: "压"
+}
 
-					treeObj.hover(function() {
-						if(!treeObj.hasClass("showIcon")) {
-							treeObj.addClass("showIcon");
-						}
-					}, function() {
-						treeObj.removeClass("showIcon");
-					});
-				});
-			</script>
+,
+{
+	id: 113, pId: 11, name: "湿"
+}
+
+,
+{
+	id: 114, pId: 11, name: "温"
+}
+
+,
+{
+	id: 12, pId: 1, name: "水文要素"
+}
+
+,
+{
+	id: 121, pId: 12, name: "水温"
+}
+
+,
+{
+	id: 121, pId: 12, name: "盐度"
+}
+
+,
+{
+	id: 121, pId: 12, name: "海流"
+}
+
+];
+function addDiyDom(treeId, treeNode) {
+	var spaceWidth=5;
+	var switchObj=$("#" + treeNode.tId + "_switch"),
+	icoObj=$("#" + treeNode.tId + "_ico");
+	switchObj.remove();
+	icoObj.before(switchObj);
+	if(treeNode.level > 1) {
+		var spaceStr="<span style='display: inline-block;width:"+(spaceWidth * treeNode.level)+"px'></span>";
+		switchObj.before(spaceStr);
+	}
+}
+
+function beforeClick(treeId, treeNode) {
+	if(treeNode.level==0) {
+		var zTree=$.fn.zTree.getZTreeObj("treeDemo");
+		zTree.expandNode(treeNode);
+		return false;
+	}
+	return true;
+}
+
+$(document).ready(function() {
+	var treeObj=$("#treeDemo");
+	$.fn.zTree.init(treeObj, setting, zNodes);
+	zTree_Menu=$.fn.zTree.getZTreeObj("treeDemo");
+	curMenu=zTree_Menu.getNodes()[0].children[0].children[0];
+	zTree_Menu.selectNode(curMenu);
+	treeObj.hover(function() {
+		if(!treeObj.hasClass("showIcon")) {
+			treeObj.addClass("showIcon");
+		}
+	}
+	, function() {
+		treeObj.removeClass("showIcon");
+	}
+	);
+}
+
+);
+function onMapperClick(e) {
+	if(iCount==1) {
+		northEast=e.latlng;
+		var bounds=L.latLngBounds(southWest, northEast);
+		rectangle.setBounds(bounds);
+		iCount=0;
+	}
+	else {
+		southWest=e.latlng;
+		iCount++;
+	}
+	//当点击地图的时候弹出当前点的经纬度。  
+	popup .setLatLng(e.latlng) .setContent("You clicked the map at " + e.latlng.toString()) .openOn(map);
+}</script>
 	</body>
 
 </html>

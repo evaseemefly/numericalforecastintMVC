@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="application/javascript" src="js/jquery-3.2.1.js"></script>
+		<script type="application/javascript" src="js/bootstrap.js"></script>
+		<link rel="stylesheet" href="css/demo.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+
+		<link rel="stylesheet" href="css/leaflet.css" />
+		<link rel="stylesheet" href="css/style.css" media="all" />
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+		<script src="js/highcharts.js"></script>
+		<script src="js/exporting.js"></script>
+		<script src="js/highcharts-zh_CN.js"></script>
+		<!--bootstrap-treeview start-->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-treeview.min.css">
+		<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+		<!--bootstrap-treeview end-->
+		<script src="js/leaflet.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+			});
+		</script>
+	</head>
+
+	<body>
+
+		<div class="container">
+			<header style="margin-top: 5px;">
+				<h1></h1>
+			</header>
+			<div class="col-md-12" style="float: left;">
+				<div class="col-md-9" style="margin-top: 5px;">
+					<div class="row">
+						<div class="btn-group col-md-9" role=group "" style="margin-bottom: 3px;">
+							<button type="button" class="btn btn-default">绘制航线</button>
+							<button type="button" class="btn btn-default">漫游</button>
+							<button type="button" class="btn btn-default">全球</button>
+							<button type="button" class="btn btn-default">西北太</button>
+							<button type="button" class="btn btn-default">北印度洋</button>
+
+						</div>
+						<div class="col-md-3" align="right">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    常用航线
+    <span class="caret"></span>
+  </button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li>
+									<a href="#">航线1</a>
+								</li>
+								<li>
+									<a href="#">航线2</a>
+								</li>
+								<li>
+									<a href="#">航线3</a>
+								</li>
+
+							</ul>
+						</div>
+
+					</div>
+
+					<div id="basemap" style="height: 500px; width: 100%;">
+					</div>
+					<div class="row col-md-12" style="width: 100%;">
+						<h5>请在地图中绘制航线... </h5>
+					</div>
+				</div>
+			</div>
+
+	</body>
+
+	<script src="js/maptiles.js"></script>
+	<script type="text/javascript">
+		var iCount = 0;
+
+//		function onMapperClick(e) {
+//			if(iCount == 1) {
+//				northEast = e.latlng;
+//				var bounds = L.latLngBounds(southWest, northEast);
+//				rectangle.setBounds(bounds);
+//				iCount = 0;
+//			} else {
+//				southWest = e.latlng;
+//				iCount++;
+//			}
+//
+//			//当点击地图的时候弹出当前点的经纬度。  
+//			popup
+//				.setLatLng(e.latlng)
+//				.setContent("You clicked the map at " + e.latlng.toString())
+//				.openOn(map);
+//		}
+
+//		$(function() {
+//			var polyline = L.polyline([
+//				[51.80607748386585, -0.8843994140625],
+//				[51.601428064502886, -0.9118652343749999]
+//			], {
+//				color: 'blue',
+//				opacity: 0.5,
+//				weight: 3
+//			}).addTo(map);
+
+			//		var bounds = [
+			//			[54.559322, -5.767822],
+			//			[56.1210604, -3.021240]
+			//		]; //默认需要给定一个坐标，要不然js会报错  
+			//		var rectangle = L.rectangle(bounds, {
+			//			color: "#ff7800",
+			//			weight: 3
+			//		}).addTo(map);
+			//		map.on('click', onMapClick());
+//		}
+//		)
+	</script>
+
+</html>
