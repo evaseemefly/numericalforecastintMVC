@@ -17,7 +17,7 @@ namespace NFMS.Controllers
             var action_list = actionBLL.GetListBy(a => (a.isShow == true) && (a.DelFlag == false)).OrderBy(a=> a.ParentID).ToList();
 
             List<ViewModel.Bootstrap_TreeNode> list_treenode = new List<ViewModel.Bootstrap_TreeNode>();
-            getHomeTreeNode(action_list, list_treenode, 0);
+            GetHomeTreeNode(action_list, list_treenode, 0);
            
             //进行treeNode转换
             /*
@@ -41,7 +41,7 @@ namespace NFMS.Controllers
         /// <param name="list_action"></param>
         /// <param name="list_tree"></param>
         /// <param name="pid"></param>
-        private void getHomeTreeNode(List<NFMS.Model.actioninfo> list_action, List<ViewModel.Bootstrap_TreeNode> list_tree, int pid)
+        private void GetHomeTreeNode(List<NFMS.Model.actioninfo> list_action, List<ViewModel.Bootstrap_TreeNode> list_tree, int pid)
         {
             foreach(NFMS.Model.actioninfo item in list_action)
             {
@@ -49,11 +49,12 @@ namespace NFMS.Controllers
                 if (item.ParentID == pid)
                 {
                     list_tree.Add(node);
+                    GetHomeTreeNode(list_action, list_tree, item.ID);
                 }
-                else
-                {
-                    addTreeNodes(item, list_tree);
-                }
+                //else
+                //{
+                //    addTreeNodes(item, list_tree);
+                //}
             }
         }
 

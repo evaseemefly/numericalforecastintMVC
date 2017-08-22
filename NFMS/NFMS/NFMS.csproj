@@ -310,7 +310,8 @@
     <Content Include="Views\Shared\_Navbar_Menu.cshtml" />
     <Content Include="Views\Forecast\SearchPic.cshtml" />
     <Content Include="Views\Forecast\_SearchPic_Tree.cshtml" />
-    <Content Include="Views\Forecast\_SearchPic_Content.cshtml" />    <Content Include="Views\Forecast\RouteMapping.cshtml" />
+    <Content Include="Views\Forecast\_SearchPic_Content.cshtml" />
+    <Content Include="Views\Forecast\RouteMapping.cshtml" />
     <Content Include="Views\Forecast\_DrawRoute.cshtml" />
     <Content Include="Views\Forecast\_MapperRoute.cshtml" />
     <Content Include="Views\Forecast\_NavbarRoute.cshtml" />
