@@ -31,7 +31,7 @@ string namespaceName = code.VsNamespaceSuggestion();
 
 EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
 #>
-using PMS.IDAL;
+using NFMS.IDAL;
 
 namespace NFMS.DALFactory
 {

@@ -31,7 +31,7 @@ string namespaceName = code.VsNamespaceSuggestion();
 
 EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
 #>
-using PMS.Model;
+using NFMS.Model;
 
 namespace NFMS.IBLL
 {
