@@ -26,6 +26,9 @@ namespace NFMS.ViewModel
         /// </summary>
         public string text { get; set; }
 
+        public string Url { get; set; }
+
+        #region 暂时注释掉
         /// <summary>
         /// 节点状态，'open' 或 'closed'，默认：'open'。在设置为'closed'的时候，当前节点的子节点将会从远程服务器加载他们。
         /// </summary>
@@ -42,6 +45,7 @@ namespace NFMS.ViewModel
         //public object attributes { get; set; }
 
         //public string iconCls { get; set; }
+        #endregion
 
         /// <summary>
         /// 
@@ -53,10 +57,11 @@ namespace NFMS.ViewModel
         /// </summary>
         public List<Bootstrap_TreeNode> children { get; set; }
 
-        public Bootstrap_TreeNode(int pid, string name)
+        public Bootstrap_TreeNode(int pid, string name,string url)
         {
             id = pid;
             text = name;
+            Url = url;
             children = new List<Bootstrap_TreeNode>();
         }
     }

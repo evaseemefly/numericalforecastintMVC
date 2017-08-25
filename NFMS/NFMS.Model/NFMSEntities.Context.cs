@@ -26,5 +26,6 @@ namespace NFMS.Model
         }
     
         public virtual DbSet<actioninfo> actioninfo { get; set; }
+        public virtual DbSet<date_test> date_test { get; set; }
     }
 }

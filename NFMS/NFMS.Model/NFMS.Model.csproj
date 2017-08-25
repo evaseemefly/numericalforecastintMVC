@@ -66,6 +66,9 @@
     <Compile Include="actioninfo.cs">
       <DependentUpon>NFMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="date_test.cs">
+      <DependentUpon>NFMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="NFMSEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

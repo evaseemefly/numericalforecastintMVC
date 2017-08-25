@@ -183,7 +183,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-   
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -299,22 +298,29 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\_Navbar_Menu-bacup.cshtml" />
-    <Content Include="Views\Home\_Navbar_Menu.cshtml" />
+    <Content Include="Views\Home\Index-0823.cshtml" />
+    <Content Include="Views\Home\_Navbar_Menu-bakup.cshtml" />
+    <Content Include="Views\Home\_Navbar_Menu-bakup-0823.cshtml" />
     <Content Include="Views\Forecast\SelectMapping.cshtml" />
     <Content Include="Views\Forecast\_OperatorButtons.cshtml" />
     <Content Include="Views\Forecast\_Navbar.cshtml" />
     <Content Include="Views\Forecast\_Select_Mapper.cshtml" />
     <Content Include="Views\Shared\_Layout_Mapper.cshtml" />
-    <Content Include="Views\Shared\_Navbar_Menu.cshtml" />
+    <Content Include="Views\Shared\_Parital_Navbar_Menu.cshtml" />
     <Content Include="Views\Forecast\SearchPic.cshtml" />
     <Content Include="Views\Forecast\_SearchPic_Tree.cshtml" />
-    <Content Include="Views\Forecast\_SearchPic_Content.cshtml" />    <Content Include="Views\Forecast\RouteMapping.cshtml" />
-    <Content Include="Views\Forecast\_DrawRoute.cshtml" />
-    <Content Include="Views\Forecast\_MapperRoute.cshtml" />
-    <Content Include="Views\Forecast\_NavbarRoute.cshtml" />
+    <Content Include="Views\Forecast\_SearchPic_Content.cshtml" />
+    <Content Include="Views\Forecast\RouteMapping.cshtml" />
+    <Content Include="Views\Forecast\_Route_Draw.cshtml" />
+    <Content Include="Views\Forecast\_Route_Navbar.cshtml" />
     <Content Include="Views\Shared\_Layout_Route.cshtml" />
+    <Content Include="Views\Home\_Navbar_Menu-05.cshtml" />
+    <Content Include="Views\Shared\_Layout_Home.cshtml" />
+    <Content Include="Views\Home\_Layout_Home.cshtml" />
+    <Content Include="Views\Home\Index-zancun.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Navbar_Menu-菜单项固定-备份.cshtml" />
+    <Content Include="Views\Home\GetMenuView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
