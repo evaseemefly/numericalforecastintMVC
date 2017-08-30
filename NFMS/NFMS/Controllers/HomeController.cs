@@ -36,6 +36,7 @@ namespace NFMS.Controllers
             //最终返回的
             //return View(SerializerHelper.SerializerToString(list_treenode));
             //return View(list_treenode);
+            
             return PartialView(list_treenode);
         }
 
