@@ -1,0 +1,35 @@
+{% extends "_Layout.html" %}
+{% block body %}
+{#    相当于c#中的PartialView#}
+    {% include "_Partial_Navbar_Menu.html" %}
+{#@Html.Partial("_Navbar_Menu")#}
+<!--<div class="container">-->
+<div id="mypage" class="page-main" style="background:#23527C;height:100%;">
+    <ol class="breadcrumb" style="margin-bottom: 0px;">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="#">Library</a>
+        </li>
+        <li class="active">Data</li>
+    </ol>
+    <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
+        {% block body %}body
+            {% endblock %}
+    </div>
+</div>
+
+{% endblock %}
+
+{#@RenderSection("scripts", required: false)#}
+{% block bottom-js %}
+ <script type="text/javascript">
+        function ViewModel(model) {
+            var self = this;
+            //self.menuItems = ko.observableArray(model);
+        }
+        $(function () {
+        })
+    </script>
+{% endblock %}
