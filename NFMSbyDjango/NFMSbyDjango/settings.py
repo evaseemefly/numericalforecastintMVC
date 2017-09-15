@@ -13,8 +13,13 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# 注意此时BASE_DIR与BASE_TEMPLATE_DIRS路径相同
+# E:\01开发\numericalforecastintMVC\NFMSbyDjango
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+# E:\01开发\numericalforecastintMVC\NFMSbyDjango
+BASE_TEMPLATE_DIRS = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))#获取当前脚本的父目录
+print(BASE_DIR)
+print(BASE_TEMPLATE_DIRS)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -38,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'NFMS',
+    'Forecast',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +61,8 @@ ROOT_URLCONF = 'NFMSbyDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,10 +126,52 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+# os.path.abspath(os.path.dirname(os.path.dirname(__file__))
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+#E:\01开发\numericalforecastintMVC\NFMSbyDjango\static
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+# STATICFILES_DIRS = [
+#     # "%s/%s" %(BASE_DIR, "static"),
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+
+# print(STATIC_ROOT)
+# print(STATIC_ROOT.replace('\\','/'))
+
+
+STATICFILES_DIRS = [
+    # os.path.join(BASE_DIR, "static").replace('\\', '/'),
+    ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
+    ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
+    ('fonts', os.path.join(STATIC_ROOT, 'fonts').replace('\\', '/')),
+    ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
+    ('upload', os.path.join(STATIC_ROOT, 'upload').replace('\\', '/')),
+]
+#
+# STATICFILES_DIRS = [
+#     # STATIC_ROOT,
+#     # STATIC_ROOT.replace('\\','/')
+#     os.path.join(BASE_DIR, "static"),
+#
+#     # ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
+#     # ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
+#     # ('fonts', os.path.join(STATIC_ROOT, 'fonts').replace('\\', '/')),
+#     # ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
+#     # ('upload', os.path.join(STATIC_ROOT, 'upload').replace('\\', '/')),
+# ]
+# print(STATICFILES_DIRS)
+# print(STATICFILES_DIRS)
+TEMPLATE_DIRS = (
+    os.path.join(BASE_TEMPLATE_DIRS,  'templates'),
+)
+
+
+
+# TEMPLATE_DIRS = (
+#     os.path.join(BASE_TEMPLATE_DIRS,'AssetsPoolApp'),
+# )
 
 # 添加静态文件
-STATICFILES_DIRS=(
-    os.path.join(BASE_DIR,'static')
-)
+# STATICFILES_DIRS=(
+#     os.path.join(BASE_DIR,'static')
+# )
