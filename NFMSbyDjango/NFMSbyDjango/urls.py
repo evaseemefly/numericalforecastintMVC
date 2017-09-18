@@ -16,8 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from NFMS import views
+import Forecast
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^nfms/',views)
+    url(r'^nfms/',Forecast.views)
 ]
