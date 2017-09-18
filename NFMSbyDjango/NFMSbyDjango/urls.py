@@ -13,12 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib import admin
 from NFMS import views
-import Forecast
+from Forecast import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^nfms/',Forecast.views)
+    # url(r'^nfms/',views),
+    # url(r'^Forecast',include("Forecast.urls"))
+    # url(r'^Forecast',NFMSbyDjango.Forecast.views.selectMapping)
+    url(r'^Forecast/selectMapping',views.selectMapping),
+    url(r'^Forecast/Test',views.test)
 ]

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+{#    @*@Styles.Render("~/Content/css")#}
+{#    @Scripts.Render("~/bundles/modernizr")#}
+{#    @Scripts.Render("~/bundles/jquery")#}
+{#    @Scripts.Render("~/bundles/bootstrap")*@#}
+    <script type="application/javascript" src="/static/js/jquery-3.2.1.js"></script>
+    <script type="application/javascript" src="/static/js/bootstrap.js"></script>
+
+  </head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" style="margin-bottom: 0px;">
+        <div class="navbar-header" id="my_navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#">网站后台管理</a>
+        </div>
+    </nav>
+    <div id="main" style="">
+
+{#        @Html.Action("GetMenuView","Home")#}
+        <div id="content" class="col-md-10">
+        {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>
+  {% block top-js %}
+    {% endblock %}
+{% block bottom-js %}底部js代码
+{% endblock %}
+{#@RenderSection("scripts", required: false)#}
+<link href="/static/css/bootstrap.css" rel="stylesheet" />
+<script src="/static/js/knockout-3.4.2.debug.js"></script>
+<style type="text/css">
+    /*对于使用了bootstrap的navbar并固定在顶部时下面的div填充满整个屏幕的解决办法*/
+    html,
+    body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        background-color: #BBBBBB;
+        padding-top: 25px;
+    }
+
+    #main {
+        height: 100%;
+    }
+
+    #nav {
+        height: 100%;
+        background: #00B83F;
+    }
+
+    #content {
+        background-color: #F5E79E;
+        height: 100%;
+    }
+
+    #ul_nav {
+        position: absolute;
+        height: 100%;
+    }
+{#    .nopadding{#}
+{#        padding: 0px 0px 0px 0px;#}
+{#    }#}
+</style>

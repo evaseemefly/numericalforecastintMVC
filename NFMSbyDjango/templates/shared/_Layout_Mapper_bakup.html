@@ -1,12 +1,8 @@
 {#{% extends "/shared/_Layout.html" %}#}
-{#{% extends "/shared/_Layout.html" %}#}
-{%  extends "shared/_Layout.html" %}
-{#{% extends "shared/_Layout.html" %}#}
-{#{% extends "templates/shared/_Layout_Mapper.html" %}#}
+{% extends "/templates/shared/_Layout_bakup.html" %}
 {% block body %}
 {#    相当于c#中的PartialView#}
-    {% include "shared/_Partial_Navbar_Menu.html" %}
-{#    {% include "_Partial_Navbar_Menu.html" %}#}
+    {% include "_Partial_Navbar_Menu.html" %}
 {#@Html.Partial("_Navbar_Menu")#}
 <!--<div class="container">-->
 <div id="mypage" class="page-main" style="background:#23527C;height:100%;">
@@ -28,3 +24,13 @@
 {% endblock %}
 
 {#@RenderSection("scripts", required: false)#}
+{% block bottom-js %}
+ <script type="text/javascript">
+        function ViewModel(model) {
+            var self = this;
+            //self.menuItems = ko.observableArray(model);
+        }
+        $(function () {
+        })
+    </script>
+{% endblock %}
