@@ -31,9 +31,19 @@ class UserInfo(models.Model):
     Name=models.CharField(max_length=64)
     Pwd=models.CharField(max_length=64)
     DelFlag=models.BooleanField(default=False)
-    SubTime=models.DateField
-    ModifiedOnTime=models.DateField
+    SubTime=models.DateTimeField(auto_now_add=True)
+    ModifiedOnTime=models.DateTimeField(auto_now=True)
     Remark=models.CharField(max_length=256)
-    Sort=models.SmallIntegerField
+    Sort=models.SmallIntegerField(default=0)
     class Meta:
         db_table="userinfo"
+
+class R_UserInfo_Action(models.Model):
+    RID=models.AutoField(primary_key=True)
+    UserId=models.ForeignKey(UserInfo)
+    # UserId=models.IntegerField
+    ActionId=models.ForeignKey(ActionInfo)
+    # ActionId=models.IntegerField
+    isPass=models.BooleanField(default=False)
+    class Meta:
+        db_table="r_userinfo_action"
