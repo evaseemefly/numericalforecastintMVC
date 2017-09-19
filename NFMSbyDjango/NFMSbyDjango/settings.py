@@ -89,7 +89,7 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.mysql',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nfsysbydj',
+        'NAME': 'nfsys',
         'USER': 'root',
         'PASSWORD': 'icanflyeva',
         'HOST': '',
