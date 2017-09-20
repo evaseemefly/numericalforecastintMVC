@@ -17,3 +17,15 @@ class ViewModel_UserInfo:
         self.delflag=delflag
         self.sort=sort
         self.remark=remark
+
+class Bootstrap_TreeNode:
+    '''
+    BootStrap可用的树节点
+    '''
+    def __init__(self, id,text,url,iconClass,children):
+        self.id=id
+        self.text=text
+        self.url=url
+        self.iconClass=iconClass
+        self.childer=[]
+        #return super().__init__(**kwargs)
