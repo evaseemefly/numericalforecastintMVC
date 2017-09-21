@@ -5,24 +5,24 @@ from django.db import models
 class ActionInfo(models.Model):
     # 主键
     AID=models.AutoField(primary_key=True)
-    ParentID=models.IntegerField
+    ParentID=models.IntegerField(default=0)
     Name=models.CharField(max_length=64)
     DelFlag=models.BooleanField(default=True)
-    ModifiedOnTime=models.DateField
+    ModifiedOnTime=models.DateField()
     Remark=models.CharField(max_length=256)
     Url=models.CharField(max_length=256)
     AreaName=models.CharField(max_length=64)
     ActionMethodName=models.CharField(max_length=64)
     ControllerName=models.CharField(max_length=64)
     JsFunctionName=models.CharField(max_length=32)
-    Sort=models.SmallIntegerField
-    ActionTypeEnum=models.PositiveSmallIntegerField
-    IconWidth=models.PositiveSmallIntegerField
-    IconHeigh=models.PositiveSmallIntegerField
+    Sort=models.SmallIntegerField(default=0)
+    ActionTypeEnum=models.PositiveSmallIntegerField(default=0)
+    IconWidth=models.PositiveSmallIntegerField(null=True)
+    IconHeigh=models.PositiveSmallIntegerField(null=True)
     IconCls=models.CharField(max_length=64)
     IconClassName=models.CharField(max_length=64)
     isShow=models.BooleanField(default=True)
-    MethodTypeEnum=models.PositiveSmallIntegerField
+    MethodTypeEnum=models.PositiveSmallIntegerField(default=0)
     class Meta:
         db_table="actioninfo"
 
