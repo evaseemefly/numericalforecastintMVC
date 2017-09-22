@@ -23,13 +23,14 @@ def initModelData(request):
     print("写入成功")
     return render(request, 'Forecast/Test.html', {})
 
-def getActions(request,name,pwd):
+def getActions(request):
     '''
     根据用户名及pwd获取该用户的所拥有的权限
     '''
     # 1 获取请求中的用户名及密码
-    #name= request.GET.get('name',None)
-    #pwd=request.GET.get('pwd',None)
+    # 对于传统的?方式提交的参数直接通过request.GET.get('key')的方式获取
+    name= request.GET.get('name',None)
+    pwd=request.GET.get('pwd',None)
     # 2 根据用户名及密码查询是否存在指定用户，密码是否正确
     # obj_user= models.UserInfo.objects.get(Name=name)
     users= models.UserInfo.objects.filter(Name=name)
@@ -55,19 +56,21 @@ def getActions(request,name,pwd):
                 for a in list_actions:
                     #
                     print(a.Name)
-                getHomeTreeNode(list_actions,0)
+                list_node= getHomeTreeNode(list_actions,0)
                 # print("指定用户存在")
+    return render(request, 'Forecast/Test.html', {})
 
 def getHomeTreeNode(actions,pid):
     '''
     根据传入的权限列表转换为tree结构的
     '''
-    list_actions=[]
+    # list_actions=[]
     list_treeNodes=[]
     for a in actions:
         # 若当前权限的父级id为传入的pid时
         if a.ParentID==pid:
-            list_actions.append(a)
+            node= viewmodels.Bootstrap_TreeNode(a.AID, a.Name, a.Url,a.IconCls);
+            list_treeNodes.append(node)
         addTreeNodes(a,list_treeNodes)
     return list_treeNodes
 
@@ -75,7 +78,7 @@ def addTreeNodes(action,list_tree):
     '''
     迭代添加子节点
     '''
-    node= viewmodels.Bootstrap_TreeNode()
+    node= viewmodels.Bootstrap_TreeNode(action.AID,action.Name,action.Url,action.IconCls)
     for item in list_tree:
         if item.id==action.ParentID:
             item.children.append(node)

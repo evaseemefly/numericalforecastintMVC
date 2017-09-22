@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'NFMS',
+    # 'NFMS',
     'Forecast',
+    # 'ForecastTest',
 ]
 
 MIDDLEWARE = [
@@ -88,25 +89,15 @@ DATABASES = {
     # }
     #单位台式机
     'default': {
-       # 'ENGINE': 'django.db.backends.mysql',
+
        'ENGINE': 'django.db.backends.mysql',
-       'NAME': 'nfsys',
+       'NAME': 'nfsysbydj',
        'USER': 'root',
        'PASSWORD': 'icanflyeva',
        'HOST': '',
        'PORT': '',
     }
 
-    #5510
-    #  'default': {
-    #     # 'ENGINE': 'django.db.backends.mysql',
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'nfsysbydj',
-    #     'USER': 'root',
-    #     'PASSWORD': 'icanflyeva',
-    #     'HOST': '',
-    #     'PORT': '',
-    # }
 }
 
 
