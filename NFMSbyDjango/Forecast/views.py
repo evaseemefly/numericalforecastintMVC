@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponsePermanentRedirect
 from Forecast import models
+from Forecast import Forms
 # import pynq
 from Forecast import viewmodels
 
@@ -15,7 +16,13 @@ def routeMapping():
     return "routeMapping"
 
 def test(request):
-    return render(request,'Forecast/Test.html',{})
+    # 1 获取请求中的用户名及密码
+    # 对于传统的?方式提交的参数直接通过request.GET.get('key')的方式获取
+    name = request.GET.get('name', None)
+    pwd = request.GET.get('pwd', None)
+    list_nodes=getActions(name,pwd)
+
+    return render(request, 'Forecast/Test.html', {'list_actions': list_nodes})
 
 def initModelData(request):
     obj= models.UserInfo(Name="ceshi",Pwd="123")
@@ -23,66 +30,75 @@ def initModelData(request):
     print("写入成功")
     return render(request, 'Forecast/Test.html', {})
 
-def getActions(request):
+def getActions(name,pwd):
     '''
-    根据用户名及pwd获取该用户的所拥有的权限
+    根据用户名及密码获取该用户所拥有的菜单集合
+    :param name:用户名
+    :param pwd:密码
+    :return:
     '''
-    # 1 获取请求中的用户名及密码
-    # 对于传统的?方式提交的参数直接通过request.GET.get('key')的方式获取
-    name= request.GET.get('name',None)
-    pwd=request.GET.get('pwd',None)
     # 2 根据用户名及密码查询是否存在指定用户，密码是否正确
     # obj_user= models.UserInfo.objects.get(Name=name)
-    users= models.UserInfo.objects.filter(Name=name)
-    if users.count()==1:
-        obj_user=users.first()
+    users = models.UserInfo.objects.filter(Name=name)
+    if users.count() == 1:
+        obj_user = users.first()
         if obj_user and pwd:
-            if obj_user.Pwd==pwd:
+            if obj_user.Pwd == pwd:
                 # 2.1 密码用户名均正确
                 # 根据该用户查询其拥有的权限
                 # 注意此处的r是个 <QuerySet[]>
-                r= obj_user.r_userinfo_action_set.all()
+                r = obj_user.r_userinfo_action_set.all()
                 # 查找该用户拥有的全部权限
                 # actions= From(r).Where()
                 # actions=pynq.From(r.ActionId).Where("isPass==0").select_many()
-                list_actions=[x.ActionId for x in r]
+                list_actions = [x.ActionId for x in r]
                 # 对actions进行排序
-                #actions_sorted=sorted(actions,key=lambd a:a.Sort)
-
-
-                #new_actions=list(set(actions))
-                #new_actions.sort(key=actions.Url)
-                #func=lambda x,y:x if y.Url==x.Url
+                # actions_sorted=sorted(actions,key=lambd a:a.Sort)
+                # new_actions=list(set(actions))
+                # new_actions.sort(key=actions.Url)
+                # func=lambda x,y:x if y.Url==x.Url
                 for a in list_actions:
                     #
                     print(a.Name)
-                list_node= getHomeTreeNode(list_actions,0)
-                # print("指定用户存在")
-    return render(request, 'Forecast/Test.html', {})
 
-def getHomeTreeNode(actions,pid):
-    '''
-    根据传入的权限列表转换为tree结构的
-    '''
-    # list_actions=[]
-    list_treeNodes=[]
-    for a in actions:
-        # 若当前权限的父级id为传入的pid时
-        if a.ParentID==pid:
-            node= viewmodels.Bootstrap_TreeNode(a.AID, a.Name, a.Url,a.IconCls);
-            list_treeNodes.append(node)
-        addTreeNodes(a,list_treeNodes)
-    return list_treeNodes
+                navbarmenu = Forms.NavbarMenu(list_actions)
+                list_nodes = navbarmenu.getHomeTreeNode(list_actions, 0)
+    return  list_nodes
 
-def addTreeNodes(action,list_tree):
-    '''
-    迭代添加子节点
-    '''
-    node= viewmodels.Bootstrap_TreeNode(action.AID,action.Name,action.Url,action.IconCls)
-    for item in list_tree:
-        if item.id==action.ParentID:
-            item.children.append(node)
-        else:
-            addTreeNodes(action,item.children)
+# def getActions(request):
+#     '''
+#     根据用户名及pwd获取该用户的所拥有的权限
+#     '''
+#
+#     # 2 根据用户名及密码查询是否存在指定用户，密码是否正确
+#     # obj_user= models.UserInfo.objects.get(Name=name)
+#     users= models.UserInfo.objects.filter(Name=name)
+#     if users.count()==1:
+#         obj_user=users.first()
+#         if obj_user and pwd:
+#             if obj_user.Pwd==pwd:
+#                 # 2.1 密码用户名均正确
+#                 # 根据该用户查询其拥有的权限
+#                 # 注意此处的r是个 <QuerySet[]>
+#                 r= obj_user.r_userinfo_action_set.all()
+#                 # 查找该用户拥有的全部权限
+#                 # actions= From(r).Where()
+#                 # actions=pynq.From(r.ActionId).Where("isPass==0").select_many()
+#                 list_actions=[x.ActionId for x in r]
+#                 # 对actions进行排序
+#                 #actions_sorted=sorted(actions,key=lambd a:a.Sort)
+#                 #new_actions=list(set(actions))
+#                 #new_actions.sort(key=actions.Url)
+#                 #func=lambda x,y:x if y.Url==x.Url
+#                 for a in list_actions:
+#                     #
+#                     print(a.Name)
+#                 navbarmenu=Forms.NavbarMenu(list_actions)
+#                 list_node= navbarmenu.getHomeTreeNode(list_actions,0)
+#                 # list_node= getHomeTreeNode(list_actions,0)
+#
+#                 # print("指定用户存在")
+#     return render(request, 'Forecast/Test.html', {'list_actions':list_node})
+
 
            
