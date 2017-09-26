@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NFMSbyDjango", "NFMSbyDjango.pyproj", "{9744E8DC-ACDE-469F-9723-6E33E55FA5B5}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NFMSbyDjango", "NFMSbyDjango.pyproj", "{E30F312E-27E1-4DFC-8443-4B7F76211563}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9744E8DC-ACDE-469F-9723-6E33E55FA5B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9744E8DC-ACDE-469F-9723-6E33E55FA5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9744E8DC-ACDE-469F-9723-6E33E55FA5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9744E8DC-ACDE-469F-9723-6E33E55FA5B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E30F312E-27E1-4DFC-8443-4B7F76211563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30F312E-27E1-4DFC-8443-4B7F76211563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30F312E-27E1-4DFC-8443-4B7F76211563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30F312E-27E1-4DFC-8443-4B7F76211563}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90C82CC4-AEE3-4647-A88C-D3EA93FCAC15}
 	EndGlobalSection
 EndGlobal

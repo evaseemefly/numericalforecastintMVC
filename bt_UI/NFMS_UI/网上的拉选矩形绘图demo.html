@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script type="application/javascript" src="js/jquery-3.2.1.js"></script>
+		<script type="application/javascript" src="js/bootstrap.js"></script>
+		<link rel="stylesheet" href="css/demo.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+
+		<link rel="stylesheet" href="css/leaflet.css" />
+		<link rel="stylesheet" href="css/style.css" media="all" />
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+		
+		<!--bootstrap-treeview start-->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-treeview.min.css">
+		<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+		<script type="text/javascript" src="js/knockout-3.4.2.debug.js"></script>
+		<!--bootstrap-treeview end-->
+		<script src="js/leaflet.js"></script>
+	<body>
+    <div id="map" style="height:500px;width:500px;"></div>
+    <button id="rectangleSel" > 拉框选择 </button>
+    <p>起始lat<input data-bind="value:startlat"></p>
+    <strong data-bind="text:startlat"></strong>
+    <p>结束lat<input data-bind="value:finishlat"></p>
+    <p>起始lng<input data-bind="value:startlng"></p>
+    <p>结束lng<input data-bind="value:finishlng"></p>
+    <hr />
+    <p>起始lat<input data-bind="value:startlat"></p>
+    <!--<script src="js/maptiles.js"></script>-->
+    <script>
+        var map;
+        $(function(){
+            map = L.map('map', {
+                center: [40, 100],
+                zoom: 4
+            });           
+            
+            // 影像
+            L.tileLayer("http://t{s}.tianditu.cn/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={z}&TileRow={y}&TileCol={x}&style=default&format=tiles", {
+                subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"]
+            }).addTo(map);
+            // 地名标注
+            L.tileLayer("http://t{s}.tianditu.cn/cia_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=cia&tileMatrixSet=w&TileMatrix={z}&TileRow={y}&TileCol={x}&style=default&format=tiles", {
+                subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"]
+            }).addTo(map);
+            // 边界
+            L.tileLayer("http://t{s}.tianditu.cn/ibo_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=ibo&tileMatrixSet=w&TileMatrix={z}&TileRow={y}&TileCol={x}&style=default&format=tiles", {
+                subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"]
+            }).addTo(map);
+            $("#rectangleSel").unbind('click').bind('click',function(){
+//          	mousedown 按下鼠标按键时触发
+//          	mouseup 按下鼠标时触发
+                map.on('mousedown', rectangleMeasure.mousedown).on('mouseup', rectangleMeasure.mouseup);
+            });
+            
+            var rectangleMeasure=new RectangleMeasureViewModel();
+            ko.applyBindings(rectangleMeasure);
+//          ko.applyBindings(rectangleMeasure);
+            
+            console.log(map);
+        });
+        
+        function RectangleMeasureViewModel(){
+        	var self=this;
+        	self.startPoint=null;
+        	self.endPoint=null;
+        	self.rectangle=null;
+        	self.tips=null;
+        	self.layer=L.layerGroup();
+        	self.startlat=ko.observable(0);
+        	self.startlng=ko.observable(0);
+        	self.finishlat=ko.observable(0);
+        	self.finishlng=ko.observable(0);
+        	self.color="#0D82D7";
+        	self.addRectangle=function(){
+        		 self.destory();
+                var bounds = [];
+                bounds.push(self.startPoint);
+                bounds.push(self.endPoint);
+                self.rectangle = L.rectangle(bounds, {color: self.color, weight: 1});
+                self.rectangle.addTo(self.layer);        
+                
+                var northWestPoint = self.rectangle.getBounds().getNorthWest(),
+                    northEastPoint = self.rectangle.getBounds().getNorthEast(),
+                    southEastPoint = self.rectangle.getBounds().getSouthEast();
+                var width = northWestPoint.distanceTo(northEastPoint)/1000,
+                    height = northEastPoint.distanceTo(southEastPoint)/1000;
+                    console.log("宽", width);
+                    console.log("高", height);
+                var area = Number(width) * Number(height);
+                self.addTips(area.toFixed(3));
+                self.layer.addTo(map);
+        	};
+        	self.addTips=function(area){
+        		console.log('面积:'+area);
+                self.tips = L.circleMarker(self.endPoint, {color: self.color});
+                self.tips.setRadius(1);
+//              rectangleMeasure.tips.bindLabel("面积：" + area + "(平方公里)", {noHide: true, direction: 'right', clickable: true, className: "leaflet-label-tffq"});            
+                self.tips.addTo(self.layer);
+        	};
+        	self.mousedown=function(e){
+        		self.rectangle = null;
+                self.tips = null;
+//              map.dragging=false;
+                map.dragging.disable();
+                self.startPoint = e.latlng;
+                self.startlat(self.startPoint["lat"]);
+                self.startlng(self.startPoint["lng"]);
+                map.on('mousemove',self.mousemove)
+        	};
+        	self.mousemove=function(e){
+        		self.endPoint = e.latlng;
+        		self.finishlat(self.endPoint["lat"]);
+        		self.finishlng(self.endPoint["lng"]);
+                self.addRectangle();
+                map.off('mousedown ', self.mousedown).on('mouseup', self.mouseup);
+        	};
+        	self.mouseup=function(e){
+        		self.close();
+                //地图设置为可拖拽的
+//              map.dragging=true;
+                map.dragging.enable();
+                map.off('mousemove',self.mousemove).off('mouseup', self.mouseup).off('mousedown', self.mousedown);
+        	};
+        	self.destory=function(){
+        		if(self.rectangle)
+                    self.layer.removeLayer(self.rectangle);
+                if(self.tips)
+                    self.layer.removeLayer(self.tips);
+        	};
+        	self.close=function(){
+//              var lab = rectangleMeasure.tips.getLabel();
+//              var tt = document.createTextNode(rectangleMeasure.tips.getLabel()._content);
+//              lab._container.innerHTML = "";
+//              lab._container.appendChild(tt);
+//              var span = document.createElement("span");
+//              span.innerHTML = "【关闭】";
+//              span.style.color = "#00ff40";
+//              lab._container.appendChild(span);
+//              L.DomEvent.addListener(span,"click",function(){
+//                  rectangleMeasure.destory();
+//              });
+			}
+        }
+        
+//       var rectangleMeasure = {
+//          startPoint: null,
+//          endPoint: null,
+//          rectangle:null,
+//          tips:null,
+//          layer: L.layerGroup(),
+//          startlat:ko.observable(0),
+//          startlng:ko.observable(0),
+//          finishlat:ko.observable(0),
+//          finishlng:ko.observable(0),
+//          color: "#0D82D7",
+//          addRectangle:function(){
+//              rectangleMeasure.destory();
+//              var bounds = [];
+//              bounds.push(rectangleMeasure.startPoint);
+//              bounds.push(rectangleMeasure.endPoint);
+//              rectangleMeasure.rectangle = L.rectangle(bounds, {color: rectangleMeasure.color, weight: 1});
+//              rectangleMeasure.rectangle.addTo(rectangleMeasure.layer);        
+//              
+//              var northWestPoint = rectangleMeasure.rectangle.getBounds().getNorthWest(),
+//                  northEastPoint = rectangleMeasure.rectangle.getBounds().getNorthEast(),
+//                  southEastPoint = rectangleMeasure.rectangle.getBounds().getSouthEast();
+//              var width = northWestPoint.distanceTo(northEastPoint)/1000,
+//                  height = northEastPoint.distanceTo(southEastPoint)/1000;
+//                  console.log("宽", width);
+//                  console.log("高", height);
+//              var area = Number(width) * Number(height);
+//              rectangleMeasure.addTips(area.toFixed(3));
+//              rectangleMeasure.layer.addTo(map);
+//          },
+//          addTips:function(area){
+//              console.log('面积:'+area);
+//              rectangleMeasure.tips = L.circleMarker(rectangleMeasure.endPoint, {color: rectangleMeasure.color});
+//              rectangleMeasure.tips.setRadius(1);
+////              rectangleMeasure.tips.bindLabel("面积：" + area + "(平方公里)", {noHide: true, direction: 'right', clickable: true, className: "leaflet-label-tffq"});            
+//              rectangleMeasure.tips.addTo(rectangleMeasure.layer);
+//          },
+//          close:function(){
+////              var lab = rectangleMeasure.tips.getLabel();
+////              var tt = document.createTextNode(rectangleMeasure.tips.getLabel()._content);
+////              lab._container.innerHTML = "";
+////              lab._container.appendChild(tt);
+////              var span = document.createElement("span");
+////              span.innerHTML = "【关闭】";
+////              span.style.color = "#00ff40";
+////              lab._container.appendChild(span);
+////              L.DomEvent.addListener(span,"click",function(){
+////                  rectangleMeasure.destory();
+////              });
+//          },
+////           鼠标按下
+//          mousedown: function(e){
+//              rectangleMeasure.rectangle = null;
+//              rectangleMeasure.tips = null;
+////              map.dragging=false;
+//              map.dragging.disable();
+//              rectangleMeasure.startPoint = e.latlng;
+//              map.on('mousemove',rectangleMeasure.mousemove)
+//          },
+//          mousemove:function(e){
+//              rectangleMeasure.endPoint = e.latlng;
+//              rectangleMeasure.addRectangle();
+//              map.off('mousedown ', rectangleMeasure.mousedown).on('mouseup', rectangleMeasure.mouseup);
+//          },
+////           鼠标按下之后
+//          mouseup: function(e){        
+//              rectangleMeasure.close();
+//              //地图设置为可拖拽的
+////              map.dragging=true;
+//              map.dragging.enable();
+//              map.off('mousemove',rectangleMeasure.mousemove).off('mouseup', rectangleMeasure.mouseup).off('mousedown', rectangleMeasure.mousedown);
+//          },
+//          destory:function(){
+//              if(rectangleMeasure.rectangle)
+//                  rectangleMeasure.layer.removeLayer(rectangleMeasure.rectangle);
+//              if(rectangleMeasure.tips)
+//                  rectangleMeasure.layer.removeLayer(rectangleMeasure.tips);
+//          }
+//       }
+    </script>
+  </body>
+</html>
