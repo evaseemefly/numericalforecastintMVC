@@ -23,13 +23,9 @@
   <ItemGroup>
     <Compile Include="Forecast\admin.py" />
     <Compile Include="Forecast\apps.py" />
-    <Compile Include="Forecast\migrations\0001_initial.py" />
-    <Compile Include="Forecast\migrations\0002_auto_20170919_1451.py" />
-    <Compile Include="Forecast\migrations\0003_r_userinfo_action.py" />
-    <Compile Include="Forecast\migrations\0004_auto_20170919_1517.py" />
-    <Compile Include="Forecast\migrations\0005_auto_20170919_1539.py" />
-    <Compile Include="Forecast\migrations\0006_r_userinfo_action_ispass.py" />
-    <Compile Include="Forecast\migrations\__init__.py" />
+    <Compile Include="Forecast\migrations\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Forecast\models.py" />
     <Compile Include="Forecast\tests.py" />
     <Compile Include="Forecast\urls.py" />

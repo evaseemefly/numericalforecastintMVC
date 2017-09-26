@@ -29,7 +29,6 @@ class ActionInfo(models.Model):
 class TestInfo(models.Model):
     SubTime=models.DateTimeField(auto_now=True, blank=True)
     TestTime = models.DateTimeField(auto_now=True, blank=True)
-    isDel=models.BooleanField(default=True)
     class Meta:
         db_table="testinfo"
 
