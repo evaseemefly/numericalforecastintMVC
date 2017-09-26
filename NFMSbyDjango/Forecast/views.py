@@ -23,6 +23,8 @@ def initModelData(request):
     print("写入成功")
     return render(request, 'Forecast/Test.html', {})
 
+
+# noinspection PyInterpreter
 def getActions(request):
     # 1 获取请求中的用户名及密码
     name= request.GET.get('name',None)
@@ -30,6 +32,7 @@ def getActions(request):
     # 2 根据用户名及密码查询是否存在指定用户，密码是否正确
     # obj_user= models.UserInfo.objects.get(Name=name)
     users= models.UserInfo.objects.filter(Name=name)
+    # noinspection PyInterpreter
     if users.count()==1:
         obj_user=users.first()
         if obj_user and pwd:

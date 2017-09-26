@@ -1,12 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Forecast",
-    "\\NFMSbyDjango",
-    "\\static",
-    "\\templates",
-    "\\templates\\shared"
+    "\\NFMSbyDjango"
   ],
-  "SelectedNode": "\\templates\\shared\\_Layout.html",
+  "SelectedNode": "\\manage.py",
   "PreviewInSolutionExplorer": false
 }
