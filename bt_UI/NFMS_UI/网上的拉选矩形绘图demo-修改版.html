@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script type="application/javascript" src="js/jquery-3.2.1.js"></script>
+	<script type="application/javascript" src="js/bootstrap.js"></script>
+	<link rel="stylesheet" href="css/demo.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+
+	<link rel="stylesheet" href="css/leaflet.css" />
+	<link rel="stylesheet" href="css/style.css" media="all" />
+	<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+
+	<!--bootstrap-treeview start-->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-treeview.min.css">
+	<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+	<script type="text/javascript" src="js/knockout-3.4.2.debug.js"></script>
+	<!--bootstrap-treeview end-->
+	<script src="js/leaflet.js"></script>
+	<style>
+		body{
+			/*background-color: #B92C28;*/
+			
+		}
+	</style>
+
+	<body>
+		<hr />
+		<div class="container">
+			<div id="map" style="height:500px;width:700px;"></div>
+			<button id="rectangleSel"> 拉框选择 </button>
+			<p>起始lat<input data-bind="value:startlat"></p>
+			<strong data-bind="text:startlat"></strong>
+			<p>结束lat<input data-bind="value:finishlat"></p>
+			<p>起始lng<input data-bind="value:startlng"></p>
+			<p>结束lng<input data-bind="value:finishlng"></p>
+			<hr />
+			<!--<p>起始lat<input data-bind="value:startlat"></p>-->
+		</div>
+
+		<script>
+			var map;
+			$(function() {
+				map = L.map('map', {
+					center: [30, 120],
+					zoom: 4
+				});
+
+				// 影像            
+				mapLink = 'mosic/';
+				L.tileLayer(
+					'mosic/{z}/{x}/{y}.jpg', {
+						attribution: '',
+						maxZoom: 8,
+						minZoom: 2
+					}).addTo(map);
+
+				// 边界
+				L.tileLayer("http://t{s}.tianditu.cn/ibo_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=ibo&tileMatrixSet=w&TileMatrix={z}&TileRow={y}&TileCol={x}&style=default&format=tiles", {
+					subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"]
+				}).addTo(map);
+				$("#rectangleSel").unbind('click').bind('click', function() {
+					//          	mousedown 按下鼠标按键时触发
+					//          	mouseup 按下鼠标时触发
+					//				contextmenu 鼠标右键时触发
+//					map.on 打开对于某个事件的监听
+//					map.off 关闭对于某个事件的监听
+					map.on('mousedown', rectangleMeasure.mousedown).on('mouseup', rectangleMeasure.mouseup).on('contextmenu', rectangleMeasure.forbidRegion);
+				});
+
+				var rectangleMeasure = new RectangleMeasureViewModel();
+				ko.applyBindings(rectangleMeasure);
+				//          ko.applyBindings(rectangleMeasure);
+
+				console.log(map);
+			});
+			
+			//使用ko的方式进行绑定，使用js的方式声明对象
+			function RectangleMeasureViewModel() {
+				var self = this;
+				self.startPoint = null;
+				self.endPoint = null;
+				self.rectangle = null;
+				self.tips = null;
+				self.layer = L.layerGroup();
+				self.startlat = ko.observable(0);
+				self.startlng = ko.observable(0);
+				self.finishlat = ko.observable(0);
+				self.finishlng = ko.observable(0);
+				self.color = "#B92C28";
+				self.isDrawing=ko.observable(false);
+				self.addRectangle = function() {
+					self.destory();
+					var bounds = [];
+					bounds.push(self.startPoint);
+					bounds.push(self.endPoint);
+					self.rectangle = L.rectangle(bounds, {
+						color: self.color,
+						weight: 1
+					});
+					self.rectangle.addTo(self.layer);
+
+					var northWestPoint = self.rectangle.getBounds().getNorthWest(),
+						northEastPoint = self.rectangle.getBounds().getNorthEast(),
+						southEastPoint = self.rectangle.getBounds().getSouthEast();
+					var width = northWestPoint.distanceTo(northEastPoint) / 1000,
+						height = northEastPoint.distanceTo(southEastPoint) / 1000;
+//					console.log("宽", width);
+//					console.log("高", height);
+//					var area = Number(width) * Number(height);
+//					self.addTips(area.toFixed(3));
+					self.layer.addTo(map);
+				};
+				self.addTips = function(area) {
+					console.log('面积:' + area);
+					self.tips = L.circleMarker(self.endPoint, {
+						color: self.color
+					});
+					self.tips.setRadius(1);
+					//rectangleMeasure.tips.bindLabel("面积：" + area + "(平方公里)", {noHide: true, direction: 'right', clickable: true, className: "leaflet-label-tffq"});            
+					self.tips.addTo(self.layer);
+				};
+				self.mousedown = function(e) {
+					if(self.isDrawing==true){
+						self.clearRectangle();
+						return;
+					}
+					self.isDrawing=true;
+					self.rectangle = null;
+					self.tips = null;
+					//map.dragging=false;
+					map.dragging.disable();
+					self.startPoint = e.latlng;
+					self.startlat(self.startPoint["lat"]);
+					self.startlng(self.startPoint["lng"]);
+					map.on('mousemove', self.mousemove)
+				};
+				self.mousemove = function(e) {
+					self.endPoint = e.latlng;
+					self.finishlat(self.endPoint["lat"]);
+					self.finishlng(self.endPoint["lng"]);
+					self.addRectangle();
+					//关闭关于mousedown的监听
+					//开启对mouseup的监听
+					map.off('mousedown ', self.mousedown).on('mouseup', self.mouseup);
+				};
+				self.mouseup = function(e) {
+					self.close();
+					//地图设置为可拖拽的
+					//map.dragging=true;
+					map.dragging.enable();
+					map.off('mousemove', self.mousemove).off('mouseup', self.mouseup).off('mousedown', self.mousedown);
+				};
+				self.destory = function() {
+					if(self.rectangle)
+						self.layer.removeLayer(self.rectangle);
+					if(self.tips)
+						self.layer.removeLayer(self.tips);
+				};
+				self.close = function() {
+					//              var lab = rectangleMeasure.tips.getLabel();
+					//              var tt = document.createTextNode(rectangleMeasure.tips.getLabel()._content);
+					//              lab._container.innerHTML = "";
+					//              lab._container.appendChild(tt);
+					//              var span = document.createElement("span");
+					//              span.innerHTML = "【关闭】";
+					//              span.style.color = "#00ff40";
+					//              lab._container.appendChild(span);
+					//              L.DomEvent.addListener(span,"click",function(){
+					//                  rectangleMeasure.destory();
+					//              });
+				}
+				//鼠标点击右键时执行
+				//1、关闭框选操作；2、鼠标可以漫游
+				self.forbidRegion = function(e) {
+					alert("点击鼠标右键");
+					self.clearRectangle();
+//					self.rectangle.remove();
+					
+				}
+				//清除当前的矩形
+				self.clearRectangle=function(){
+					self.isDrawing=false;
+					self.rectangle.remove();
+				}
+			}
+		</script>
+	</body>
+
+</html>
