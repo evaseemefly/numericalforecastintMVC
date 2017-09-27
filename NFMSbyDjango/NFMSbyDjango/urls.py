@@ -29,7 +29,7 @@ urlpatterns = [
     # url(r'Forecast/init',views.initModelData),
     # url(r'Forecast/actions*',views.getActions),
     # url(r'^Forecast/selectMapping',views.selectMapping),
-     url(r'^Forecast/Test',views.test),
+     url(r'^Forecast/Test*',views.test),
      url(r'Forecast/init',views.initModelData),
      #url(r'Forecast/actions?(?P<uid>\d+)&(?P<pwd>\s+)',views.getActions)
      url(r'Forecast/actions*',views.getActions)
