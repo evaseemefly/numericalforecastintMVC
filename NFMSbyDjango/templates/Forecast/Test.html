@@ -4,8 +4,8 @@
 {% endblock %}
 {% block top-js %}
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-     <link rel="stylesheet" href="/static/css/map/leaflet.css" />
-	<link rel="stylesheet" href="/static/css/map/style.css" media="all" />
+    <link rel="stylesheet" href="/static/css/map/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/map/style.css" media="all" />
     <script type="application/javascript" src="/static/js/map/leaflet.js"></script>
     <script type="application/javascript" src="/static/js/ko/jquery.livequery.js"></script>
     <script type="application/javascript" src="/static/js/ko/knockout.multimodels-0.1.js"></script>
@@ -30,6 +30,8 @@
         .Nodistance{
             padding-left: 0px;
             padding-right: 0px;
+            padding-bottom:0px;
+            padding-top:0px;
         }
     </style>
 
@@ -47,9 +49,12 @@
 //					map.off 关闭对于某个事件的监听
                 map.on('mousedown', rectangleMeasure.mousedown).on('mouseup', rectangleMeasure.mouseup).on('contextmenu', rectangleMeasure.forbidRegion);
             });
-{#            ko.applyBindings(rectangleMeasure,document.getElementById("editForm"));#}
-            ko.attach(rectangleMeasure,document.getElementById("editForm"));
-            ko.attach(elementViewModel,document.getElementById("editForm"));
+            {#            ko.applyBindings(rectangleMeasure,document.getElementById("editForm"));#}
+            ko.attach("RectangleMeasureViewModel",rectangleMeasure);
+            ko.attach("ElementViewModel",elementViewModel);
+            {#            ko.att#}
+            {#            ko.attach(rectangleMeasure,document.getElementById("editForm"));#}
+            {#            ko.attach(elementViewModel,document.getElementById("editForm"));#}
 
 //          ko.applyBindings(rectangleMeasure);
 
@@ -87,7 +92,7 @@
                                 </fieldset>
                             </div>
                             <!--区域信息-->
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-4" data-model="RectangleMeasure">
                                 <fieldset>
                                     <legend>预报区域</legend>
                                     <div class="form-group">
@@ -95,10 +100,12 @@
                                             <label class="col-md-12 control-label col-padding-2">经度</label>
                                         </div>
                                         <div class="col-md-3 col-padding-2">
-                                            <input type="text" placeholder="起始" name="lon_start" class="form-control ">
+{#                                            <input type="text" placeholder="起始" name="lon_start" class="form-control ">#}
+                                            <input type="text" placeholder="起始" name="lon_start" data-bind="value:startlat" class="form-control ">
                                         </div>
                                         <div class="col-md-3 col-padding-2">
-                                            <input type="text" placeholder="结束" name="lon_finish" class="form-control">
+{#                                            <input type="text" placeholder="结束" name="lon_finish" class="form-control">#}
+                                             <input type="text" placeholder="结束" name="lon_finish" data-bind="value:finishlat" class="form-control">
                                         </div>
                                         <div class="col-md-4">
                                             <!--<button class="btn btn-primary col-md-12">常用区域</button>-->
@@ -130,20 +137,22 @@
                                             <label class="col-md-12 control-label col-padding-2">纬度</label>
                                         </div>
                                         <div class="col-md-3 col-padding-2">
-                                            <input type="text" placeholder="起始" name="lat_start" class="form-control col-md-4">
+                                            {#                                            <input type="text" placeholder="起始" name="lat_start" class="form-control col-md-4">#}
+                                            <input type="text" placeholder="起始" name="lat_start" class="form-control col-md-4" data-bind="value:startlng">
                                         </div>
                                         <div class="col-md-3 col-padding-2">
-                                            <input type="text" placeholder="结束" name="lat_finish" class="form-control col-md-4">
+{#                                            <input type="text" placeholder="结束" name="lat_finish" class="form-control col-md-4">#}
+                                            <input type="text" placeholder="结束" name="lat_finish"  data-bind="value:finishlng" class="form-control col-md-4">
                                         </div>
                                         <div class="col-md-4">
-                                            <button class="btn btn-success col-md-12" id="rectangleSel">匡选区域</button>
+                                            <button class="btn btn-success col-md-12" id="rectangleSel">框选区域</button>
                                         </div>
                                     </div>
                                 </fieldset>
                             </div>
 
                             <!--预报信息-->
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3" data-model="ElementViewModel">
                                 <fieldset>
                                     <legend>预报信息</legend>
                                     <div class="form-group">
@@ -263,7 +272,7 @@
         </div>
         <!--下部的巨幕-->
         <div class="col-md-12 Nodistance" style="">
-            <div class="jumbotron" style="height:600px">
+            <div class="jumbotron Nodistance" style="height:600px">
                 <div id="leafletMap" style="height:100%" ></div>
 
             </div>
@@ -294,114 +303,114 @@
     <script type="application/javascript" src="/static/js/map/leaflet_maplayer.js"></script>
     <script type="application/javascript" src="/static/js/viewmodel/map/RectangleMeasureViewModel.js"></script>
     <script type="application/javascript">
-{#    //使用ko的方式进行绑定，使用js的方式声明对象#}
-{#function RectangleMeasureViewModel() {#}
-{#    var self = this;#}
-{#    self.startPoint = null;#}
-{#    self.endPoint = null;#}
-{#    self.rectangle = null;#}
-{#    self.tips = null;#}
-{#    self.layer = L.layerGroup();#}
-{#    self.startlat = ko.observable(0);#}
-{#    self.startlng = ko.observable(0);#}
-{#    self.finishlat = ko.observable(0);#}
-{#    self.finishlng = ko.observable(0);#}
-{#    self.color = "#B92C28";#}
-{#    self.isDrawing=ko.observable(false);#}
-{#    self.addRectangle = function() {#}
-{#        self.destory();#}
-{#        var bounds = [];#}
-{#        bounds.push(self.startPoint);#}
-{#        bounds.push(self.endPoint);#}
-{#        self.rectangle = L.rectangle(bounds, {#}
-{#            color: self.color,#}
-{#            weight: 1#}
-{#        });#}
-{#        self.rectangle.addTo(self.layer);#}
-{##}
-{#        var northWestPoint = self.rectangle.getBounds().getNorthWest(),#}
-{#            northEastPoint = self.rectangle.getBounds().getNorthEast(),#}
-{#            southEastPoint = self.rectangle.getBounds().getSouthEast();#}
-{#        var width = northWestPoint.distanceTo(northEastPoint) / 1000,#}
-{#            height = northEastPoint.distanceTo(southEastPoint) / 1000;#}
-{#//					console.log("宽", width);#}
-{#//					console.log("高", height);#}
-{#//					var area = Number(width) * Number(height);#}
-{#//					self.addTips(area.toFixed(3));#}
-{#        self.layer.addTo(map);#}
-{#    };#}
-{#    self.addTips = function(area) {#}
-{#        console.log('面积:' + area);#}
-{#        self.tips = L.circleMarker(self.endPoint, {#}
-{#            color: self.color#}
-{#        });#}
-{#        self.tips.setRadius(1);#}
-{#        //rectangleMeasure.tips.bindLabel("面积：" + area + "(平方公里)", {noHide: true, direction: 'right', clickable: true, className: "leaflet-label-tffq"});#}
-{#        self.tips.addTo(self.layer);#}
-{#    };#}
-{#    self.mousedown = function(e) {#}
-{#        if(self.isDrawing==true){#}
-{#            self.clearRectangle();#}
-{#            return;#}
-{#        }#}
-{#        self.isDrawing=true;#}
-{#        self.rectangle = null;#}
-{#        self.tips = null;#}
-{#        //map.dragging=false;#}
-{#        map.dragging.disable();#}
-{#        self.startPoint = e.latlng;#}
-{#        self.startlat(self.startPoint["lat"]);#}
-{#        self.startlng(self.startPoint["lng"]);#}
-{#        map.on('mousemove', self.mousemove)#}
-{#    };#}
-{#    self.mousemove = function(e) {#}
-{#        self.endPoint = e.latlng;#}
-{#        self.finishlat(self.endPoint["lat"]);#}
-{#        self.finishlng(self.endPoint["lng"]);#}
-{#        self.addRectangle();#}
-{#        //关闭关于mousedown的监听#}
-{#        //开启对mouseup的监听#}
-{#        map.off('mousedown ', self.mousedown).on('mouseup', self.mouseup);#}
-{#    };#}
-{#    self.mouseup = function(e) {#}
-{#        self.close();#}
-{#        //地图设置为可拖拽的#}
-{#        //map.dragging=true;#}
-{#        map.dragging.enable();#}
-{#        map.off('mousemove', self.mousemove).off('mouseup', self.mouseup).off('mousedown', self.mousedown);#}
-{#    };#}
-{#    self.destory = function() {#}
-{#        if(self.rectangle)#}
-{#            self.layer.removeLayer(self.rectangle);#}
-{#        if(self.tips)#}
-{#            self.layer.removeLayer(self.tips);#}
-{#    };#}
-{#    self.close = function() {#}
-{#        //              var lab = rectangleMeasure.tips.getLabel();#}
-{#        //              var tt = document.createTextNode(rectangleMeasure.tips.getLabel()._content);#}
-{#        //              lab._container.innerHTML = "";#}
-{#        //              lab._container.appendChild(tt);#}
-{#        //              var span = document.createElement("span");#}
-{#        //              span.innerHTML = "【关闭】";#}
-{#        //              span.style.color = "#00ff40";#}
-{#        //              lab._container.appendChild(span);#}
-{#        //              L.DomEvent.addListener(span,"click",function(){#}
-{#        //                  rectangleMeasure.destory();#}
-{#        //              });#}
-{#    }#}
-{#    //鼠标点击右键时执行#}
-{#    //1、关闭框选操作；2、鼠标可以漫游#}
-{#    self.forbidRegion = function(e) {#}
-{#        alert("点击鼠标右键");#}
-{#        self.clearRectangle();#}
-{#//					self.rectangle.remove();#}
-{##}
-{#    }#}
-{#    //清除当前的矩形#}
-{#    self.clearRectangle=function(){#}
-{#        self.isDrawing=false;#}
-{#        self.rectangle.remove();#}
-{#    }#}
-{#}#}
+        {#    //使用ko的方式进行绑定，使用js的方式声明对象#}
+        {#function RectangleMeasureViewModel() {#}
+        {#    var self = this;#}
+        {#    self.startPoint = null;#}
+        {#    self.endPoint = null;#}
+        {#    self.rectangle = null;#}
+        {#    self.tips = null;#}
+        {#    self.layer = L.layerGroup();#}
+        {#    self.startlat = ko.observable(0);#}
+        {#    self.startlng = ko.observable(0);#}
+        {#    self.finishlat = ko.observable(0);#}
+        {#    self.finishlng = ko.observable(0);#}
+        {#    self.color = "#B92C28";#}
+        {#    self.isDrawing=ko.observable(false);#}
+        {#    self.addRectangle = function() {#}
+        {#        self.destory();#}
+        {#        var bounds = [];#}
+        {#        bounds.push(self.startPoint);#}
+        {#        bounds.push(self.endPoint);#}
+        {#        self.rectangle = L.rectangle(bounds, {#}
+        {#            color: self.color,#}
+        {#            weight: 1#}
+        {#        });#}
+        {#        self.rectangle.addTo(self.layer);#}
+        {##}
+        {#        var northWestPoint = self.rectangle.getBounds().getNorthWest(),#}
+        {#            northEastPoint = self.rectangle.getBounds().getNorthEast(),#}
+        {#            southEastPoint = self.rectangle.getBounds().getSouthEast();#}
+        {#        var width = northWestPoint.distanceTo(northEastPoint) / 1000,#}
+        {#            height = northEastPoint.distanceTo(southEastPoint) / 1000;#}
+        {#//					console.log("宽", width);#}
+        {#//					console.log("高", height);#}
+        {#//					var area = Number(width) * Number(height);#}
+        {#//					self.addTips(area.toFixed(3));#}
+        {#        self.layer.addTo(map);#}
+        {#    };#}
+        {#    self.addTips = function(area) {#}
+        {#        console.log('面积:' + area);#}
+        {#        self.tips = L.circleMarker(self.endPoint, {#}
+        {#            color: self.color#}
+        {#        });#}
+        {#        self.tips.setRadius(1);#}
+        {#        //rectangleMeasure.tips.bindLabel("面积：" + area + "(平方公里)", {noHide: true, direction: 'right', clickable: true, className: "leaflet-label-tffq"});#}
+        {#        self.tips.addTo(self.layer);#}
+        {#    };#}
+        {#    self.mousedown = function(e) {#}
+        {#        if(self.isDrawing==true){#}
+        {#            self.clearRectangle();#}
+        {#            return;#}
+        {#        }#}
+        {#        self.isDrawing=true;#}
+        {#        self.rectangle = null;#}
+        {#        self.tips = null;#}
+        {#        //map.dragging=false;#}
+        {#        map.dragging.disable();#}
+        {#        self.startPoint = e.latlng;#}
+        {#        self.startlat(self.startPoint["lat"]);#}
+        {#        self.startlng(self.startPoint["lng"]);#}
+        {#        map.on('mousemove', self.mousemove)#}
+        {#    };#}
+        {#    self.mousemove = function(e) {#}
+        {#        self.endPoint = e.latlng;#}
+        {#        self.finishlat(self.endPoint["lat"]);#}
+        {#        self.finishlng(self.endPoint["lng"]);#}
+        {#        self.addRectangle();#}
+        {#        //关闭关于mousedown的监听#}
+        {#        //开启对mouseup的监听#}
+        {#        map.off('mousedown ', self.mousedown).on('mouseup', self.mouseup);#}
+        {#    };#}
+        {#    self.mouseup = function(e) {#}
+        {#        self.close();#}
+        {#        //地图设置为可拖拽的#}
+        {#        //map.dragging=true;#}
+        {#        map.dragging.enable();#}
+        {#        map.off('mousemove', self.mousemove).off('mouseup', self.mouseup).off('mousedown', self.mousedown);#}
+        {#    };#}
+        {#    self.destory = function() {#}
+        {#        if(self.rectangle)#}
+        {#            self.layer.removeLayer(self.rectangle);#}
+        {#        if(self.tips)#}
+        {#            self.layer.removeLayer(self.tips);#}
+        {#    };#}
+        {#    self.close = function() {#}
+        {#        //              var lab = rectangleMeasure.tips.getLabel();#}
+        {#        //              var tt = document.createTextNode(rectangleMeasure.tips.getLabel()._content);#}
+        {#        //              lab._container.innerHTML = "";#}
+        {#        //              lab._container.appendChild(tt);#}
+        {#        //              var span = document.createElement("span");#}
+        {#        //              span.innerHTML = "【关闭】";#}
+        {#        //              span.style.color = "#00ff40";#}
+        {#        //              lab._container.appendChild(span);#}
+        {#        //              L.DomEvent.addListener(span,"click",function(){#}
+        {#        //                  rectangleMeasure.destory();#}
+        {#        //              });#}
+        {#    }#}
+        {#    //鼠标点击右键时执行#}
+        {#    //1、关闭框选操作；2、鼠标可以漫游#}
+        {#    self.forbidRegion = function(e) {#}
+        {#        alert("点击鼠标右键");#}
+        {#        self.clearRectangle();#}
+        {#//					self.rectangle.remove();#}
+        {##}
+        {#    }#}
+        {#    //清除当前的矩形#}
+        {#    self.clearRectangle=function(){#}
+        {#        self.isDrawing=false;#}
+        {#        self.rectangle.remove();#}
+        {#    }#}
+        {#}#}
     </script>
 {% endblock %}
