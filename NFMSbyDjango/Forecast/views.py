@@ -1,8 +1,11 @@
 from django.shortcuts import render,HttpResponsePermanentRedirect
 from Forecast import models
 from Forecast import Forms
+from Forecast import viewmodels
 # import pynq
 from Forecast import viewmodels
+import json
+from Forecast import Common
 
 # Create your views here.
 
@@ -29,6 +32,62 @@ def initModelData(request):
     obj.save()
     print("写入成功")
     return render(request, 'Forecast/Test.html', {})
+
+def request2obj(request):
+    '''
+    将传入的request转换为Request_Data 对象
+    :param request:request
+    :return:Request_Data对象
+    '''
+    # 若使用get的方式就不能通过request.form.get的方式获取数据
+    obj_json = json.loads(request.body.decode("utf-8"))
+    obj_rectangleMeasure=obj_json.get("rectangleMeasureViewModel",None)
+    obj_elemenetViewModel=obj_json.get("elemenetViewModel",None)
+    request_date = obj_rectangleMeasure.get('date', None)
+    request_lon_start = obj_rectangleMeasure.get('startlng', None)
+    request_lon_finish = obj_rectangleMeasure.get('finishlat', None)
+    request_lat_start = obj_rectangleMeasure.get('startlat', None)
+    request_lat_finish = obj_rectangleMeasure.get('finishlat', None)
+    request_element = obj_elemenetViewModel.get('element', None)
+    request_level = obj_elemenetViewModel.get('level', None)
+    request_interval = obj_elemenetViewModel.get('interval', None)
+
+    # request_date = request.form.get('date', None)
+    # request_lon_start = request.form.get('lon_start', None)
+    # request_lon_finish = request.form.get('lon_finish', None)
+    # request_lat_start = request.form.get('lat_start', None)
+    # request_lat_finish = request.form.get('lat_finish', None)
+    # request_element = request.form.get('element', None)
+    # request_level = request.form.get('level', None)
+    # request_interval = request.form.get('interval', None)
+    obj = viewmodels.Request_Data_Latlng(request_date, request_lon_start, request_lon_finish, request_lat_start, request_lat_finish,request_element, request_level, request_interval)
+    return obj;
+
+def produceImg(request):
+
+    error=None
+    myresponse=viewmodels.Response_Result(99,"未处理")
+    # obj_json= json.loads(request.POST)
+
+    if request.method=='POST':
+        # 获取到前台传过来的数据
+        obj= request2obj(request)
+        '''
+        2 根据obj去执行指定的shell脚本，并输入指定的参数；
+        生成jpg图片
+        '''
+        cmd=""
+        linux_main = Common.Linux("128.5.10.57", "", "")
+        linux_main.connect()
+        linux_main.send(cmd)
+        '''
+        3 执行完命令后通过ftp的方式从指定地址下载指定文件
+        '''
+
+    return "ok"
+
+
+
 
 def getActions(name,pwd):
     '''

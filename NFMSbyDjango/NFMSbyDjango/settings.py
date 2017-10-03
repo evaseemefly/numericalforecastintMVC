@@ -152,12 +152,13 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, "static").replace('\\', '/'),
+    # os.path.join(STATIC_ROOT, "static").replace('\\', '/'),
     ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
     ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
     ('fonts', os.path.join(STATIC_ROOT, 'fonts').replace('\\', '/')),
-    ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
-    ('upload', os.path.join(STATIC_ROOT, 'upload').replace('\\', '/')),
+    ('img', os.path.join(STATIC_ROOT, 'img').replace('\\', '/')),
+    # ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
+    # ('upload', os.path.join(STATIC_ROOT, 'upload').replace('\\', '/')),
 ]
 #
 # STATICFILES_DIRS = [
