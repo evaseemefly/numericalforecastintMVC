@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from NFMS import views
+# from NFMS import views
 from Forecast import views
 # from ForecastTest import views
 
@@ -32,5 +32,6 @@ urlpatterns = [
      url(r'^Forecast/Test*',views.test),
      url(r'Forecast/init',views.initModelData),
      #url(r'Forecast/actions?(?P<uid>\d+)&(?P<pwd>\s+)',views.getActions)
-     url(r'Forecast/actions*',views.getActions)
+     url(r'Forecast/actions*',views.getActions),
+    url(r'Forecast/produceImg*',views.produceImg),
 ]

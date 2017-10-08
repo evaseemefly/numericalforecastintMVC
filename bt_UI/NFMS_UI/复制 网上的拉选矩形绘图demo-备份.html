@@ -54,7 +54,8 @@
             $("#rectangleSel").unbind('click').bind('click',function(){
 //          	mousedown 按下鼠标按键时触发
 //          	mouseup 按下鼠标时触发
-                map.on('mousedown', rectangleMeasure.mousedown).on('mouseup', rectangleMeasure.mouseup);
+//				contextmenu 鼠标右键时触发
+                map.on('mousedown', rectangleMeasure.mousedown).on('mouseup', rectangleMeasure.mouseup).on('contextmenu',rectangleMeasure.forbidRegion);
             });
             
             var rectangleMeasure=new RectangleMeasureViewModel();
@@ -145,6 +146,11 @@
 //                  rectangleMeasure.destory();
 //              });
 			}
+        	//鼠标点击右键时执行
+        	//1、关闭框选操作；2、鼠标可以漫游
+        	self.forbidRegion=function(e){
+        		alert("点击鼠标右键")
+        	}
         }
         
 //       var rectangleMeasure = {
