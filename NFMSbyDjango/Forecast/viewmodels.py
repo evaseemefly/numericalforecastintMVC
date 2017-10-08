@@ -75,7 +75,13 @@ class Request_Data_Latlng:
         self.element=element
         self.level=level
         self.interval=interval
-
+    def tocmd(self):
+        '''
+        根据请求数据生成shell要执行的cmd命令行
+        :return:
+        '''
+        str_cmd="xxxx %s %s %s %s %s"%(self.date,self.lat_start,self.lat_finish,self.lon_start,self.lon_finish,self.element,self.level,self.interval)
+        return  str_cmd
 
 if __name__=='__main__':
     app.run(debug=True)

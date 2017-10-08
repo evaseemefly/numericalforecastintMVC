@@ -3,6 +3,7 @@
 import paramiko
 import re
 from time import sleep
+from ftplib import FTP
 
 # 定义一个类，表示一台远端linux主机
 class Linux(object):
@@ -66,3 +67,32 @@ class Linux(object):
             if p.search(ret):
                 print(result)
                 return result
+
+class FtpClient:
+    def __init__(self,host,username,pwd,port=21):
+        '''
+        构造函数 需要url，name，pwd，以及端口
+
+        :param host:
+        :param username:
+        :param pwd:
+        :param port:
+        '''
+        self.host=host
+        self.username=username
+        self.pwd=pwd
+        self.port=port
+
+    def ftpconnect(self):
+        ftp=FTP()
+        ftp.connect(self.host,self.port)
+        ftp.login(self.username,self.pwd)
+        return ftp
+
+    def downloadfile(self,ftp,url,targetpath):
+        bufsize=1024
+        # 以二进制的方式打开并可写
+        fp=open(targetpath,'wb')
+
+
+        ftp.retrbinary()

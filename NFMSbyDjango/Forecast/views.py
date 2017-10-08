@@ -5,7 +5,7 @@ from Forecast import viewmodels
 # import pynq
 from Forecast import viewmodels
 import json
-from Forecast import Common
+from Forecast import utils
 
 # Create your views here.
 
@@ -76,8 +76,8 @@ def produceImg(request):
         2 根据obj去执行指定的shell脚本，并输入指定的参数；
         生成jpg图片
         '''
-        cmd=""
-        linux_main = Common.Linux("128.5.10.57", "", "")
+        cmd=obj.tocmd()
+        linux_main = utils.Linux("128.5.10.57", "", "")
         linux_main.connect()
         linux_main.send(cmd)
         '''
@@ -86,8 +86,21 @@ def produceImg(request):
 
     return "ok"
 
+def login(request):
+    '''
+    等待补充的登录操作
+    :param request:
+    :return:
+    '''
+    pass
 
-
+def logout(request):
+    '''
+    等待补充的注销操作
+    :param request:
+    :return:
+    '''
+    pass
 
 def getActions(name,pwd):
     '''

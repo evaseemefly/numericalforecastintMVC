@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from NFMS import views
+# from NFMS import views
 from Forecast import views
 # from ForecastTest import views
 
