@@ -88,10 +88,21 @@ DATABASES = {
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
     #单位台式机
-    'default': {
+    #aw
+    # 'default': {
+    #
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': 'nfsys',
+    #    'USER': 'root',
+    #    'PASSWORD': '123456',
+    #    'HOST': '',
+    #    'PORT': '',
+    # }
+
+'default': {
 
        'ENGINE': 'django.db.backends.mysql',
-       'NAME': 'nfsys',
+       'NAME': 'nfsysbydj',
        'USER': 'root',
        'PASSWORD': '123456',
        'HOST': '',

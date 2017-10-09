@@ -137,11 +137,11 @@
                                         </div>
                                         <div class="col-md-3 col-padding-2">
                                             {#                                            <input type="text" placeholder="起始" name="lon_start" class="form-control ">#}
-                                            <input type="text" placeholder="起始" name="lon_start" data-bind="value:startlat" class="form-control ">
+                                            <input type="text" placeholder="起始" name="lon_start" data-bind="value:formattedStartLat" class="form-control ">
                                         </div>
                                         <div class="col-md-3 col-padding-2">
                                             {#                                            <input type="text" placeholder="结束" name="lon_finish" class="form-control">#}
-                                            <input type="text" placeholder="结束" name="lon_finish" data-bind="value:finishlat" class="form-control">
+                                            <input type="text" placeholder="结束" name="lon_finish" data-bind="value:formattedFinishLat" class="form-control">
                                         </div>
                                         <div class="col-md-4">
                                             <!--<button class="btn btn-primary col-md-12">常用区域</button>-->
@@ -174,11 +174,11 @@
                                         </div>
                                         <div class="col-md-3 col-padding-2">
                                             {#                                            <input type="text" placeholder="起始" name="lat_start" class="form-control col-md-4">#}
-                                            <input type="text" placeholder="起始" name="lat_start" class="form-control col-md-4" data-bind="value:startlng">
+                                            <input type="text" placeholder="起始" name="lat_start" class="form-control col-md-4" data-bind="value:formattedStartLng">
                                         </div>
                                         <div class="col-md-3 col-padding-2">
                                             {#                                            <input type="text" placeholder="结束" name="lat_finish" class="form-control col-md-4">#}
-                                            <input type="text" placeholder="结束" name="lat_finish"  data-bind="value:finishlng" class="form-control col-md-4">
+                                            <input type="text" placeholder="结束" name="lat_finish"  data-bind="value:formattedFinishLng" class="form-control col-md-4">
                                         </div>
                                         <div class="col-md-4">
                                             {#                                            <button class="btn btn-success col-md-12" id="rectangleSel">框选区域</button>#}

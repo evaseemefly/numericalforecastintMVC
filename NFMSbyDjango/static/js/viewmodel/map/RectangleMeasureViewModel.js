@@ -14,13 +14,53 @@ function RectangleMeasureViewModel() {
     self.startlng = ko.observable(0);
     self.finishlat = ko.observable(0);
     self.finishlng = ko.observable(0);
+    self.formattedStartLat=ko.computed({
+        read:function(){
+            return formattedLatLng(self.startlat());
+        },
+        write:function(value){
+            value=isNaN(value)?0:value;
+            self.startlat(value);
+        },
+//					owner:this
+    });
+    self.formattedFinishLat=ko.computed({
+        read:function(){
+            return formattedLatLng(self.finishlat());
+        },
+        write:function(value){
+            value=isNaN(value)?0:value;
+            self.finishlat(value);
+        },
+//					owner:this
+    });
+    self.formattedStartLng=ko.computed({
+        read:function(){
+            return formattedLatLng(self.startlng());
+        },
+        write:function(value){
+            value=isNaN(value)?0:value;
+            self.startlng(value);
+        },
+//					owner:this
+    });
+    self.formattedFinishLng=ko.computed({
+        read:function(){
+            return formattedLatLng(self.finishlng());
+        },
+        write:function(value){
+            value=isNaN(value)?0:value;
+            self.finishlng(value);
+        },
+//					owner:this
+    });
 
     self.getData=function () {
         var data={
-            startlat:self.startlat(),
-            startlng:self.startlng(),
-            finishlat:self.finishlat(),
-            finishlng:self.finishlng()
+            startlat:self.formattedStartLat(),
+            startlng:self.formattedStartLng(),
+            finishlat:self.formattedFinishLat(),
+            finishlng:self.formattedFinishLng()
         }
         return data;
     }
@@ -106,4 +146,15 @@ function RectangleMeasureViewModel() {
         self.isDrawing=false;
         self.rectangle.remove();
     }
+}
+
+function formattedLatLng(value){
+    //保留两位有效数字
+    if(value==undefined){
+        return 0;
+    }
+    else
+        var result=parseFloat(value).toFixed(2);
+        return result;
+
 }

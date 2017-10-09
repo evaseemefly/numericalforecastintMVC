@@ -16,15 +16,52 @@
         date: ko.observable(),
         element: ko.observable(),
         level: ko.observable(),
-        lon_start: ko.observable(),
-        lon_finish: ko.observable(),
-        lat_start: ko.observable(),
-        lat_finish: ko.observable(),
+        // lon_start: ko.observable(),
+        // lon_finish: ko.observable(),
+        // lat_start: ko.observable(),
+        // lat_finish: ko.observable(),
+         lon_start: ko.computed({
+             read:function (value) {
+                 return formattedLatLng(value);
+             },
+             write:function(value){
+                 return formattedLatLng(value);
+             }
+         }),
+
+        lon_finish: ko.computed({
+             read:function (value) {
+                 return formattedLatLng(value);
+             },
+             write:function(value){
+                 return formattedLatLng(value);
+             }
+         }),
+        lat_start: ko.computed({
+             read:function (value) {
+                 return formattedLatLng(value);
+             },
+             write:function(value){
+                 return formattedLatLng(value);
+             }
+         }),
+        lat_finish: ko.computed({
+             read:function (value) {
+                 return formattedLatLng(value);
+             },
+             write:function(value){
+                 return formattedLatLng(value);
+             }
+         }),
         area: ko.observable()
     };
 
     self.handleSubmit=function(obj){
         sendAjaxRequest("POST", null, "/Forecast/TestGetData",ko.toJS(self.operator));
+    }
+
+    function formattedLatLng(value){
+        return value.toFixed(2);
     }
 
     //异步提交数据至指定url
