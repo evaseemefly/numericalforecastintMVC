@@ -80,8 +80,15 @@ class Request_Data_Latlng:
         根据请求数据生成shell要执行的cmd命令行
         :return:
         '''
-        str_cmd="xxxx %s %s %s %s %s"%(self.date,self.lat_start,self.lat_finish,self.lon_start,self.lon_finish,self.element,self.level,self.interval)
+        str_cmd = "sfc.sh %s %s %s %s %s %s %s" % (
+        self.date, self.interval, self.lat_start,self.lat_finish, self.lon_start, self.lon_finish,"mttestresult.gif"
+        )
+
+        # str_cmd="./sfc.sh %s %s %s %s %s"%(self.date,self.lat_start,self.lat_finish,self.lon_start,self.lon_finish,self.element,self.level,self.interval)
         return  str_cmd
+    def getFileName(self):
+        name=""
+
 
 if __name__=='__main__':
     app.run(debug=True)

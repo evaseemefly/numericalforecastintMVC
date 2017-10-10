@@ -98,15 +98,24 @@ DATABASES = {
     #    'HOST': '',
     #    'PORT': '',
     # }
+    # 5510
+    # 'default': {
+    #
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'nfsysbydj',
+    #     'USER': 'root',
+    #     'PASSWORD': '123456',
+    #     'HOST': '',
+    #     'PORT': '',
+    # }
+    'default': {
 
-'default': {
-
-       'ENGINE': 'django.db.backends.mysql',
-       'NAME': 'nfsysbydj',
-       'USER': 'root',
-       'PASSWORD': '123456',
-       'HOST': '',
-       'PORT': '',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'nfsysbydj',
+        'USER': 'root',
+        'PASSWORD': 'icanflyeva',
+        'HOST': '',
+        'PORT': '',
     }
 
 }
@@ -199,3 +208,9 @@ TEMPLATE_DIRS = (
 # STATICFILES_DIRS=(
 #     os.path.join(BASE_DIR,'static')
 # )
+
+
+# 部分自定义的配置节
+FTP_URL=""
+TARGET_DIR=""
+

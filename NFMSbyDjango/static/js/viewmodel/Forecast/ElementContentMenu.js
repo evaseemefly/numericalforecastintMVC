@@ -62,7 +62,7 @@ function ElementViewModel() {
         var data={
             element: self.Element(),
             level:self.Level(),
-            intereval: self.Interval()
+            interval: self.Interval()
         }
         return data;
     }

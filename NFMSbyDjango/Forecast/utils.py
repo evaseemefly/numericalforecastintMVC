@@ -5,7 +5,9 @@ import re
 from time import sleep
 import ftplib
 from ftplib import FTP
-import sys import os
+import sys
+import os
+from NFMSbyDjango import settings
 
 # 定义一个类，表示一台远端linux主机
 class Linux(object):
@@ -38,8 +40,9 @@ class Linux(object):
                 print(self.chan.recv(65535).decode('utf-8'))
                 return
             # 这里不对可能的异常如socket.error, socket.timeout细化，直接一网打尽
-            except Exception:
+            except Exception as e:
                 if self.try_times != 0:
+                    print(e)
                     print(u'连接%s失败，进行重试' %self.ip)
                     self.try_times -= 1
                 else:
@@ -64,6 +67,9 @@ class Linux(object):
         while True:
             sleep(0.5)
             ret = self.chan.recv(65535)
+            if len(ret)==0:
+                print("结束")
+                break
             ret = ret.decode('utf-8')
             result += ret
             if p.search(ret):
@@ -114,6 +120,7 @@ class FtpClient:
         self.username=username
         self.pwd=pwd
         self.port=port
+        self.url="%s:%s"%(self.host,self.port)
 
     def __ftpconnect(self):
         ftp=FTP()
@@ -126,7 +133,20 @@ class FtpClient:
         测试是否已连接
         :return:
         '''
+        pass
 
+    def download(self,targetpath,filename):
+        '''
+        公开的下载方法
+        :param targetpath:
+        :param filename:
+        :return:
+        '''
+        # ftp连接
+        ftp=self.__ftpconnect()
+        # 下载
+        fullname= self.__downloadfile(ftp,self.url,targetpath,filename)
+        return fullname
 
     def __downloadfile(self,ftp,url,targetpath,filename):
         '''
