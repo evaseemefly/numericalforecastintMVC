@@ -82,6 +82,11 @@ def produceImg(request):
         linux_main.send(cmd)
         '''
         3 执行完命令后通过ftp的方式从指定地址下载指定文件
+        3.1 获取下载文件的路径
+        3.2 获取下载文件的名称
+        3.3 判断指定路径下是否存在指定文件
+        3.4 满足条件则将该文件下载到本地的
+        3.5 按照指定规则分类存储
         '''
 
     return "ok"
@@ -171,6 +176,3 @@ def getActions(name,pwd):
 #
 #                 # print("指定用户存在")
 #     return render(request, 'Forecast/Test.html', {'list_actions':list_node})
-
-
-           

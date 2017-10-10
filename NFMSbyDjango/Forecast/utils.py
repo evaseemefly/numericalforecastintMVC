@@ -3,7 +3,9 @@
 import paramiko
 import re
 from time import sleep
+import ftplib
 from ftplib import FTP
+import sys import os
 
 # 定义一个类，表示一台远端linux主机
 class Linux(object):
@@ -68,6 +70,36 @@ class Linux(object):
                 print(result)
                 return result
 
+class DirFileHelper:
+    def checkTargetFileOrCreate(self,targetpath,filename):
+        '''
+        判断指定路径下是否存在指定文件
+        :param targetpath:指定路径
+        :param filename:目标文件
+        :return:
+        '''
+        # 判断指定路径下是否已经存在指定文件
+        fullname = os.path.join(targetpath, filename)
+        if os.path.isfile(fullname):
+            return "ok"
+        else:
+            # 不保存在指定文件则创建
+            # 先判断指定路径是否存在
+            if os.path.exists(targetpath):
+                pass
+            else:
+                # 不存在则创建
+                os.makedirs(targetpath)
+                # pass
+             # 存在目录则创建文件
+            try:
+                os.mknod(fullname)
+                return fullname
+            except Exception as e:
+                print(e)
+                return None
+
+
 class FtpClient:
     def __init__(self,host,username,pwd,port=21):
         '''
@@ -83,16 +115,41 @@ class FtpClient:
         self.pwd=pwd
         self.port=port
 
-    def ftpconnect(self):
+    def __ftpconnect(self):
         ftp=FTP()
-        ftp.connect(self.host,self.port)
-        ftp.login(self.username,self.pwd)
+        welcome= ftp.connect(self.host,self.port)
+        resp=ftp.login(self.username,self.pwd)
         return ftp
 
-    def downloadfile(self,ftp,url,targetpath):
+    def __testcontect(self):
+        '''
+        测试是否已连接
+        :return:
+        '''
+
+
+    def __downloadfile(self,ftp,url,targetpath,filename):
+        '''
+        从指定url下载名为filename的文件下载到本地targetpath路径下
+        :param ftp:ftp实例对象
+        :param url:ftp下载地址
+        :param targetpath:本地路径
+        :param filename:下载文件名
+        :return:将本地存储的文件全路径返回
+        '''
         bufsize=1024
         # 以二进制的方式打开并可写
-        fp=open(targetpath,'wb')
-
-
-        ftp.retrbinary()
+        dirHelper= DirFileHelper()
+        result=dirHelper.checkTargetFileOrCreate(targetpath,filename)
+        if result is not None:
+            try:
+                fileInfo=open(result,'wb')
+                ftp.retrbinary('RETR %S'%url,fileInfo.write,bufsize)
+                fileInfo.close()
+                ftp.quit()
+                return result
+            #ftp的错误在ftplib中，ftplib.FTP中没有错误
+            except ftplib.error_perm:
+                print("error:ftp error user:%s,pwd:%s"%(self.username,self.pwd))
+                ftp.quit()
+                return
