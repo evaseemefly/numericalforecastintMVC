@@ -4,7 +4,7 @@
 
 function BaseInfoViewModel(){
     var self=this;
-    self.targetdate=ko.observable(20160321010205);
+    self.targetdate=ko.observable(2013040100);
 
     self.getData=function () {
         var data={

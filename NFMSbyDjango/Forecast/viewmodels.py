@@ -80,7 +80,7 @@ class Request_Data_Latlng:
         根据请求数据生成shell要执行的cmd命令行
         :return:
         '''
-        str_cmd = "sfc.sh %s %s %s %s %s %s %s" % (
+        str_cmd = "./zyf/test/sfc.sh %s %s %s %s %s %s %s" % (
         self.date, self.interval, self.lat_start,self.lat_finish, self.lon_start, self.lon_finish,"mttestresult.gif"
         )
 

@@ -50,7 +50,7 @@ def request2obj(request):
     obj_baseInfoViewModel=obj_json.get("baseInfoViewModel",None)
     request_date = obj_baseInfoViewModel.get('targetdate', None)
     request_lon_start = obj_rectangleMeasure.get('startlng', None)
-    request_lon_finish = obj_rectangleMeasure.get('finishlat', None)
+    request_lon_finish = obj_rectangleMeasure.get('finishlng', None)
     request_lat_start = obj_rectangleMeasure.get('startlat', None)
     request_lat_finish = obj_rectangleMeasure.get('finishlat', None)
     request_element = obj_elemenetViewModel.get('element', None)
@@ -83,10 +83,16 @@ def produceImg(request):
         生成jpg图片
         '''
         cmd=obj.tocmd()
-        linux_main = utils.Linux("128.5.6.21","lingtj","lingtj123")
-        linux_main.connect()
-        linux_main.send("cd zyf/test/")
-        linux_main.send(cmd)
+
+        client=utils.ParamikoClient("128.5.6.21","lingtj","lingtj123")
+        # client.exec_cmd("cd zyf/test/")
+        client.exec_cmd(cmd)
+
+        # 暂时不用以下方式
+        # linux_main = utils.Linux("128.5.6.21","lingtj","lingtj123")
+        # linux_main.connect()
+        # linux_main.send("cd zyf/test/")
+        # linux_main.send(cmd)
         '''
         3 执行完命令后通过ftp的方式从指定地址下载指定文件
         3.1 获取下载文件的路径
