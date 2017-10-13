@@ -11,11 +11,11 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/NFMSbyDjango$Test__NFMSbyDjango.coverage" NAME="Test: NFMSbyDjango Coverage Results" MODIFIED="1507678752203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/NFMSbyDjango$Common.coverage" NAME="Common Coverage Results" MODIFIED="1507024521180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Forecast" />
-    <SUITE FILE_PATH="coverage/NFMSbyDjango$myparamiko.coverage" NAME="myparamiko Coverage Results" MODIFIED="1507686190995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/cs" />
     <SUITE FILE_PATH="coverage/NFMSbyDjango$paramiko__1_.coverage" NAME="paramiko (1) Coverage Results" MODIFIED="1507679931763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/cs" />
-    <SUITE FILE_PATH="coverage/NFMSbyDjango$settings.coverage" NAME="settings Coverage Results" MODIFIED="1505482620041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFMSbyDjango" />
+    <SUITE FILE_PATH="coverage/NFMSbyDjango$myparamiko.coverage" NAME="myparamiko Coverage Results" MODIFIED="1507888129085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/cs" />
     <SUITE FILE_PATH="coverage/NFMSbyDjango$paramiko.coverage" NAME="paramiko Coverage Results" MODIFIED="1507678431520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test" />
+    <SUITE FILE_PATH="coverage/NFMSbyDjango$Common.coverage" NAME="Common Coverage Results" MODIFIED="1507024521180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Forecast" />
+    <SUITE FILE_PATH="coverage/NFMSbyDjango$settings.coverage" NAME="settings Coverage Results" MODIFIED="1505482620041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFMSbyDjango" />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
@@ -24,13 +24,16 @@
     <window id="1">
       <content type="file-editors">
         <state>
-          <leaf>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
             <file leaf-file-name="ElementContentMenu.js" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/static/js/viewmodel/Forecast/ElementContentMenu.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="704">
-                    <caret line="44" column="32" lean-forward="true" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
-                    <folding />
+                  <state relative-caret-position="1320">
+                    <caret line="44" column="32" lean-forward="false" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+                    <folding>
+                      <marker date="1507863388291" expanded="true" signature="392:1651" ph="{...}" />
+                      <marker date="1507863388291" expanded="true" signature="1592:1649" ph="{...}" />
+                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -38,44 +41,8 @@
             <file leaf-file-name="utils.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/Forecast/utils.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="564">
-                    <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-                    <folding>
-                      <element signature="e#17#32#0" expanded="true" />
-                      <element signature="e#1956#2205#0" expanded="false" />
-                      <element signature="e#4202#4957#0" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="client.py" pinned="false" current-in-tab="false">
-              <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/paramiko/client.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="534">
-                    <caret line="481" column="0" lean-forward="false" selection-start-line="481" selection-start-column="0" selection-end-line="481" selection-end-column="0" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="BaseInfoViewModel.js" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/static/js/viewmodel/Forecast/BaseInfoViewModel.js">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="88">
-                    <caret line="6" column="46" lean-forward="true" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
-                    <folding>
-                      <element signature="n#!!doc;n#BaseInfoViewModel#0" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
-              <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/django/core/handlers/base.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="702">
-                    <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+                  <state relative-caret-position="504">
+                    <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
                     <folding />
                   </state>
                 </provider>
@@ -84,9 +51,134 @@
             <file leaf-file-name="Test.html" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/templates/Forecast/Test.html">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="335">
-                    <caret line="45" column="49" lean-forward="false" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="49" />
-                    <folding />
+                  <state relative-caret-position="1590">
+                    <caret line="53" column="49" lean-forward="false" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+                    <folding>
+                      <marker date="1507863388296" expanded="true" signature="15277:15313" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15277:15346" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15277:15373" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15277:15396" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15277:15473" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15277:15488" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15277:18940" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15277:18956" ph="{% block content ... %}" />
+                      <marker date="1507863388296" expanded="true" signature="15553:17802" ph="..." />
+                      <marker date="1507863388296" expanded="false" signature="15609:15628" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15629:17786" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15675:17724" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15807:16352" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="15975:16261" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="16445:17653" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="16497:17196" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="16545:16722" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="16590:16688" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="16755:16892" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="16925:17012" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="17079:17166" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="17261:17626" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="17294:17428" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="17461:17596" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="17875:18043" ph="..." />
+                      <marker date="1507863388296" expanded="false" signature="17930:17942" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="17943:18028" ph="..." />
+                      <marker date="1507863388296" expanded="false" signature="17989:18000" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="18149:18929" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="18204:18914" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="18248:18895" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="18295:18547" ph="..." />
+                      <marker date="1507863388296" expanded="false" signature="18423:18430" ph="×" />
+                      <marker date="1507863388296" expanded="true" signature="18592:18694" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="18741:18872" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="18958:25224" ph="{% block bottom-js ... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19114:25208" ph="..." />
+                      <marker date="1507863388296" expanded="true" signature="19160:19198" ph="function RectangleMeasureViewModel()... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19211:19239" ph="            var self = thi... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19252:19287" ph="            self.startPoint = nul... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19300:19333" ph="            self.endPoint = nul... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19346:19380" ph="            self.rectangle = nul... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19393:19422" ph="            self.tips = nul... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19435:19475" ph="            self.layer = L.layerGroup(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19488:19533" ph="            self.startlat = ko.observable(0... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19546:19591" ph="            self.startlng = ko.observable(0... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19604:19650" ph="            self.finishlat = ko.observable(0... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19663:19709" ph="            self.finishlng = ko.observable(0... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19722:19757" ph="            self.color = &quot;##B92C28... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19770:19818" ph="            self.isDrawing=ko.observable(false... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19831:19875" ph="            self.addRectangle = function()... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19888:19919" ph="                self.destory(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19932:19964" ph="                var bounds = [... %}" />
+                      <marker date="1507863388296" expanded="true" signature="19977:20022" ph="                bounds.push(self.startPoint... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20035:20078" ph="                bounds.push(self.endPoint... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20091:20145" ph="                self.rectangle = L.rectangle(bounds,... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20158:20196" ph="                    color: self.colo... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20209:20238" ph="                    weight:... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20251:20270" ph="                }... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20283:20332" ph="                self.rectangle.addTo(self.layer... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20358:20437" ph="                var northWestPoint = self.rectangle.getBounds().getNorthWest(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20450:20529" ph="                    northEastPoint = self.rectangle.getBounds().getNorthEast(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20542:20621" ph="                    southEastPoint = self.rectangle.getBounds().getSouthEast(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20634:20711" ph="                var width = northWestPoint.distanceTo(northEastPoint) / 100... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20724:20802" ph="                    height = northEastPoint.distanceTo(southEastPoint) / 100... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20815:20854" ph="        //&#9;&#9;&#9;&#9;&#9;console.log(&quot;宽&quot;, width... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20867:20907" ph="        //&#9;&#9;&#9;&#9;&#9;console.log(&quot;高&quot;, height... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20920:20977" ph="        //&#9;&#9;&#9;&#9;&#9;var area = Number(width) * Number(height... %}" />
+                      <marker date="1507863388296" expanded="true" signature="20990:21035" ph="        //&#9;&#9;&#9;&#9;&#9;self.addTips(area.toFixed(3)... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21048:21086" ph="                self.layer.addTo(map... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21099:21113" ph="            ... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21126:21169" ph="            self.addTips = function(area)... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21182:21224" ph="                console.log('面积:' + area... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21237:21296" ph="                self.tips = L.circleMarker(self.endPoint,... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21309:21346" ph="                    color: self.col... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21359:21378" ph="                }... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21391:21430" ph="                self.tips.setRadius(1... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21443:21604" ph="                //rectangleMeasure.tips.bindLabel(&quot;面积：&quot; + area + &quot;(平方公里)&quot;, {noHide: true, direction: 'ri... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21617:21661" ph="                self.tips.addTo(self.layer... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21674:21688" ph="            ... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21701:21743" ph="            self.mousedown = function(e)... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21756:21797" ph="                if(self.isDrawing==true... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21810:21852" ph="                    self.clearRectangle(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21865:21892" ph="                    retur... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21905:21922" ph="               ... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21935:21971" ph="                self.isDrawing=tru... %}" />
+                      <marker date="1507863388296" expanded="true" signature="21984:22022" ph="                self.rectangle = nul... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22035:22068" ph="                self.tips = nul... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22081:22118" ph="                //map.dragging=fals... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22131:22170" ph="                map.dragging.disable(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22183:22226" ph="                self.startPoint = e.latln... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22239:22293" ph="                self.startlat(self.startPoint[&quot;lat&quot;]... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22306:22360" ph="                self.startlng(self.startPoint[&quot;lng&quot;]... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22373:22424" ph="                map.on('mousemove', self.mousemov... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22437:22451" ph="            ... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22464:22506" ph="            self.mousemove = function(e)... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22519:22560" ph="                self.endPoint = e.latln... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22573:22626" ph="                self.finishlat(self.endPoint[&quot;lat&quot;]... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22639:22692" ph="                self.finishlng(self.endPoint[&quot;lng&quot;]... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22705:22741" ph="                self.addRectangle(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22754:22788" ph="                //关闭关于mousedown的... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22801:22832" ph="                //开启对mouseup的... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22845:22927" ph="                map.off('mousedown ', self.mousedown).on('mouseup', self.mouseup... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22940:22954" ph="            ... %}" />
+                      <marker date="1507863388296" expanded="true" signature="22967:23007" ph="            self.mouseup = function(e)... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23020:23049" ph="                self.close(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23062:23089" ph="                //地图设置为可拖... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23102:23138" ph="                //map.dragging=tru... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23151:23189" ph="                map.dragging.enable(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23202:23317" ph="                map.off('mousemove', self.mousemove).off('mouseup', self.mouseup).off('mousedown', self.... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23330:23344" ph="            ... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23357:23396" ph="            self.destory = function()... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23409:23443" ph="                if(self.rectangl... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23456:23515" ph="                    self.layer.removeLayer(self.rectangle... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23528:23557" ph="                if(self.tip... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23570:23624" ph="                    self.layer.removeLayer(self.tips... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23637:23651" ph="            ... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23664:23701" ph="            self.close = function()... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23714:23789" ph="                //              var lab = rectangleMeasure.tips.getLabel(... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23802:23910" ph="                //              var tt = document.createTextNode(rectangleMeasure.tips.getLabel()._conte... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23923:23985" ph="                //              lab._container.innerHTML = &quot;... %}" />
+                      <marker date="1507863388296" expanded="true" signature="23998:24061" ph="                //              lab._container.appendChild(tt... %}" />
+                      <marker date="1507863388296" expanded="true" signature="24074:24148" ph="                //              var span = document.createElement(&quot;span&quot;... %}" />
+                      <marker date="1507863388296" expanded="true" signature="24161:24217" ph="                //              span.innerHTML = &quot;【关闭】... %}" />
+                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -96,24 +188,23 @@
       </content>
     </window>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="myparamiko.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="myparamiko.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cs/myparamiko.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="40" />
+            <state relative-caret-position="259">
+              <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="codecs.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py">
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Forecast/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="322" column="0" lean-forward="false" selection-start-line="322" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
+            <state relative-caret-position="54">
+              <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -122,12 +213,9 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NFMSbyDjango/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="213" column="7" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="7" />
-              <folding>
-                <element signature="e#2528#3310#0" expanded="false" />
-                <element signature="e#3443#3839#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="616">
+              <caret line="216" column="0" lean-forward="false" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,22 +223,22 @@
       <file leaf-file-name="viewmodels.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Forecast/viewmodels.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="81" column="11" lean-forward="true" selection-start-line="81" selection-start-column="11" selection-end-line="81" selection-end-column="11" />
-              <folding />
+            <state relative-caret-position="2430">
+              <caret line="81" column="11" lean-forward="false" selection-start-line="81" selection-start-column="11" selection-end-line="81" selection-end-column="11" />
+              <folding>
+                <marker date="1507863388275" expanded="true" signature="1022:2123" ph="..." />
+                <marker date="1507863388275" expanded="true" signature="1635:2123" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Forecast/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1350">
-              <caret line="98" column="21" lean-forward="true" selection-start-line="98" selection-start-column="21" selection-end-line="98" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#65#0" expanded="true" />
-                <element signature="e#3132#3142#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="294">
+              <caret line="100" column="27" lean-forward="false" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -228,9 +316,9 @@
         <option value="$PROJECT_DIR$/static/js/viewmodel/Forecast/BaseInfoViewModel.js" />
         <option value="$PROJECT_DIR$/static/js/viewmodel/Forecast/ElementContentMenu.js" />
         <option value="$PROJECT_DIR$/Forecast/utils.py" />
-        <option value="$PROJECT_DIR$/cs/myparamiko.py" />
-        <option value="$PROJECT_DIR$/Forecast/views.py" />
         <option value="$PROJECT_DIR$/Forecast/viewmodels.py" />
+        <option value="$PROJECT_DIR$/Forecast/views.py" />
+        <option value="$PROJECT_DIR$/cs/myparamiko.py" />
       </list>
     </option>
   </component>
@@ -247,11 +335,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-237" />
-    <option name="y" value="85" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
     <option name="width" value="1696" />
-    <option name="height" value="1026" />
+    <option name="height" value="996" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -287,73 +375,39 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NFMSbyDjango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NFMSbyDjango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NFMSbyDjango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NFMSbyDjango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NFMSbyDjango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NFMSbyDjango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NFMSbyDjango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Forecast" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views.py" />
-              <option name="myItemType" value="com.jetbrains.python.projectView.PyFileNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NFMSbyDjango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NFMSbyDjango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Forecast" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="NFMSbyDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NFMSbyDjango" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NFMSbyDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NFMSbyDjango" type="462c0819:PsiDirectoryNode" />
+              <item name="cs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NFMSbyDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NFMSbyDjango" type="462c0819:PsiDirectoryNode" />
+              <item name="Forecast" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NFMSbyDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NFMSbyDjango" type="462c0819:PsiDirectoryNode" />
+              <item name="NFMSbyDjango" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../other/04python-日常开发的小程序/01为技术中心复制GPS数据" />
+    <property name="last_opened_file_path" value="E:/other/04python-日常开发的小程序/01为技术中心复制GPS数据" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="DjangoTemplate" />
@@ -382,8 +436,49 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Django server.NFMSbyDjango">
-    <configuration default="false" name="Test: NFMSbyDjango" type="DjangoTestsConfigurationType" factoryName="Django tests" temporary="true">
+  <component name="RunManager" selected="Python.myparamiko">
+    <configuration name="Common" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Forecast" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NFMSbyDjango" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="E:\01开发\numericalforecastintMVC\NFMSbyDjango\Forecast\utils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="NFMSbyDjango" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="NFMSbyDjango.settings" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NFMSbyDjango" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+    </configuration>
+    <configuration name="Test: NFMSbyDjango" type="DjangoTestsConfigurationType" factoryName="Django tests" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -401,83 +496,14 @@
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
-      <method />
     </configuration>
-    <configuration default="false" name="Common" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Forecast" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="NFMSbyDjango" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\01开发\numericalforecastintMVC\NFMSbyDjango\Forecast\utils.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="paramiko" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="NFMSbyDjango" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/paramiko.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="paramiko (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/cs" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="NFMSbyDjango" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\03协同开发\数值预报显示系统\numericalforecastintMVC\NFMSbyDjango\cs\myparamiko.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="myparamiko" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/cs" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="NFMSbyDjango" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cs/myparamiko.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
     </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -543,6 +569,25 @@
       <option name="ADDITIONAL_ARGS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -566,25 +611,6 @@
       <option name="customRunCommand" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -596,15 +622,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <module name="NFMSbyDjango" />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -650,7 +667,61 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="settings" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="myparamiko" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/cs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NFMSbyDjango" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cs/myparamiko.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="paramiko (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/cs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NFMSbyDjango" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="E:\03协同开发\数值预报显示系统\numericalforecastintMVC\NFMSbyDjango\cs\myparamiko.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="paramiko" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NFMSbyDjango" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/paramiko.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="settings" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -667,31 +738,6 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="NFMSbyDjango" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="NFMSbyDjango.settings" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Program Files\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="NFMSbyDjango" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
-      <method />
     </configuration>
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Python.settings" />
@@ -752,34 +798,35 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-237" y="85" width="1696" height="1026" extended-state="0" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15987125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2944573" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32678983" sideWeight="0.33374083" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290993" sideWeight="0.49755502" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42147806" sideWeight="0.66625917" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27020785" sideWeight="0.49266502" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1809291" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20350876" sideWeight="0.72103006" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42147806" sideWeight="0.66625917" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290993" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35672516" sideWeight="0.8224249" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2944573" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20350876" sideWeight="0.72103006" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27020785" sideWeight="0.49266502" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24561404" sideWeight="0.8224249" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290993" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -794,32 +841,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="django-line">
           <url>file://$PROJECT_DIR$/templates/Forecast/Test.html</url>
-          <line>401</line>
+          <line>420</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="django-line">
           <url>file://$PROJECT_DIR$/templates/Forecast/Test.html</url>
-          <line>151</line>
+          <line>167</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Forecast/views.py</url>
-          <line>37</line>
+          <line>41</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Forecast/views.py</url>
-          <line>159</line>
+          <line>174</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Forecast/utils.py</url>
-          <line>137</line>
+          <line>230</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Forecast/utils.py</url>
-          <line>140</line>
+          <line>233</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -834,37 +881,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Forecast/views.py</url>
-          <line>92</line>
+          <line>107</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Forecast/views.py</url>
-          <line>91</line>
+          <line>106</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Forecast/utils.py</url>
-          <line>125</line>
+          <line>205</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Forecast/utils.py</url>
-          <line>123</line>
+          <line>203</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cs/myparamiko.py</url>
-          <line>19</line>
-          <option name="timeStamp" value="55" />
+          <url>file://$PROJECT_DIR$/Forecast/views.py</url>
+          <line>101</line>
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Forecast/views.py</url>
-          <line>88</line>
-          <option name="timeStamp" value="56" />
+          <url>file://$PROJECT_DIR$/cs/myparamiko.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/static/js/viewmodel/map/RectangleMeasureViewModel.js</url>
-          <line>148</line>
+          <line>150</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
@@ -875,7 +922,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="57" />
+      <option name="time" value="59" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
@@ -1086,137 +1133,198 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test/paramiko.py">
+    <entry file="file://$PROJECT_DIR$/Test/paramiko.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/paramiko/transport.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/paramiko/file.py" />
+    <entry file="file://$USER_HOME$/.PyCharm2017.1/system/python_stubs/-1282051629/builtins.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/django/core/handlers/base.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/paramiko/client.py" />
+    <entry file="file://$PROJECT_DIR$/static/js/viewmodel/Forecast/BaseInfoViewModel.js" />
+    <entry file="file://$PROJECT_DIR$/Forecast/viewmodels.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/paramiko/transport.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5150">
-          <caret line="249" column="8" lean-forward="false" selection-start-line="249" selection-start-column="8" selection-end-line="249" selection-end-column="8" />
+        <state relative-caret-position="2430">
+          <caret line="81" column="11" lean-forward="false" selection-start-line="81" selection-start-column="11" selection-end-line="81" selection-end-column="11" />
           <folding>
-            <element signature="e#920#957#0" expanded="true" />
+            <marker date="1507863388275" expanded="true" signature="1022:2123" ph="..." />
+            <marker date="1507863388275" expanded="true" signature="1635:2123" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/paramiko/file.py">
+    <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py" />
+    <entry file="file://$PROJECT_DIR$/static/js/viewmodel/Forecast/ElementContentMenu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2017.1/system/python_stubs/-1282051629/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="156" column="4" lean-forward="false" selection-start-line="156" selection-start-column="4" selection-end-line="156" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/paramiko/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="481" column="0" lean-forward="false" selection-start-line="481" selection-start-column="0" selection-end-line="481" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/viewmodel/Forecast/BaseInfoViewModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="6" column="46" lean-forward="true" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+        <state relative-caret-position="1320">
+          <caret line="44" column="32" lean-forward="false" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
           <folding>
-            <element signature="n#!!doc;n#BaseInfoViewModel#0" expanded="false" />
+            <marker date="1507863388291" expanded="true" signature="392:1651" ph="{...}" />
+            <marker date="1507863388291" expanded="true" signature="1592:1649" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Forecast/Test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="45" column="49" lean-forward="false" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/viewmodel/Forecast/ElementContentMenu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="44" column="32" lean-forward="true" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Forecast/viewmodels.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="81" column="11" lean-forward="true" selection-start-line="81" selection-start-column="11" selection-end-line="81" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NFMSbyDjango/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="213" column="7" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="7" />
+        <state relative-caret-position="1590">
+          <caret line="53" column="49" lean-forward="false" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
           <folding>
-            <element signature="e#2528#3310#0" expanded="false" />
-            <element signature="e#3443#3839#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="322" column="0" lean-forward="false" selection-start-line="322" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cs/myparamiko.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Forecast/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding>
-            <element signature="e#17#32#0" expanded="true" />
-            <element signature="e#1956#2205#0" expanded="false" />
-            <element signature="e#4202#4957#0" expanded="false" />
+            <marker date="1507863388296" expanded="true" signature="15277:15313" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15277:15346" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15277:15373" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15277:15396" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15277:15473" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15277:15488" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15277:18940" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15277:18956" ph="{% block content ... %}" />
+            <marker date="1507863388296" expanded="true" signature="15553:17802" ph="..." />
+            <marker date="1507863388296" expanded="false" signature="15609:15628" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15629:17786" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15675:17724" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15807:16352" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="15975:16261" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="16445:17653" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="16497:17196" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="16545:16722" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="16590:16688" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="16755:16892" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="16925:17012" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="17079:17166" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="17261:17626" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="17294:17428" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="17461:17596" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="17875:18043" ph="..." />
+            <marker date="1507863388296" expanded="false" signature="17930:17942" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="17943:18028" ph="..." />
+            <marker date="1507863388296" expanded="false" signature="17989:18000" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="18149:18929" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="18204:18914" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="18248:18895" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="18295:18547" ph="..." />
+            <marker date="1507863388296" expanded="false" signature="18423:18430" ph="×" />
+            <marker date="1507863388296" expanded="true" signature="18592:18694" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="18741:18872" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="18958:25224" ph="{% block bottom-js ... %}" />
+            <marker date="1507863388296" expanded="true" signature="19114:25208" ph="..." />
+            <marker date="1507863388296" expanded="true" signature="19160:19198" ph="function RectangleMeasureViewModel()... %}" />
+            <marker date="1507863388296" expanded="true" signature="19211:19239" ph="            var self = thi... %}" />
+            <marker date="1507863388296" expanded="true" signature="19252:19287" ph="            self.startPoint = nul... %}" />
+            <marker date="1507863388296" expanded="true" signature="19300:19333" ph="            self.endPoint = nul... %}" />
+            <marker date="1507863388296" expanded="true" signature="19346:19380" ph="            self.rectangle = nul... %}" />
+            <marker date="1507863388296" expanded="true" signature="19393:19422" ph="            self.tips = nul... %}" />
+            <marker date="1507863388296" expanded="true" signature="19435:19475" ph="            self.layer = L.layerGroup(... %}" />
+            <marker date="1507863388296" expanded="true" signature="19488:19533" ph="            self.startlat = ko.observable(0... %}" />
+            <marker date="1507863388296" expanded="true" signature="19546:19591" ph="            self.startlng = ko.observable(0... %}" />
+            <marker date="1507863388296" expanded="true" signature="19604:19650" ph="            self.finishlat = ko.observable(0... %}" />
+            <marker date="1507863388296" expanded="true" signature="19663:19709" ph="            self.finishlng = ko.observable(0... %}" />
+            <marker date="1507863388296" expanded="true" signature="19722:19757" ph="            self.color = &quot;##B92C28... %}" />
+            <marker date="1507863388296" expanded="true" signature="19770:19818" ph="            self.isDrawing=ko.observable(false... %}" />
+            <marker date="1507863388296" expanded="true" signature="19831:19875" ph="            self.addRectangle = function()... %}" />
+            <marker date="1507863388296" expanded="true" signature="19888:19919" ph="                self.destory(... %}" />
+            <marker date="1507863388296" expanded="true" signature="19932:19964" ph="                var bounds = [... %}" />
+            <marker date="1507863388296" expanded="true" signature="19977:20022" ph="                bounds.push(self.startPoint... %}" />
+            <marker date="1507863388296" expanded="true" signature="20035:20078" ph="                bounds.push(self.endPoint... %}" />
+            <marker date="1507863388296" expanded="true" signature="20091:20145" ph="                self.rectangle = L.rectangle(bounds,... %}" />
+            <marker date="1507863388296" expanded="true" signature="20158:20196" ph="                    color: self.colo... %}" />
+            <marker date="1507863388296" expanded="true" signature="20209:20238" ph="                    weight:... %}" />
+            <marker date="1507863388296" expanded="true" signature="20251:20270" ph="                }... %}" />
+            <marker date="1507863388296" expanded="true" signature="20283:20332" ph="                self.rectangle.addTo(self.layer... %}" />
+            <marker date="1507863388296" expanded="true" signature="20358:20437" ph="                var northWestPoint = self.rectangle.getBounds().getNorthWest(... %}" />
+            <marker date="1507863388296" expanded="true" signature="20450:20529" ph="                    northEastPoint = self.rectangle.getBounds().getNorthEast(... %}" />
+            <marker date="1507863388296" expanded="true" signature="20542:20621" ph="                    southEastPoint = self.rectangle.getBounds().getSouthEast(... %}" />
+            <marker date="1507863388296" expanded="true" signature="20634:20711" ph="                var width = northWestPoint.distanceTo(northEastPoint) / 100... %}" />
+            <marker date="1507863388296" expanded="true" signature="20724:20802" ph="                    height = northEastPoint.distanceTo(southEastPoint) / 100... %}" />
+            <marker date="1507863388296" expanded="true" signature="20815:20854" ph="        //&#9;&#9;&#9;&#9;&#9;console.log(&quot;宽&quot;, width... %}" />
+            <marker date="1507863388296" expanded="true" signature="20867:20907" ph="        //&#9;&#9;&#9;&#9;&#9;console.log(&quot;高&quot;, height... %}" />
+            <marker date="1507863388296" expanded="true" signature="20920:20977" ph="        //&#9;&#9;&#9;&#9;&#9;var area = Number(width) * Number(height... %}" />
+            <marker date="1507863388296" expanded="true" signature="20990:21035" ph="        //&#9;&#9;&#9;&#9;&#9;self.addTips(area.toFixed(3)... %}" />
+            <marker date="1507863388296" expanded="true" signature="21048:21086" ph="                self.layer.addTo(map... %}" />
+            <marker date="1507863388296" expanded="true" signature="21099:21113" ph="            ... %}" />
+            <marker date="1507863388296" expanded="true" signature="21126:21169" ph="            self.addTips = function(area)... %}" />
+            <marker date="1507863388296" expanded="true" signature="21182:21224" ph="                console.log('面积:' + area... %}" />
+            <marker date="1507863388296" expanded="true" signature="21237:21296" ph="                self.tips = L.circleMarker(self.endPoint,... %}" />
+            <marker date="1507863388296" expanded="true" signature="21309:21346" ph="                    color: self.col... %}" />
+            <marker date="1507863388296" expanded="true" signature="21359:21378" ph="                }... %}" />
+            <marker date="1507863388296" expanded="true" signature="21391:21430" ph="                self.tips.setRadius(1... %}" />
+            <marker date="1507863388296" expanded="true" signature="21443:21604" ph="                //rectangleMeasure.tips.bindLabel(&quot;面积：&quot; + area + &quot;(平方公里)&quot;, {noHide: true, direction: 'ri... %}" />
+            <marker date="1507863388296" expanded="true" signature="21617:21661" ph="                self.tips.addTo(self.layer... %}" />
+            <marker date="1507863388296" expanded="true" signature="21674:21688" ph="            ... %}" />
+            <marker date="1507863388296" expanded="true" signature="21701:21743" ph="            self.mousedown = function(e)... %}" />
+            <marker date="1507863388296" expanded="true" signature="21756:21797" ph="                if(self.isDrawing==true... %}" />
+            <marker date="1507863388296" expanded="true" signature="21810:21852" ph="                    self.clearRectangle(... %}" />
+            <marker date="1507863388296" expanded="true" signature="21865:21892" ph="                    retur... %}" />
+            <marker date="1507863388296" expanded="true" signature="21905:21922" ph="               ... %}" />
+            <marker date="1507863388296" expanded="true" signature="21935:21971" ph="                self.isDrawing=tru... %}" />
+            <marker date="1507863388296" expanded="true" signature="21984:22022" ph="                self.rectangle = nul... %}" />
+            <marker date="1507863388296" expanded="true" signature="22035:22068" ph="                self.tips = nul... %}" />
+            <marker date="1507863388296" expanded="true" signature="22081:22118" ph="                //map.dragging=fals... %}" />
+            <marker date="1507863388296" expanded="true" signature="22131:22170" ph="                map.dragging.disable(... %}" />
+            <marker date="1507863388296" expanded="true" signature="22183:22226" ph="                self.startPoint = e.latln... %}" />
+            <marker date="1507863388296" expanded="true" signature="22239:22293" ph="                self.startlat(self.startPoint[&quot;lat&quot;]... %}" />
+            <marker date="1507863388296" expanded="true" signature="22306:22360" ph="                self.startlng(self.startPoint[&quot;lng&quot;]... %}" />
+            <marker date="1507863388296" expanded="true" signature="22373:22424" ph="                map.on('mousemove', self.mousemov... %}" />
+            <marker date="1507863388296" expanded="true" signature="22437:22451" ph="            ... %}" />
+            <marker date="1507863388296" expanded="true" signature="22464:22506" ph="            self.mousemove = function(e)... %}" />
+            <marker date="1507863388296" expanded="true" signature="22519:22560" ph="                self.endPoint = e.latln... %}" />
+            <marker date="1507863388296" expanded="true" signature="22573:22626" ph="                self.finishlat(self.endPoint[&quot;lat&quot;]... %}" />
+            <marker date="1507863388296" expanded="true" signature="22639:22692" ph="                self.finishlng(self.endPoint[&quot;lng&quot;]... %}" />
+            <marker date="1507863388296" expanded="true" signature="22705:22741" ph="                self.addRectangle(... %}" />
+            <marker date="1507863388296" expanded="true" signature="22754:22788" ph="                //关闭关于mousedown的... %}" />
+            <marker date="1507863388296" expanded="true" signature="22801:22832" ph="                //开启对mouseup的... %}" />
+            <marker date="1507863388296" expanded="true" signature="22845:22927" ph="                map.off('mousedown ', self.mousedown).on('mouseup', self.mouseup... %}" />
+            <marker date="1507863388296" expanded="true" signature="22940:22954" ph="            ... %}" />
+            <marker date="1507863388296" expanded="true" signature="22967:23007" ph="            self.mouseup = function(e)... %}" />
+            <marker date="1507863388296" expanded="true" signature="23020:23049" ph="                self.close(... %}" />
+            <marker date="1507863388296" expanded="true" signature="23062:23089" ph="                //地图设置为可拖... %}" />
+            <marker date="1507863388296" expanded="true" signature="23102:23138" ph="                //map.dragging=tru... %}" />
+            <marker date="1507863388296" expanded="true" signature="23151:23189" ph="                map.dragging.enable(... %}" />
+            <marker date="1507863388296" expanded="true" signature="23202:23317" ph="                map.off('mousemove', self.mousemove).off('mouseup', self.mouseup).off('mousedown', self.... %}" />
+            <marker date="1507863388296" expanded="true" signature="23330:23344" ph="            ... %}" />
+            <marker date="1507863388296" expanded="true" signature="23357:23396" ph="            self.destory = function()... %}" />
+            <marker date="1507863388296" expanded="true" signature="23409:23443" ph="                if(self.rectangl... %}" />
+            <marker date="1507863388296" expanded="true" signature="23456:23515" ph="                    self.layer.removeLayer(self.rectangle... %}" />
+            <marker date="1507863388296" expanded="true" signature="23528:23557" ph="                if(self.tip... %}" />
+            <marker date="1507863388296" expanded="true" signature="23570:23624" ph="                    self.layer.removeLayer(self.tips... %}" />
+            <marker date="1507863388296" expanded="true" signature="23637:23651" ph="            ... %}" />
+            <marker date="1507863388296" expanded="true" signature="23664:23701" ph="            self.close = function()... %}" />
+            <marker date="1507863388296" expanded="true" signature="23714:23789" ph="                //              var lab = rectangleMeasure.tips.getLabel(... %}" />
+            <marker date="1507863388296" expanded="true" signature="23802:23910" ph="                //              var tt = document.createTextNode(rectangleMeasure.tips.getLabel()._conte... %}" />
+            <marker date="1507863388296" expanded="true" signature="23923:23985" ph="                //              lab._container.innerHTML = &quot;... %}" />
+            <marker date="1507863388296" expanded="true" signature="23998:24061" ph="                //              lab._container.appendChild(tt... %}" />
+            <marker date="1507863388296" expanded="true" signature="24074:24148" ph="                //              var span = document.createElement(&quot;span&quot;... %}" />
+            <marker date="1507863388296" expanded="true" signature="24161:24217" ph="                //              span.innerHTML = &quot;【关闭】... %}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Forecast/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="98" column="21" lean-forward="true" selection-start-line="98" selection-start-column="21" selection-end-line="98" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#65#0" expanded="true" />
-            <element signature="e#3132#3142#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="294">
+          <caret line="100" column="27" lean-forward="false" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NFMSbyDjango/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="216" column="0" lean-forward="false" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Forecast/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs/myparamiko.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
