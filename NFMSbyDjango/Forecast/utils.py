@@ -246,3 +246,34 @@ class FtpClient:
                 print("error:ftp error user:%s,pwd:%s"%(self.username,self.pwd))
                 ftp.quit()
                 return
+
+class ParamikoConn(object):
+    def __init__(self,host,port,user,pwd):
+        self.host=host
+        self.port=port
+        self.user=user
+        self.pwd=pwd
+        self.ssh=None
+
+    def ssh_connect(self):
+        try:
+            self.ssh=paramiko.SSHClient()
+            self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            self.ssh.connect(self.host,self.port,self.user,self.pwd)
+        except Exception as e:
+            print('ssh %s%s:%s'%(self.host,self.user,e))
+            exit()
+
+    def ssh_exec_cmd(self,cmd):
+        stdin, stdout, stderr =self.ssh.exec_command(cmd)
+
+        err_list=stderr.readlines()
+        if len(err_list)>0:
+            print('error:%s'%err_list[0])
+            exit()
+        else:
+            print(stdout.read().decode())
+
+    def ssh_close(self):
+        self.ssh.close()
+
