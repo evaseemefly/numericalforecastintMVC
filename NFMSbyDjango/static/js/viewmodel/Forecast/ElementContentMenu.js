@@ -42,7 +42,7 @@ function ElementViewModel() {
     ]);
     self.IntervalList = ko.observableArray([
         new Interval(1, "0", 2),
-        new Interval(2, "1", 2),
+        new Interval(6, "6", 2),
     ]);
 
     self.CurrentLevelList = ko.computed(function() {
@@ -62,7 +62,7 @@ function ElementViewModel() {
         var data={
             element: self.Element(),
             level:self.Level(),
-            intereval: self.Interval()
+            interval: self.Interval()
         }
         return data;
     }

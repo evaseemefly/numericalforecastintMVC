@@ -6,8 +6,12 @@ from Forecast import viewmodels
 from Forecast import viewmodels
 import json
 from Forecast import utils
+from NFMSbyDjango import settings
 
 # Create your views here.
+
+download_url=settings.FTP_URL
+target_dir=settings.TARGET_DIR
 
 def selectMapping(request):
     #注意render也是需要返回的
@@ -43,13 +47,15 @@ def request2obj(request):
     obj_json = json.loads(request.body.decode("utf-8"))
     obj_rectangleMeasure=obj_json.get("rectangleMeasureViewModel",None)
     obj_elemenetViewModel=obj_json.get("elemenetViewModel",None)
-    request_date = obj_rectangleMeasure.get('date', None)
+    obj_baseInfoViewModel=obj_json.get("baseInfoViewModel",None)
+    request_date = obj_baseInfoViewModel.get('targetdate', None)
     request_lon_start = obj_rectangleMeasure.get('startlng', None)
-    request_lon_finish = obj_rectangleMeasure.get('finishlat', None)
+    request_lon_finish = obj_rectangleMeasure.get('finishlng', None)
     request_lat_start = obj_rectangleMeasure.get('startlat', None)
     request_lat_finish = obj_rectangleMeasure.get('finishlat', None)
     request_element = obj_elemenetViewModel.get('element', None)
     request_level = obj_elemenetViewModel.get('level', None)
+
     request_interval = obj_elemenetViewModel.get('interval', None)
 
     # request_date = request.form.get('date', None)
@@ -77,9 +83,16 @@ def produceImg(request):
         生成jpg图片
         '''
         cmd=obj.tocmd()
-        linux_main = utils.Linux("128.5.10.57", "", "")
-        linux_main.connect()
-        linux_main.send(cmd)
+
+        client=utils.ParamikoClient("128.5.6.21","lingtj","lingtj123")
+        # client.exec_cmd("cd zyf/test/")
+        client.exec_cmd(cmd)
+
+        # 暂时不用以下方式
+        # linux_main = utils.Linux("128.5.6.21","lingtj","lingtj123")
+        # linux_main.connect()
+        # linux_main.send("cd zyf/test/")
+        # linux_main.send(cmd)
         '''
         3 执行完命令后通过ftp的方式从指定地址下载指定文件
         3.1 获取下载文件的路径
@@ -89,6 +102,8 @@ def produceImg(request):
         3.5 按照指定规则分类存储
         '''
 
+
+        utils.FtpClient.download(download_url,target_dir,)
     return "ok"
 
 def login(request):

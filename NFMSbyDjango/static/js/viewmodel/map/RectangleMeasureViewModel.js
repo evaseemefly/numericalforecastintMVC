@@ -10,6 +10,8 @@ function RectangleMeasureViewModel() {
     self.rectangle = null;
     self.tips = null;
     self.layer = L.layerGroup();
+
+     // self.targetdate=ko.observable(0);
     self.startlat = ko.observable(0);
     self.startlng = ko.observable(0);
     self.finishlat = ko.observable(0);

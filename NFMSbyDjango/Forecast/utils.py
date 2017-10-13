@@ -5,21 +5,87 @@ import re
 from time import sleep
 import ftplib
 from ftplib import FTP
-import sys import os
+import sys
+import os
+from NFMSbyDjango import settings
 
-# 定义一个类，表示一台远端linux主机
-class Linux(object):
-    # 通过IP, 用户名，密码，超时时间初始化一个远程Linux主机
-    def __init__(self, ip, username, password, timeout=30):
+class ParamikoClient(object):
+    def __init__(self ,ip, username, password,port=22, timeout=30):
         self.ip = ip
         self.username = username
         self.password = password
+        self.port=port
+        self.timeout = timeout
+
+        self.client = None
+
+        # 链接失败的重试次数
+        self.try_times = 3
+
+    def __connect(self):
+        '''
+        通过Paramiko进行连接
+        :return:
+        '''
+        while True:
+            # 连接过程中可能会抛出异常，比如网络不通、链接超时
+            try:
+                self.client = paramiko.SSHClient()
+                self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                self.client.connect(self.ip, self.port, self.username, self.password)
+                # 如果没有抛出异常说明连接成功，直接返回
+                print(u'连接%s成功' % self.ip)
+                return
+            # 这里不对可能的异常如socket.error, socket.timeout细化，直接一网打尽
+            except Exception as e:
+                if self.try_times != 0:
+                    print(e)
+                    print(u'连接%s失败，进行重试' % self.ip)
+                    self.try_times -= 1
+                else:
+                    print(u'重试3次失败，结束程序')
+                    return
+
+    def __close(self):
+        '''
+        关闭Paramiko创建的连接
+        :return:
+        '''
+        if self.client is not None:
+            self.client.close()
+            self.client=None
+
+    def exec_cmd(self, cmd):
+        '''
+        执行命令
+        :param cmd:
+        :return:
+        '''
+        if self.client is None:
+            self.__connect()
+        stdin, stdout, stderr = self.client.exec_command(cmd)
+        print(stdout.readlines())
+        self.__close()
+
+
+
+# 定义一个类，表示一台远端linux主机
+class Linux(object):
+    '''
+    通过IP, 用户名，密码，超时时间初始化一个远程Linux主机
+    '''
+    def __init__(self, ip, username, password,port=22, timeout=30):
+        self.ip = ip
+        self.username = username
+        self.password = password
+        self.port=port
         self.timeout = timeout
         # transport和chanel
         self.t = ''
         self.chan = ''
         # 链接失败的重试次数
         self.try_times = 3
+
 
     # 调用该方法连接远程主机
     def connect(self):
@@ -38,8 +104,9 @@ class Linux(object):
                 print(self.chan.recv(65535).decode('utf-8'))
                 return
             # 这里不对可能的异常如socket.error, socket.timeout细化，直接一网打尽
-            except Exception:
+            except Exception as e:
                 if self.try_times != 0:
+                    print(e)
                     print(u'连接%s失败，进行重试' %self.ip)
                     self.try_times -= 1
                 else:
@@ -50,6 +117,15 @@ class Linux(object):
     def close(self):
         self.chan.close()
         self.t.close()
+
+    def exec_cmd(self):
+        client = paramiko.SSHClient()
+        client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        client.connect("128.5.6.21", 22, "lingtj", "lingtj123")
+        # client.connect('ssh.example.com')
+        stdin, stdout, stderr = client.exec_command('ls -l')
+        print(stdout.readlines())
+        client.close()
 
     # 发送要执行的命令
     def send(self, cmd):
@@ -64,6 +140,9 @@ class Linux(object):
         while True:
             sleep(0.5)
             ret = self.chan.recv(65535)
+            if len(ret)==0:
+                print("结束")
+                break
             ret = ret.decode('utf-8')
             result += ret
             if p.search(ret):
@@ -114,6 +193,7 @@ class FtpClient:
         self.username=username
         self.pwd=pwd
         self.port=port
+        self.url="%s:%s"%(self.host,self.port)
 
     def __ftpconnect(self):
         ftp=FTP()
@@ -126,7 +206,20 @@ class FtpClient:
         测试是否已连接
         :return:
         '''
+        pass
 
+    def download(self,targetpath,filename):
+        '''
+        公开的下载方法
+        :param targetpath:
+        :param filename:
+        :return:
+        '''
+        # ftp连接
+        ftp=self.__ftpconnect()
+        # 下载
+        fullname= self.__downloadfile(ftp,self.url,targetpath,filename)
+        return fullname
 
     def __downloadfile(self,ftp,url,targetpath,filename):
         '''
