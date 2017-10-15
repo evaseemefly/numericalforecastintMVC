@@ -77,16 +77,19 @@ def produceImg(request):
 
     if request.method=='POST':
         # 获取到前台传过来的数据
-        obj= request2obj(request)
+        request_latlng= request2obj(request)
         '''
         2 根据obj去执行指定的shell脚本，并输入指定的参数；
         生成jpg图片
         '''
-        cmd=obj.tocmd()
+        cmd=request_latlng.cmdbyStr
 
         client=utils.ParamikoClient("128.5.6.21","lingtj","lingtj123")
         # client.exec_cmd("cd zyf/test/")
+        # 此处暂时有问题
+        # 具体原因待查
         client.exec_cmd(cmd)
+
 
         # 暂时不用以下方式
         # linux_main = utils.Linux("128.5.6.21","lingtj","lingtj123")
@@ -101,8 +104,6 @@ def produceImg(request):
         3.4 满足条件则将该文件下载到本地的
         3.5 按照指定规则分类存储
         '''
-
-
         utils.FtpClient.download(download_url,target_dir,)
     return "ok"
 

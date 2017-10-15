@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 
@@ -55,3 +56,61 @@ class R_UserInfo_Action(models.Model):
     isPass=models.BooleanField(default=False)
     class Meta:
         db_table="r_userinfo_action"
+
+class CmdInfo(object):
+    '''
+    实现生成linux端存储的随机文件名的功能
+    '''
+    def __init__(self,sh,date,interval,lat_start,lat_finish,lon_start,lon_finish):
+        '''
+
+        :param sh:
+        :param date:
+        :param interval:
+        :param lat_start:
+        :param lat_finish:
+        :param lon_start:
+        :param lon_finish:
+        '''
+        # self.cmd_str=cmd
+        self.sh_file=sh
+        self.target_date=date
+        self.interval=interval
+        self.date = date
+        self.lon_start = lon_start
+        self.lon_finish = lon_finish
+        self.lat_start = lat_start
+        self.lat_finish = lat_finish
+        # self.latlng=latlng
+        # self.targetfile=file
+        # self.guid=guid
+    # __slots__ = ('cmd_str','sh_file','target_date','interval','latlng','targetfile','guid')
+
+    def __init__(self):
+        '''
+        无参的构造函数用来生成guid
+        '''
+        self.guid=uuid.uuid1()
+        self.targetfile=self.targetfile()
+
+    def toCmdbyStr(self):
+        '''
+        生成cmd字符串
+        :return:
+        '''
+        str_cmd = "./zyf/test/sfc.sh %s %s %s %s %s %s %s" % (
+            self.date, self.interval, self.lat_start, self.lat_finish, self.lon_start, self.lon_finish,
+            self.targetfile
+        )
+        return str_cmd
+        # pass
+
+    @property
+    def targetfile(self):
+        '''
+        获取生成的文件名称
+        每实例化一次本类，才生成一个guid作为targetfile的一个参考变量
+        :return:
+        '''
+        self.targetfile="{}{}.gif".format("test",self.guid)
+        return self.targetfile

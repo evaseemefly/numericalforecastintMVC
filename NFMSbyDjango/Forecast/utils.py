@@ -197,29 +197,63 @@ class FtpClient:
 
     def __ftpconnect(self):
         ftp=FTP()
-        welcome= ftp.connect(self.host,self.port)
-        resp=ftp.login(self.username,self.pwd)
+        # 设置调试等级1
+        '''
+        1: print commands and responses but not body text etc.
+        打印命令和响应，而不是正文文本。
+        '''
+        ftp.set_debuglevel(1)
+        ftp.connect(self.host,self.port)
+        ftp.login(self.username,self.pwd)
+        # ftp.sendcmd()
+        print(self.__testcontect())
         return ftp
 
     def __testcontect(self):
         '''
         测试是否已连接
+        打印getwelcome
         :return:
         '''
-        pass
+        return(self.ftp.getwelcome())
 
-    def download(self,targetpath,filename):
+    def download(self,targetpath,filename,remotepath=None):
         '''
         公开的下载方法
         :param targetpath:
-        :param filename:
+        :param filename:要保存的文件名称
+        :param remotepath:ftp中的路径
+        :return:若下载成功则返回本地保存文件的全路径；否则返回None
+        '''
+        # 1 ftp连接
+        ftp=self.__ftpconnect()
+        # 2 判断指定路径下是否存在指定文件
+        isExist= self.__checkExistFile(ftp,filename,remotepath)
+        if isExist:
+            # 下载
+            fullname = self.__downloadfile(ftp, self.url, targetpath, filename)
+            return fullname
+        return None
+
+    def __checkExistFile(self,ftp,filename,remotepath=None):
+        '''
+        判断指定url下是否存在指定文件，存在返回true，不存在返回false
+        :param ftp:ftp对象
+        :param filename:文件名称
+        :param remotepath:ftp中的路径
         :return:
         '''
-        # ftp连接
-        ftp=self.__ftpconnect()
-        # 下载
-        fullname= self.__downloadfile(ftp,self.url,targetpath,filename)
-        return fullname
+        if remotepath is not None:
+            # 进入指定路径
+            ftp.sendcmd(remotepath)
+        # 判断是否存在指定文件
+            cmd="ls %s"%filename
+            response= ftp.sendcmd(cmd)
+            # 需要在实际中查看响应是什么
+            # ——————————————————————
+            if response is not None:
+                return True
+        return False
 
     def __downloadfile(self,ftp,url,targetpath,filename):
         '''
