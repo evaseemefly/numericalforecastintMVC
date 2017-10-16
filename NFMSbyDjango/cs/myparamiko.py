@@ -38,24 +38,25 @@ import paramiko
 # print(stdout.readlines())
 
 # （二）基于用户名和密码的transport方式登录
-# # 实例化一个transport对象
-# trans = paramiko.Transport(("128.5.6.21",22))
-# # 建立连接
-# trans.connect(username='lingtj', password='lingtj123')
-#
-# # 将sshclient的对象的transport指定为以上的trans
-# ssh = paramiko.SSHClient()
-# ssh._transport = trans
-# # 执行命令，和传统方法一样
-# # stdin, stdout, stderr = ssh.exec_command('df -hl')
-# ssh.exec_command('cd zyf/test')
-# stdin, stdout, stderr = ssh.exec_command('ls')
-# print(stdout.read().decode())
+# 实例化一个transport对象
+trans = paramiko.Transport(("128.5.6.21",22))
+# 建立连接
+trans.connect(username='lingtj', password='lingtj123')
+
+# 将sshclient的对象的transport指定为以上的trans
+ssh = paramiko.SSHClient()
+ssh._transport = trans
+# 执行命令，和传统方法一样
+# stdin, stdout, stderr = ssh.exec_command('df -hl')
+ssh.exec_command('cd zyf/test')
+stdin, stdout, stderr = ssh.exec_command('ls')
+print(stdout.read().decode())
 # stdin, stdout, stderr = ssh.exec_command('./sfc.sh 2013040100 6 14.69 30.52 115.91 128.57 test17101301.gif')
-# sleep(3)
-# print(stdout.read().decode())
-# stdin, stdout, stderr = ssh.exec_command('ls')
-# print(stdout.read().decode())
+stdin, stdout, stderr = ssh.exec_command('./zyf/test/sfc.sh 2013040100 6 14.69 30.52 115.91 128.57 test17101602.gif')
+sleep(3)
+print(stdout.read().decode())
+stdin, stdout, stderr = ssh.exec_command('ls')
+print(stdout.read().decode())
 
 # （三）将paramiko封装至一个类中
 # ssh=utils.ParamikoConn("128.5.6.21",22,"lingtj", "lingtj123")
@@ -70,24 +71,27 @@ import paramiko
 # ssh.ssh_close()
 
 # （四）
-# client = paramiko.SSHClient()
-# # 不添加此句会出现：Server  not found in known_hosts的错误
-# client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-# client.connect(hostname="128.5.6.21",username="lingtj", password="lingtj123")
-# # Obtain session
-# session = client.get_transport().open_session()
-# # Forward local agent
-# # Commands executed after this point will see the forwarded agent on
-# # the remote end.
-# # 取不到值
-# stdin=session.exec_command('./zyf/test/sfc.sh 2013040100 6 14.69 30.52 115.91 128.57 test17101301.gif')
-# err_list = stderr.readlines()
-# if len(err_list) > 0:
-#     print('error:%s' % err_list[0])
-#     exit()
-# else:
-#     print(stdout.read().decode())
-# print("结束")
+client = paramiko.SSHClient()
+# 不添加此句会出现：Server  not found in known_hosts的错误
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+client.connect(hostname="128.5.6.21",username="lingtj", password="lingtj123")
+# Obtain session
+session = client.get_transport().open_session()
+# Forward local agent
+# Commands executed after this point will see the forwarded agent on
+# the remote end.
+# 取不到值
+'''
+TypeError: 'NoneType' object is not iterable
+'''
+stdin, stdout, stderr=session.exec_command('./zyf/test/sfc.sh 2013040100 6 14.69 30.52 115.91 128.57 test17101301.gif')
+err_list = stderr.readlines()
+if len(err_list) > 0:
+    print('error:%s' % err_list[0])
+    exit()
+else:
+    print(stdout.read().decode())
+print("结束")
 
 # 关闭连接
 # trans.close()
