@@ -88,9 +88,9 @@ def produceImg(request):
         # client.exec_cmd("cd zyf/test/")
         # 此处暂时有问题
         # 具体原因待查
-        client.exec_cmd(cmd)
-
-
+        # client.exec_cmd(cmd)
+        # 使用invoke_shell的方式
+        client.exec_shell(cmd)
         # 暂时不用以下方式
         # linux_main = utils.Linux("128.5.6.21","lingtj","lingtj123")
         # linux_main.connect()

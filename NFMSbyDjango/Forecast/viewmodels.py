@@ -86,8 +86,9 @@ class Request_Data_Latlng:
             （1）其中有生成的随机文件名的属性
             （2）生成cmd字符串的方法（或改为属性）
         '''
-        self.cmd_obj = models.CmdInfo("sfc.sh", self.date, self.interval, self.lat_start, self.lat_finish, self.lon_start,
-                                 self.lon_finish)
+        # self.cmd_obj = models.CmdInfo("sfc.sh", self.date, self.interval, self.lat_start, self.lat_finish, self.lon_start,self.lon_finish)
+        self.cmd_obj = models.CmdInfo("sfc.sh", self.date, self.interval, self.lat_start, self.lat_finish, self.lon_start, self.lon_finish)
+        
 
     @property
     def cmdbyStr(self):

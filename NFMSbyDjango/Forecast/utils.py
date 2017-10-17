@@ -18,7 +18,7 @@ class ParamikoClient(object):
         self.timeout = timeout
 
         self.client = None
-
+        self.channel=None
         # 链接失败的重试次数
         self.try_times = 3
 
@@ -30,12 +30,15 @@ class ParamikoClient(object):
         while True:
             # 连接过程中可能会抛出异常，比如网络不通、链接超时
             try:
-                self.client = paramiko.SSHClient()
-                self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-                self.client.connect(self.ip, self.port, self.username, self.password)
-                # 如果没有抛出异常说明连接成功，直接返回
-                print(u'连接%s成功' % self.ip)
-                return
+                if self.client is None:                    
+                    self.client = paramiko.SSHClient()
+                    self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                    self.client.connect(self.ip, self.port, self.username, self.password)
+                    #开启频道
+                    self.channel = self.client.invoke_shell()
+                    # 如果没有抛出异常说明连接成功，直接返回
+                    print(u'连接%s成功' % self.ip)
+                    return
             # 这里不对可能的异常如socket.error, socket.timeout细化，直接一网打尽
             except Exception as e:
                 if self.try_times != 0:
@@ -66,6 +69,56 @@ class ParamikoClient(object):
         stdin, stdout, stderr = self.client.exec_command(cmd)
         print(stdout.readlines())
         self.__close()
+
+    def exec_shell(self,cmd):
+        '''
+        远程执行shell
+        :param cmd:
+        :return:
+        '''
+        if self.channel is not None:
+            re_match = '(\[.+?@.+?\s.+?\]\$)'
+            self.channel.send(cmd + '\n')
+            while True:
+                '''
+                由于执行完命令之后会以[lingtj@tlogin ~]$ 结尾
+                eg：
+                (0)	====20130401  08
+                     warning:smth9: No missing values are being set.
+                     .......................
+
+                    (0)	---------- 006 Hours ------------
+                        warning:NumVectors is not a valid resource in wbar_vector at this time
+
+                     rasttopnm: writing PPM file
+                     pamtogif: computing colormap...
+                     pamtogif: 3 colors fou
+                     nd
+                        + '[' -n test17101703.gif ']'
+                        + mv wbar.gif test17101703.gif
+                    [lingtj@tlogin ~]$ 
+            ************************************************
+                若执行完命令总是以[lingtj@tlogin ~]$结束
+
+                需要对[lingtj@tlogin ~]$进行匹配
+                [除“\n”之外的任何单个字符出现一次或多次 @ 多个任意字符 空格 多个任意字符]$
+                            '''
+                # 将返回的receive data进行接收（二进制）——>转换为utf-8格式
+                out = self.channel.recv(1024).decode('utf-8')
+                print(out)
+                # 匹配投
+                result_match = re.findall(re_match, out)
+                '''
+                .strip()移除字符串头尾指定的字符（默认为空格）。
+                .endswith() 方法用于判断字符串是否以指定后缀结尾，如果以指定后缀结尾返回True，否则返回False。可选参数"start"与"end"为检索字符串的开始与结束位置。
+                '''
+                # 有匹配结果并且该匹配结果出现在最后
+                # 再跳出循环
+                if result_match and out.strip().endswith(result_match[-1]):
+                    self.__close()
+                    break
+
+
 
 
 

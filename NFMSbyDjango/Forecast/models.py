@@ -57,7 +57,7 @@ class R_UserInfo_Action(models.Model):
     class Meta:
         db_table="r_userinfo_action"
 
-class CmdInfo(object):
+class CmdInfo:
     '''
     实现生成linux端存储的随机文件名的功能
     '''
