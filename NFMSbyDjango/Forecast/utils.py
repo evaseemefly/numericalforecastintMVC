@@ -8,6 +8,7 @@ from ftplib import FTP
 import sys
 import os
 from NFMSbyDjango import settings
+from Forecast import models
 
 class ParamikoClient(object):
     def __init__(self ,ip, username, password,port=22, timeout=30):
@@ -74,11 +75,15 @@ class ParamikoClient(object):
         '''
         远程执行shell
         :param cmd:
-        :return:
+        :return:返回结果
         '''
+        recv_info = models.RecvResultInfo(0, "uninitialized")
+        if self.channel is None:
+            self.__connect()
         if self.channel is not None:
             re_match = '(\[.+?@.+?\s.+?\]\$)'
             self.channel.send(cmd + '\n')
+
             while True:
                 '''
                 由于执行完命令之后会以[lingtj@tlogin ~]$ 结尾
@@ -116,8 +121,12 @@ class ParamikoClient(object):
                 # 再跳出循环
                 if result_match and out.strip().endswith(result_match[-1]):
                     self.__close()
+                    recv_info.code=1
+                    recv_info.result="ok"
+                    # recv_info.
+                    # return recv_info
                     break
-
+        return recv_info
 
 
 
@@ -333,6 +342,38 @@ class FtpClient:
                 print("error:ftp error user:%s,pwd:%s"%(self.username,self.pwd))
                 ftp.quit()
                 return
+
+class SFtpClient:
+    '''
+    
+    '''
+    def __init__(self ,ip, username, password,port=22, timeout=30):
+        self.ip = ip
+        self.username = username
+        self.password = password
+        self.port = port
+        self.timeout = timeout
+
+        self.client = None
+        self.channel = None
+        # 链接失败的重试次数
+        self.try_times = 3
+        pass
+
+    def sftp_download(host, port, username, password, local, remote):
+        sf = paramiko.Transport((host, port))
+        sf.connect(username=username, password=password)
+        sftp = paramiko.SFTPClient.from_transport(sf)
+        try:
+            if os.path.isdir(local):  # 判断本地参数是目录还是文件
+                for f in sftp.listdir(remote):  # 遍历远程目录
+                    sftp.get(os.path.join(remote + f), os.path.join(local + f))  # 下载目录中文件
+            else:
+                sftp.get(remote, local)  # 下载文件
+        except Exception, e:
+            print('download exception:', e)
+        sf.close()
+
 
 class ParamikoConn(object):
     def __init__(self,host,port,user,pwd):

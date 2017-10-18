@@ -73,6 +73,8 @@ class CmdInfo:
         :param lon_finish:
         '''
         # self.cmd_str=cmd
+        self.guid = uuid.uuid1()
+        self.targetfile = self.__targetfile_str
         self.sh_file=sh
         self.target_date=date
         self.interval=interval
@@ -86,12 +88,12 @@ class CmdInfo:
         # self.guid=guid
     # __slots__ = ('cmd_str','sh_file','target_date','interval','latlng','targetfile','guid')
 
-    def __init__(self):
-        '''
-        无参的构造函数用来生成guid
-        '''
-        self.guid=uuid.uuid1()
-        self.targetfile=self.targetfile()
+    # def __init__(self):
+    #     '''
+    #     无参的构造函数用来生成guid
+    #     '''
+    #     self.guid=uuid.uuid1()
+    #     self.targetfile=self.targetfile()
 
     def toCmdbyStr(self):
         '''
@@ -106,7 +108,7 @@ class CmdInfo:
         # pass
 
     @property
-    def targetfile(self):
+    def __targetfile_str(self):
         '''
         获取生成的文件名称
         每实例化一次本类，才生成一个guid作为targetfile的一个参考变量
@@ -114,3 +116,9 @@ class CmdInfo:
         '''
         self.targetfile="{}{}.gif".format("test",self.guid)
         return self.targetfile
+
+class RecvResultInfo:
+    def __init__(self,code,result,message=None):
+        self.code=code
+        self.result=result
+        self.message=message

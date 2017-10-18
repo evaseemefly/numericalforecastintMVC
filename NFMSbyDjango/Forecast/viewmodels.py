@@ -87,7 +87,7 @@ class Request_Data_Latlng:
             （2）生成cmd字符串的方法（或改为属性）
         '''
         # self.cmd_obj = models.CmdInfo("sfc.sh", self.date, self.interval, self.lat_start, self.lat_finish, self.lon_start,self.lon_finish)
-        self.cmd_obj = models.CmdInfo("sfc.sh", self.date, self.interval, self.lat_start, self.lat_finish, self.lon_start, self.lon_finish)
+        # self.cmd_obj = models.CmdInfo("sfc.sh", self.date, self.interval, self.lat_start, self.lat_finish, self.lon_start, self.lon_finish)
         
 
     @property
@@ -113,6 +113,15 @@ class Request_Data_Latlng:
         # cmd_obj.sh_file=
         # str_cmd="./sfc.sh %s %s %s %s %s"%(self.date,self.lat_start,self.lat_finish,self.lon_start,self.lon_finish,self.element,self.level,self.interval)
         return self.cmd_obj.toCmdbyStr()
+        # cmd= self.cmd_obj.toCmdbyStr()
+        # return cmd
+
+    @property
+    def cmd_obj(self):
+        # cmd=models.CmdInfo()
+        cmd= models.CmdInfo("sfc.sh", self.date, self.interval, self.lat_start, self.lat_finish, self.lon_start,
+                       self.lon_finish)
+        return cmd
 
     @property
     def targetFilebyStr(self):

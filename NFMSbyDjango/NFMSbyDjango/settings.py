@@ -211,6 +211,6 @@ TEMPLATE_DIRS = (
 
 
 # 部分自定义的配置节
-FTP_URL=""
-TARGET_DIR=""
+FTP_URL="128.5.6.21"
+TARGET_DIR="D:\测试"
 

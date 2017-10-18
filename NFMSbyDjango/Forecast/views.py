@@ -82,15 +82,17 @@ def produceImg(request):
         2 根据obj去执行指定的shell脚本，并输入指定的参数；
         生成jpg图片
         '''
-        cmd=request_latlng.cmdbyStr
+        # cmd=request_latlng.cmdbyStr
+        cmd_obj=request_latlng.cmd_obj
 
-        client=utils.ParamikoClient("128.5.6.21","lingtj","lingtj123")
+        client=utils.ParamikoClient(download_url,"lingtj","lingtj123")
         # client.exec_cmd("cd zyf/test/")
         # 此处暂时有问题
         # 具体原因待查
         # client.exec_cmd(cmd)
         # 使用invoke_shell的方式
-        client.exec_shell(cmd)
+        recv_result= client.exec_shell(cmd_obj.toCmdbyStr())
+
         # 暂时不用以下方式
         # linux_main = utils.Linux("128.5.6.21","lingtj","lingtj123")
         # linux_main.connect()
@@ -104,7 +106,10 @@ def produceImg(request):
         3.4 满足条件则将该文件下载到本地的
         3.5 按照指定规则分类存储
         '''
-        utils.FtpClient.download(download_url,target_dir,)
+        ftp_client=utils.FtpClient(download_url,"lingtj","lingtj123")
+        ftp_client.download("zyf/test/",cmd_obj.targetfile,target_dir)
+
+        # utils.FtpClient.download(download_url,target_dir,)
     return "ok"
 
 def login(request):
