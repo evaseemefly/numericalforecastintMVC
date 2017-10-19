@@ -117,8 +117,15 @@ class CmdInfo:
         self.targetfile="{}{}.gif".format("test",self.guid)
         return self.targetfile
 
-class RecvResultInfo:
-    def __init__(self,code,result,message=None):
+class BaseResultInfo:
+    def __init__(self,code=None,result=None,message=None):
         self.code=code
         self.result=result
         self.message=message
+
+class RecvResultInfo(BaseResultInfo):
+    def __init__(self,code=None,result=None,message=None):
+        # self.code=code
+        # self.result=result
+        # self.message=message
+        super().__init__(code,result,message)

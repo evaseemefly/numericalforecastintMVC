@@ -7,6 +7,7 @@ from Forecast import viewmodels
 import json
 from Forecast import utils
 from NFMSbyDjango import settings
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -43,11 +44,23 @@ def request2obj(request):
     :param request:request
     :return:Request_Data对象
     '''
-    # 若使用get的方式就不能通过request.form.get的方式获取数据
+    # 若使用POST的方式就不能通过request.form.get的方式获取数据
     obj_json = json.loads(request.body.decode("utf-8"))
-    obj_rectangleMeasure=obj_json.get("rectangleMeasureViewModel",None)
-    obj_elemenetViewModel=obj_json.get("elemenetViewModel",None)
-    obj_baseInfoViewModel=obj_json.get("baseInfoViewModel",None)
+    obj_rectangleMeasure = obj_json.get("rectangleMeasureViewModel", None)
+    obj_elemenetViewModel = obj_json.get("elemenetViewModel", None)
+    obj_baseInfoViewModel = obj_json.get("baseInfoViewModel", None)
+    # 下面使用GET的方式
+    '''
+    是dict
+    '''
+    # 注意dict_json是QueryDict对象
+    # dict_json=request.GET
+    # # [print(key) for key,value in dict_json]
+    # [print(value) for key, value in dict_json]
+    # q = QueryDict('a=1&a=2&a=3')
+    # obj_rectangleMeasure = dict_json["rectangleMeasureViewModel"]
+    # obj_elemenetViewModel = dict_json["elemenetViewModel", None]
+    # obj_baseInfoViewModel = dict_json["baseInfoViewModel", None]
     request_date = obj_baseInfoViewModel.get('targetdate', None)
     request_lon_start = obj_rectangleMeasure.get('startlng', None)
     request_lon_finish = obj_rectangleMeasure.get('finishlng', None)
@@ -74,7 +87,7 @@ def produceImg(request):
     error=None
     myresponse=viewmodels.Response_Result(99,"未处理")
     # obj_json= json.loads(request.POST)
-
+    recv_str=""
     if request.method=='POST':
         # 获取到前台传过来的数据
         request_latlng= request2obj(request)
@@ -106,11 +119,24 @@ def produceImg(request):
         3.4 满足条件则将该文件下载到本地的
         3.5 按照指定规则分类存储
         '''
-        ftp_client=utils.FtpClient(download_url,"lingtj","lingtj123")
-        ftp_client.download("zyf/test/",cmd_obj.targetfile,target_dir)
+        # 不能使用ftp的方式下载需要改为sftp的方式下载
+        # ftp_client=utils.FtpClient(download_url,"lingtj","lingtj123")
+        # ftp_client.download("zyf/test/",cmd_obj.targetfile,target_dir)
+        # 使用sftp的方式下载
+        sftpclient=utils.SFtpClient(download_url,"lingtj","lingtj123")
+        recv_obj= sftpclient.sftp_download(target_dir,"zyf/test/",cmd_obj.targetfile)
+        recv_dict=recv_obj.__dict__
+        # 'D:\\测试\\testcc19d5d2-b4ac-11e7-8f45-34f39a9570ee.gif'
+        # 将字典中的message字段中的\\替换为/
+        # recv_dict['message']=recv_dict['message'].replace("\\",'/')
+        recv_dict['message'] = "../static/img/download/test4c13c3f6-b4bc-11e7-a15d-34f39a9570ee.gif"
 
+        recv_str=json.dumps(recv_dict,ensure_ascii=False)
+        print(recv_str)
         # utils.FtpClient.download(download_url,target_dir,)
-    return "ok"
+    # return HttpResponse(jstr, content_type="application/json")
+    return HttpResponse(recv_str, content_type="application/json")
+    # return recv_str
 
 def login(request):
     '''

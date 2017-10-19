@@ -17,6 +17,9 @@ from django.conf.urls import url,include
 from django.contrib import admin
 # from NFMS import views
 from Forecast import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+from django.contrib import staticfiles
 # from ForecastTest import views
 
 urlpatterns = [
@@ -34,4 +37,11 @@ urlpatterns = [
      #url(r'Forecast/actions?(?P<uid>\d+)&(?P<pwd>\s+)',views.getActions)
      url(r'Forecast/actions*',views.getActions),
     url(r'Forecast/produceImg*',views.produceImg),
+    # url(r'^Forecast/',include("Forecast.urls"))
+    # url(r'^download/(?P<path>.*)', 'django.views.static.serve', {'document_root':'/download'}),
+    # url(r'^download/(?P<path>.*)','django.views.static.serve', {'document_root':'/download'}),
 ]
+
+#加载图片时需要使用的
+# urlpatterns += staticfiles_urlpatterns()
+# print(urlpatterns)

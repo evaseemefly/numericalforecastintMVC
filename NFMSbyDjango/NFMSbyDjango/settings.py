@@ -213,4 +213,6 @@ TEMPLATE_DIRS = (
 # 部分自定义的配置节
 FTP_URL="128.5.6.21"
 TARGET_DIR="D:\测试"
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+# MEDIA_URL = '/media/'
 

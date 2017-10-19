@@ -93,9 +93,9 @@
                 {#                data: { name: "John", time: "2pm" },#}
                 success: function(data) {
                     //若state为1则为成功
-                    if(data.state == "1") {
+                    if(data.code == "6") {
                         //获取img的url
-                        var img_url= data.imgurl;
+                        var img_url= data.message;
                         $("#returnimg").attr('src',img_url);
                         //显示modal框
                         showme();
@@ -104,6 +104,10 @@
             });
         }
 
+
+        function showme(){
+				$("#myModal").modal();
+			}
 
     </script>
 {% endblock %}
@@ -337,7 +341,7 @@
 
             </div>
         </div>
-
+        <!--modal窗口-->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
