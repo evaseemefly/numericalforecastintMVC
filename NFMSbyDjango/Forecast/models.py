@@ -117,8 +117,31 @@ class CmdInfo:
         self.targetfile="{}{}.gif".format("test",self.guid)
         return self.targetfile
 
-class RecvResultInfo:
-    def __init__(self,code,result,message=None):
+class BaseResultInfo:
+    '''
+    基础的返回信息父类
+    '''
+    def __init__(self,code=None,result=None,message=None):
         self.code=code
         self.result=result
         self.message=message
+
+class RecvResultInfo(BaseResultInfo):
+    '''
+
+    '''
+    def __init__(self,code=None,result=None,message=None):
+        # self.code=code
+        # self.result=result
+        # self.message=message
+        super().__init__(code,result,message)
+
+class ReturnResultInfo(BaseResultInfo):
+    '''
+    由后台返回给前台显示的信息类（多了一个title属性）
+    '''
+    def __init__(self,code=None,result=None,message=None,title=None):
+        # super(ReturnResultInfo, self).__init__()
+        # super(ReturnResultInfo, self).__init__()
+        super().__init__(code,result,message)
+        self.title=title

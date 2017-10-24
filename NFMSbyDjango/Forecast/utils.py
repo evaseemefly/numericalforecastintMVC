@@ -217,12 +217,14 @@ class DirFileHelper:
         判断指定路径下是否存在指定文件
         :param targetpath:指定路径
         :param filename:目标文件
-        :return:
+        :return:返回BaseResultInfo类型的结果
         '''
-        # 判断指定路径下是否已经存在指定文件
+        result= models.BaseResultInfo(0,"已初始化","")
+        # 判断本地路径下是否已经存在指定文件
         fullname = os.path.join(targetpath, filename)
         if os.path.isfile(fullname):
-            return "ok"
+            result.code=1
+            result.result="existed"
         else:
             # 不保存在指定文件则创建
             # 先判断指定路径是否存在
@@ -234,11 +236,19 @@ class DirFileHelper:
                 # pass
              # 存在目录则创建文件
             try:
-                os.mknod(fullname)
-                return fullname
+                file = open(fullname, 'w')
+                result.code=6
+                result.result="ok"
+                result.message=fullname
+                # os.mknod(fullname)
+                # return fullname
             except Exception as e:
                 print(e)
-                return None
+                result.code=-1
+                result.result="error"
+                result.message=e
+                # return None
+        return result
 
 
 class FtpClient:
@@ -345,7 +355,8 @@ class FtpClient:
 
 class SFtpClient:
     '''
-    
+    由于均使用paramiko包
+    sftp与ParamikoClient保持一致
     '''
     def __init__(self ,ip, username, password,port=22, timeout=30):
         self.ip = ip
@@ -358,22 +369,83 @@ class SFtpClient:
         self.channel = None
         # 链接失败的重试次数
         self.try_times = 3
+        self.trans=None
+
+    def __connect(self):
+        if self.trans is None:
+            self.trans=paramiko.Transport((self.ip, self.port))
+            self.trans.connect(username=self.username, password=self.password)
+
+    def __sftpconnect(self):
         pass
 
-    def sftp_download(host, port, username, password, local, remote):
-        sf = paramiko.Transport((host, port))
-        sf.connect(username=username, password=password)
-        sftp = paramiko.SFTPClient.from_transport(sf)
-        try:
-            if os.path.isdir(local):  # 判断本地参数是目录还是文件
-                for f in sftp.listdir(remote):  # 遍历远程目录
-                    sftp.get(os.path.join(remote + f), os.path.join(local + f))  # 下载目录中文件
-            else:
-                sftp.get(remote, local)  # 下载文件
-        except Exception, e:
-            print('download exception:', e)
-        sf.close()
+    def __checkExistFile(self,ftp,filename,remotepath=None):
+        '''
+        判断指定url下是否存在指定文件，存在返回true，不存在返回false
+        :param ftp:ftp对象
+        :param filename:文件名称
+        :param remotepath:ftp中的路径
+        :return:
+        '''
+        if remotepath is not None:
+            # 进入指定路径
+            ftp.sendcmd(remotepath)
+        # 判断是否存在指定文件
+            cmd="ls %s"%filename
+            response= ftp.sendcmd(cmd)
+            # 需要在实际中查看响应是什么
+            # ——————————————————————
+            if response is not None:
+                return True
+        return False
 
+    def sftp_download(self, local, remote,filename):
+        '''
+        通过sftp的方式下载
+        :param local:本地路径
+        :param remote:远程路径
+        :param filename:文件名
+        :return:返回BaseResultInfo类型的结果
+        '''
+        if self.trans is None:
+            self.__connect()
+        if self.trans is not None:
+            try:
+                sftp=paramiko.SFTPClient.from_transport(self.trans)
+                localfilefullpath=os.path.join(local,filename)
+                remotefilefullpath=os.path.join(remote,filename)
+                # 判断远端是否存在指定文件
+                # 判断本地是否已经创建指定文件
+                dirHelper = DirFileHelper()
+                result = dirHelper.checkTargetFileOrCreate(local, filename)
+                #不管本地是否存在均下载
+                result_return = models.ReturnResultInfo(result.code, result.result, result.message)
+                # 可能会出现重复文件会出错的问题，待测试
+                sftp.get(remotefilefullpath,localfilefullpath)
+
+                result_return.code=6
+                result_return.result="ok"
+                result_return.title="状态信息"
+            # try:
+            #     if os.path.isdir(local):  # 判断本地参数是目录还是文件
+            #         for f in sftp.listdir(remote):  # 遍历远程目录
+            #             sftp.get(os.path.join(remote + f), os.path.join(local + f))  # 下载目录中文件
+            #     else:
+            #         sftp.get(remote, local)  # 下载文件
+            except IOError as ioerr:
+                print("io error %s"%ioerr)
+                result_return.title="内部错误"
+                result_return.result="ioerror"
+                result_return.message=ioerr.strerror
+                result_return.code = -1
+            except Exception as e:
+                print('download exception:', e)
+                result_return.title = "内部错误"
+                result_return.result = "ioerror"
+                result_return.message = e
+                result_return.code=-1
+            self.trans.close()
+        return result_return
 
 class ParamikoConn(object):
     def __init__(self,host,port,user,pwd):

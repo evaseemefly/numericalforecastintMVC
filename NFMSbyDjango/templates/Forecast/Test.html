@@ -13,6 +13,7 @@
     <script type="application/javascript" src="/static/js/viewmodel/Forecast/ElementContentMenu.js"></script>
     <script type="application/javascript" src="/static/js/viewmodel/map/RectangleMeasureViewModel.js"></script>
     <script type="application/javascript" src="/static/js/viewmodel/Forecast/BaseInfoViewModel.js"></script>
+    <script type="application/javascript" src="/static/js/comm/msgComm.js"></script>
 {#    <script type="application/javascript" src="/static/js/bootstrap-datetimepicker.js"></script>#}
 {#    <script type="application/javascript" src="/static/js/bootstrap-datetimepicker.zh-CN.js"></script>#}
 
@@ -66,6 +67,7 @@
 //					map.on 打开对于某个事件的监听
 //					map.off 关闭对于某个事件的监听
                 map.on('mousedown', rectangleMeasureViewModel.mousedown).on('mouseup', rectangleMeasureViewModel.mouseup).on('contextmenu', rectangleMeasureViewModel.forbidRegion);
+            $("#mymsgcontent").css({"overflow":"auto","height":"150px"});
             });
 
 // console.log(map);
@@ -82,7 +84,7 @@
             var myFormData=JSON.stringify(finialViewModel);
             //使用POST方式
 
-
+            $("#progressModal").modal();
 
             $.ajax({
                 type: "POST",
@@ -92,19 +94,49 @@
                 data:myFormData,
                 {#                data: { name: "John", time: "2pm" },#}
                 success: function(data) {
-                    //若state为1则为成功
-                    if(data.state == "1") {
-                        //获取img的url
-                        var img_url= data.imgurl;
-                        $("#returnimg").attr('src',img_url);
-                        //显示modal框
-                        showme();
+                    //下载成功后隐藏之前的进度条
+                    $("#progressModal").modal('hide');
+                    //此时判断由后台传回的信息
+                    //只有code为-1时才是错误信息||目前只显示错误信息
+                    if(data.code==-1){
+                        showMessage(data);
+                        return;
                     }
+                    showImgModal(data);
+
                 }
             });
         }
 
 
+        function showme(){
+				$("#myModal").modal();
+			}
+
+
+        function showImgModal(result){
+            //若state为1则为成功
+                    if(result.code == "6") {
+                        //获取img的url
+                        var img_url= result.message;
+                        $("#returnimg").attr('src',img_url);
+                        //显示modal框
+                        showme();
+                    }
+        }
+
+        //显示后台返回的信息
+        function showMessage(result){
+            loaderrmsg("mymsgtitle","mymsgcontent",result.title,result.message);
+
+            hideModal(result);
+        }
+
+        function hideModal(result){
+            $("#errorModal").on('hide.bs.modal',function () {
+                showImgModal(result)
+            })
+        }
     </script>
 {% endblock %}
 {% block content %}
@@ -337,9 +369,9 @@
 
             </div>
         </div>
-
+        <!--modal窗口-->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog" role="document" style="display: inline-block; width: auto;">
                 <div class="modal-content">
                     <div class="modal-header">
 
@@ -357,20 +389,41 @@
             </div>
         </div>
 
-        <div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <!--后台计算时加载的modal 进度条-->
+        <div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myProgressLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">标题1</h4>
+{#                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+                        <h4 class="modal-title" id="myProgressLabel">请稍后</h4>
                     </div>
                     <div class="modal-body">
                         <div class="progress">
-  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
     <span class="sr-only">100% 请等待</span>
   </div>
 </div>
+                    </div>
+{#                    <div class="modal-footer">#}
+{#                        <button type="button" class="btn btn-success" data-dismiss="modal">确定</button>#}
+{##}
+{#                    </div>#}
+                </div>
+            </div>
+        </div>
+
+        <!---->
+        <!--若后台返回的代码是错误代码时弹出的modal框-->
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myProgressLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="mymsgtitle" >请稍后</h4>
+						</div>
+                    <div class="modal-body">
+                        <div id="mymsgcontent"class="mymsgcontent">此处填充返回的内容</div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-dismiss="modal">确定</button>
@@ -379,12 +432,15 @@
                 </div>
             </div>
         </div>
+
     </div>
 {% endblock %}
 
 {% block bottom-js %}
     <script type="application/javascript" src="/static/js/map/leaflet_maplayer.js"></script>
     <script type="application/javascript">
+        //声明一个方法用来显示错误信息
+
         //使用ko的方式进行绑定，使用js的方式声明对象
         {#function RectangleMeasureViewModel() {#}
         {#            var self = this;#}
