@@ -60,6 +60,11 @@
             {#                        ko.attach(elementViewModel,document.getElementById("editForm"));#}
             {#         ko.applyBindings(rectangleMeasure);#}
 
+{#            $(document).on("show.bs.modal", ".modal", function(){#}
+{#            $(this).draggable();#}
+{#            });#}
+
+
             $("#rectangleSel").unbind('click').bind('click', function() {
                 //          	mousedown 按下鼠标按键时触发
                 //          	mouseup 按下鼠标时触发
@@ -102,26 +107,26 @@
                         showMessage(data);
                         return;
                     }
-                    showImgModal(data);
+                    showImg(data);
 
                 }
             });
         }
 
 
-        function showme(){
+        function showImgModal(){
 				$("#myModal").modal();
 			}
 
 
-        function showImgModal(result){
+        function showImg(result){
             //若state为1则为成功
                     if(result.code == "6") {
                         //获取img的url
                         var img_url= result.message;
                         $("#returnimg").attr('src',img_url);
                         //显示modal框
-                        showme();
+                        showImgModal();
                     }
         }
 
@@ -369,14 +374,15 @@
 
             </div>
         </div>
-        <!--modal窗口-->
+        <!--modal 加载图片 窗口-->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document" style="display: inline-block; width: auto;">
+{#            <div class="modal-dialog" role="document" style="display: inline-block; width: auto;max-width: 980px;">#}
+                <div class="modal-dialog" role="document" style=" width: auto;max-width: 980px;">
                 <div class="modal-content">
                     <div class="modal-header">
 
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">标题1</h4>
+                        <h4 class="modal-title" id="myModalLabel">指定区域模式结果</h4>
                     </div>
                     <div class="modal-body">
                         <img id="returnimg" src="" class="img-responsive">

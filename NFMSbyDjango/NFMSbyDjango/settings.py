@@ -215,6 +215,7 @@ FTP_URL="128.5.6.21"
 # TARGET_DIR="D:\测试"
 # TARGET_DIR="E:\\03协同开发\\数值预报显示系统\\numericalforecastintMVC\\NFMSbyDjango\\static\\img\\download"
 TARGET_DIR=os.path.join(BASE_DIR,'static','img','download')
+print("TARGET_DIR:%s"%TARGET_DIR)
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 # MEDIA_URL = '/media/'
 
