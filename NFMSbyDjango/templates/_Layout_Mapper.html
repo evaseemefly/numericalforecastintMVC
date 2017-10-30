@@ -1,25 +1,25 @@
 {#{% extends "/shared/_Layout.html" %}#}
 {% extends "_Layout.html" %}
 {% block body %}
-{#    相当于c#中的PartialView#}
+    {#    相当于c#中的PartialView#}
+    <!--左侧的导航栏-->
     {% include "_Partial_Navbar_Menu.html" %}
-{#@Html.Partial("_Navbar_Menu")#}
-<!--<div class="container">-->
-<div id="mypage" class="page-main" style="background:#23527C;height:100%;">
-    <ol class="breadcrumb" style="margin-bottom: 0px;">
-        <li>
-            <a href="#">Home</a>
-        </li>
-        <li>
-            <a href="#">Library</a>
-        </li>
-        <li class="active">Data</li>
-    </ol>
-    <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
+    {#@Html.Partial("_Navbar_Menu")#}
+    <!--<div class="container">-->
+    {% include "_"%}
+    <div id="mypage" class="col-md-offset-2" style="background:#23527C;height:100%;">
+        <ol class="breadcrumb" style="margin-bottom: 0px;">
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Library</a>
+            </li>
+            <li class="active">Data</li>
+        </ol>
         {% block content %}body
-            {% endblock %}
+        {% endblock %}
     </div>
-</div>
 
 {% endblock %}
 
