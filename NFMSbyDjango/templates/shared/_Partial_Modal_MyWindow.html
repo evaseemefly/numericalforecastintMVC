@@ -1,0 +1,65 @@
+ <!--modal 加载图片 窗口-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        {#            <div class="modal-dialog" role="document" style="display: inline-block; width: auto;max-width: 980px;">#}
+        <div class="modal-dialog" role="document" style=" width: auto;max-width: 980px;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">指定区域模式结果</h4>
+                </div>
+                <div class="modal-body">
+                    <img id="returnimg" src="" class="img-responsive">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">确定</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--后台计算时加载的modal 进度条-->
+    <div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myProgressLabel" style="z-index: 9999;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {#                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+                    <h4 class="modal-title" id="myProgressLabel">请稍后</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100"
+                             aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                            <span class="sr-only">100% 请等待</span>
+                        </div>
+                    </div>
+                </div>
+                {#                    <div class="modal-footer">#}
+                {#                        <button type="button" class="btn btn-success" data-dismiss="modal">确定</button>#}
+                {##}
+                {#                    </div>#}
+            </div>
+        </div>
+    </div>
+    <!---->
+    <!--若后台返回的代码是错误代码时弹出的modal框-->
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myProgressLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="mymsgtitle">请稍后</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="mymsgcontent" class="mymsgcontent">此处填充返回的内容</div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">确定</button>
+
+                </div>
+            </div>
+        </div>
+    </div>

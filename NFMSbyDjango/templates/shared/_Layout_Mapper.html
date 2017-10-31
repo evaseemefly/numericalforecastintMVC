@@ -25,10 +25,11 @@
 {#    </ol>#}
     <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;background-color: #59ff53">
         {% block content %}body
-            {% endblock %}
+         {% endblock %}
     </div>
-</div>
 
+</div>
+ {% include "shared/_Partial_Modal_MyWindow.html" %}
 {% endblock %}
 
 {#@RenderSection("scripts", required: false)#}
