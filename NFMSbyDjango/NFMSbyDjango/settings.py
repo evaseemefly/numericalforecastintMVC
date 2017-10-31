@@ -18,7 +18,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # E:\01开发\numericalforecastintMVC\NFMSbyDjango
 BASE_TEMPLATE_DIRS = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))#获取当前脚本的父目录
-print(BASE_DIR)
+print('abcdefg=',BASE_DIR)
 print(BASE_TEMPLATE_DIRS)
 
 # Quick-start development settings - unsuitable for production
@@ -198,8 +198,6 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_TEMPLATE_DIRS,  'templates'),
 )
 
-
-
 # TEMPLATE_DIRS = (
 #     os.path.join(BASE_TEMPLATE_DIRS,'AssetsPoolApp'),
 # )
@@ -209,6 +207,37 @@ TEMPLATE_DIRS = (
 #     os.path.join(BASE_DIR,'static')
 # )
 
+AREA_DICT={
+    '全球' : 'GLOBAL',
+    '西北太' : 'NIND',
+    '北印度洋' : 'NWP'
+}
+
+FACTOR_DICT={
+    'F0':'',#有效波高
+    'F1':'seaice',#海冰
+    'F2': '',#谱峰周期
+    'F3': 'eddy',#中尺度涡
+    'F4': 'wave',#海流
+    'F5': 'wind',#风
+    'F6': '' #雷暴
+}
+
+LAYER_DICT={
+    'L0': '',
+    'L1': '',
+    'L2': '',
+    'L3': '',
+    'L4': '',
+    'L5': '',
+    'L6': '',
+    'L7': '',
+    'L8': '',
+    'L9': '',
+    'L10': '',
+    'L11': '',
+    'L12': ''
+}
 
 # 部分自定义的配置节
 FTP_URL="128.5.6.21"
@@ -218,4 +247,3 @@ TARGET_DIR=os.path.join(BASE_DIR,'static','img','download')
 print("TARGET_DIR:%s"%TARGET_DIR)
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 # MEDIA_URL = '/media/'
-

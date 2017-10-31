@@ -5,6 +5,8 @@ from Forecast import viewmodels
 # import pynq
 from Forecast import viewmodels
 import json
+from django.conf import settings
+import os
 from Forecast import utils
 from NFMSbyDjango import settings
 from django.http import HttpResponse
@@ -224,3 +226,48 @@ def getActions(name,pwd):
 #
 #                 # print("指定用户存在")
 #     return render(request, 'Forecast/Test.html', {'list_actions':list_node})
+
+def searchInit(request):
+    #初始化显示全球里面的所有内容
+    data_dict,files = iterator_dir(os.path.join(settings.BASE_DIR, 'static\images\pic\Global'))
+    return render(request, 'Forecast/SerachHistory.html', {'data_dict': data_dict,'image_url':data_dict[files[0]]})
+
+# 遍历文件夹下所有文件
+def iterator_dir(dirpath):
+    leng = len(settings.BASE_DIR)
+    dict = {} #{filename:filepath}
+    files=[] #[filename]
+    for dirpath, dirnames, filenames in os.walk(dirpath, topdown=True):
+        root = dirpath[leng:]
+        for filename in filenames:
+            filepath = os.path.join(root, filename)
+            dict[filename] = filepath
+            files.append(filename)
+    return dict,files
+
+# @csrf.exempt
+# <a href="#" class="list-group-item" data-imgurl="{{ value }}" onclick="changePic(this)">{{ key }}</a>
+# request.POST[start_time]= 2017-09-01
+# request.POST[end_time]=
+# request.POST[area]= 西北太
+# request.POST[category]= C1
+# request.POST[factor]= F5
+# request.POST[layer]= L7
+# request.POST[moment]= M7
+def searchHistory(request):
+    # 暂时使用本地图片路径做测试
+    root_path = os.path.join(settings.BASE_DIR, 'static\images\pic')
+    html = ''
+    if request.method == 'POST':
+    #     print('request.POST=',request.POST)
+    #     for i in request.POST:
+    #        print("request.POST[%s]=" % i, request.POST[i])
+        dir_path = os.path.join(root_path,
+                                settings.AREA_DICT[request.POST['area']])
+        data_dict, files = iterator_dir(dir_path)
+        #判断查询是否有结果
+        for filename,filepath in data_dict.items():
+            line = "<a href='#' class='list-group-item' data-imgurl="+filepath+" onclick='changePic(this)'>"+filename+"</a>";
+            html += line
+        return_json={'image_url':data_dict[files[0]],'html':html}
+    return JsonResponse(return_json)

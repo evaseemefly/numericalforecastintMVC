@@ -124,6 +124,54 @@
 			});
 		</script>
 		<style type="text/css">
+			body{
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				padding: 0;
+				margin: 0;
+				background-color: rosybrown;
+			}
+			
+			.left_nav{
+				position: absolute;
+				top: 50px;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				background-color: bisque;
+			}
+			
+			.content_search{
+				position: absolute;
+				padding: 0;
+				margin: 0;
+				left: 10%;
+				height: 100%;
+				width: 90%;
+				background-color: cadetblue;
+				
+			}
+			
+			.tree{
+				position: absolute;
+				top: 50px;
+				left: 10%;
+				height: 90%;
+				width: 10%;
+				background-color: brown;
+			}
+			.pic{
+				position: absolute;
+				top: 10%;
+				left: 20%;
+				height: 90%;
+				width: 80%;
+				background-color: cadetblue;
+			}
+			
 			div#mypage {
 				margin-left: 150px;
 			}
@@ -140,21 +188,14 @@
 					/*设置右侧导航栏填满屏幕*/
 				}
 			}
+		</style>
+		<style type="text/javascript">
 			
-			,
-			/*#mypage{
-        		margin-left:250px;
-        	}*/
 		</style>
 	</head>
 
 	<body>
-		<!--
-            	作者：826168013@qq.com
-            	时间：2017-08-03
-            	描述：顶部title
-            -->
-		<nav class="navbar navbar-default navbar-static-top navbar-inverse" style="height: 50px;width: 100%;">
+		<nav class="navbar navbar-default navbar-static-top navbar-inverse" style="height: 50px;width: 100%;margin: 0;">
 			<div class="navbar-header" id="my_navbar">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
 	        				<span class="sr-only">Toggle navigation</span>
@@ -176,10 +217,11 @@
 				</li>
 			</ul>
 		</nav>
-
-		<!--左侧系统菜单栏 
+		
+		<!--除去顶部nav，下部整体-->
+		<div id="content" class="left_nav">
+			<!--左侧系统菜单栏 
 			将折叠的内容放在.navbar-collapse中-->
-		<div id="content" style="position: absolute;top: 50px;left: 0px;background: peachpuff;width: 100%;height: 100%;">
 			<div id="mysearch" class="navbar-default navbar-inverse" style="position: absolute;left: 0px;top: 0px;height: 100%;width: 10%;" >
 				<ul class="nav">
 					<li>
@@ -218,46 +260,45 @@
 					</li>
 				</ul>
 			</div>
-
-			<!--内部查询树-->
-			<div class="navbar-default navbar-inverse" style="position: absolute;margin-left: 10%;width: 10%;height: 100%;">
-				<div class="" style="height: 100%;" id="mysearch">
-					<label><font color="white" size="3"><b>选择气象要素：</b></font></label>
-					<div class="" id="tree"></div>
-				</div>
-			</div>
-
+			
 			<!--
-	作者：826168013@qq.com
-	时间：2017-08-01
-	描述：main content area 
--->
-			<div id="mypage" class="page-main" style="position:absolute;margin-left:20%;background:#23527C;height:100%;width: 80%;">
-				<!--
             	作者：826168013@qq.com
-            	时间：2017-08-02
-            	描述：查询检索模块
+            	时间：2017-08-25
+            	描述：右側整體內容部分
             -->
-				<form class="navbar-form" role="search">
-					<div class="form-group">
-						<label><font color="white">Time</font></label>
-						<div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-							<input class="form-control" size="16" type="text" value="" readonly>
-							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-						</div>
-					</div>
-					<button type="submit" class="btn btn-default">Search</button>
-				</form>
-
-				<!--
-            	作者：826168013@qq.com
-            	时间：2017-08-02
-            	描述：图片展示
-            -->
-				<img id="" src="img/SOUTHEAST.gif" style="width: 80%;" />
-
+			<div id="content_search" class="content_search">
+				<h1>content</h1>
 			</div>
-			</div>
+		</div>
+		
+		<!--
+        	作者：826168013@qq.com
+        	时间：2017-08-25
+        	描述：动态控制content控件高度
+        -->
+		<script type="text/javascript">
+	        var winHeight = 0;
+	        function findDimensions() { //函数：获取尺寸
+	            //获取窗口高度
+	            if (window.innerHeight) {
+	                winHeight = window.innerHeight;
+	            }
+	            else if ((document.body) && (document.body.clientHeight)) {
+	                winHeight = document.body.clientHeight;
+	            }
+	            //通过深入Document内部对body进行检测，获取窗口大小
+	            if (document.documentElement && document.documentElement.clientHeight) {
+	                winHeight = document.documentElement.clientHeight-50;
+	            }            
+	            //设置div的具体宽度=窗口的宽度的%
+	            if (document.getElementById("content")) {
+	                document.getElementById("content").style.height = winHeight + "px";
+	            }
+	        }
+	        findDimensions();
+	        window.onresize = findDimensions;
+	    </script>
+			
 	</body>
 
 </html>

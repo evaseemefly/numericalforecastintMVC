@@ -19,8 +19,7 @@ from django.contrib import admin
 from Forecast import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from django.contrib import staticfiles
-# from ForecastTest import views
+from django.contrib import staticfiles# from ForecastTest import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -36,12 +35,14 @@ urlpatterns = [
      url(r'Forecast/init',views.initModelData),
      #url(r'Forecast/actions?(?P<uid>\d+)&(?P<pwd>\s+)',views.getActions)
      url(r'Forecast/actions*',views.getActions),
+     url(r'^Forecast/searchInit',views.searchInit),
+     url(r'^Forecast/searchHistory',views.searchHistory),
     url(r'Forecast/produceImg*',views.produceImg),
     # url(r'^Forecast/',include("Forecast.urls"))
     # url(r'^download/(?P<path>.*)', 'django.views.static.serve', {'document_root':'/download'}),
     # url(r'^download/(?P<path>.*)','django.views.static.serve', {'document_root':'/download'}),
 ]
 
-#鍔犺浇鍥剧墖鏃堕渶瑕佷娇鐢ㄧ殑
+#加载图片时需要使用的
 # urlpatterns += staticfiles_urlpatterns()
 # print(urlpatterns)
