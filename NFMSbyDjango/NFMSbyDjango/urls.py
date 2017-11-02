@@ -31,18 +31,20 @@ urlpatterns = [
     # url(r'Forecast/init',views.initModelData),
     # url(r'Forecast/actions*',views.getActions),
     # url(r'^Forecast/selectMapping',views.selectMapping),
-     url(r'^Forecast/Test*',views.test),
-     url(r'Forecast/init',views.initModelData),
-     #url(r'Forecast/actions?(?P<uid>\d+)&(?P<pwd>\s+)',views.getActions)
-     url(r'Forecast/actions*',views.getActions),
-     url(r'^Forecast/searchInit',views.searchInit),
-     url(r'^Forecast/searchHistory',views.searchHistory),
+    url(r'^Forecast/Test*',views.test),
+    url(r'Forecast/init',views.initModelData),
+    #url(r'Forecast/actions?(?P<uid>\d+)&(?P<pwd>\s+)',views.getActions)
+    url(r'Forecast/actions*',views.getActions),
+    url(r'^Forecast/searchInit',views.searchInit),
+    url(r'^Forecast/searchHistory',views.searchHistory),
     url(r'Forecast/produceImg*',views.produceImg),
+    # url(r'Forecast/getDropDownList*',views.getDropDownList)
+    url(r'Forecast/getDropDownList*',views.getDropDownList)
     # url(r'^Forecast/',include("Forecast.urls"))
     # url(r'^download/(?P<path>.*)', 'django.views.static.serve', {'document_root':'/download'}),
     # url(r'^download/(?P<path>.*)','django.views.static.serve', {'document_root':'/download'}),
 ]
 
-#¼ÓÔØÍ¼Æ¬Ê±ÐèÒªÊ¹ÓÃµÄ
+#ï¿½ï¿½ï¿½ï¿½Í¼Æ¬Ê±ï¿½ï¿½ÒªÊ¹ï¿½Ãµï¿½
 # urlpatterns += staticfiles_urlpatterns()
 # print(urlpatterns)

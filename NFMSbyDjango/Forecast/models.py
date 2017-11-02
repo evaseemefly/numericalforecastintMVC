@@ -27,6 +27,41 @@ class ActionInfo(models.Model):
     class Meta:
         db_table="actioninfo"
 
+class DropDownInfo(models.Model):
+    '''
+    级联菜单表
+    '''
+    # 主键
+    DId=models.AutoField(primary_key=True)
+    # 下拉框text显示内容
+    DText=models.CharField(max_length=64)
+    # key
+    Dkey=models.CharField(max_length=64)
+    # 父级id
+    PDId=models.IntegerField(default=0)
+    # 标记暂时未想好用处
+    Stamp=models.IntegerField(default=0)
+    class Meta:
+        db_table="dropdowninfo"
+
+    def toJSON(self):
+        fields = []
+        for field in self._meta.fields:
+            fields.append(field.name)
+
+        d = {}
+        for attr in fields:
+            import datetime
+            if isinstance(getattr(self, attr), datetime.datetime):
+                d[attr] = getattr(self, attr).strftime('%Y-%m-%d %H:%M:%S')
+            elif isinstance(getattr(self, attr), datetime.date):
+                d[attr] = getattr(self, attr).strftime('%Y-%m-%d')
+            else:
+                d[attr] = getattr(self, attr)
+
+        import json
+        return json.dumps(d)
+
 class TestInfo(models.Model):
     SubTime=models.DateTimeField(auto_now=True, blank=True)
     TestTime = models.DateTimeField(auto_now=True, blank=True)
@@ -56,6 +91,12 @@ class R_UserInfo_Action(models.Model):
     isPass=models.BooleanField(default=False)
     class Meta:
         db_table="r_userinfo_action"
+
+class R_DropDownInfo_ActionInfo(models.Model):
+    DId=models.ForeignKey(DropDownInfo)
+    AId=models.ForeignKey(ActionInfo)
+    class Meta:
+        db_table="r_drowdowninfo_action"
 
 class CmdInfo:
     '''

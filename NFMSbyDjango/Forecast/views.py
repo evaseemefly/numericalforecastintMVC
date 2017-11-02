@@ -5,6 +5,7 @@ from Forecast import viewmodels
 # import pynq
 from Forecast import viewmodels
 import json
+import pickle
 from django.conf import settings
 import os
 from Forecast import utils
@@ -73,14 +74,6 @@ def request2obj(request):
 
     request_interval = obj_elemenetViewModel.get('interval', None)
 
-    # request_date = request.form.get('date', None)
-    # request_lon_start = request.form.get('lon_start', None)
-    # request_lon_finish = request.form.get('lon_finish', None)
-    # request_lat_start = request.form.get('lat_start', None)
-    # request_lat_finish = request.form.get('lat_finish', None)
-    # request_element = request.form.get('element', None)
-    # request_level = request.form.get('level', None)
-    # request_interval = request.form.get('interval', None)
     obj = viewmodels.Request_Data_Latlng(request_date, request_lon_start, request_lon_finish, request_lat_start, request_lat_finish,request_element, request_level, request_interval)
     return obj;
 
@@ -157,6 +150,56 @@ def logout(request):
     '''
     pass
 
+def getDropDownList(request):
+    #根据action id 获取该action对应的dropdowninfo集合
+    aid=request.GET.get('aid')
+    if aid is not None:
+        #找到指定id的action
+        actions=models.ActionInfo.objects.filter(AID=aid)
+        #找到actions对应的dropdowninfo集合
+        action_temp=actions.first()
+        # 判断集合是否长度>0
+        # 遍历list
+        # list_element=list_dropdown.
+        list_dropdowninfo=[]
+        dict_list={}
+        [list_dropdowninfo.append(x.DId) for x in action_temp.r_dropdowninfo_actioninfo_set.all()]
+        select_list=lambda index:[x for x in list_dropdowninfo if x.Stamp==index]
+        list_element=select_list(0)
+        list_level=select_list(1)
+        list_interval=select_list(2)
+        '''
+        序列化：
+        使用两种方式序列化
+        1、json.dumps
+        只能传入字典类型的参数
+        2、serializers.serialize
+        需要指定序列化的类型（xml，json）
+        serializers支持的类型有：QuerySet以及list
+        以及序列化的对象
+        3、还可以看一下第三方的django-simple-serializer
+        '''
+        from django.core import serializers
+        data=serializers.serialize("json",list_element)
+        print(data)
+        data1=serializers.serialize("json",actions)
+        print(data1)
+        # dict_list={'list_element':serializers.serialize("json",list_element),'list_interval':serializers.serialize("json",list_interval),'list_level':serializers.serialize("json",list_level)}
+        dict_list["list_element"]=serializers.serialize("json",list_element)
+        dict_list["list_interval"]=serializers.serialize("json",list_interval)
+        dict_list["list_level"]=serializers.serialize("json",list_level)
+        # 注意使用pickle.dumps这种方式进行序列化序列化后的结果是二进制数据
+        # ss= pickle.dumps(dict_list)
+        # 此种方式序列化后，前台是否可以解析（待测试）
+        result_data=json.dumps(dict_list)
+
+        return result_data
+        # dict_dropdowninfo=list_dropdowninfo.__dict__
+        # json.dumps(list_dropdowninfo, ensure_ascii=False)
+        # list_dropdowninfo.__dict__
+    # return render(request, 'Forecast/Test.html', {'list_actions': list_nodes})
+    return None
+
 def getActions(name,pwd):
     '''
     根据用户名及密码获取该用户所拥有的菜单集合
@@ -175,6 +218,7 @@ def getActions(name,pwd):
                 # 根据该用户查询其拥有的权限
                 # 注意此处的r是个 <QuerySet[]>
                 r = obj_user.r_userinfo_action_set.all()
+
                 # 查找该用户拥有的全部权限
                 # actions= From(r).Where()
                 # actions=pynq.From(r.ActionId).Where("isPass==0").select_many()
