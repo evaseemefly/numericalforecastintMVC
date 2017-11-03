@@ -7,11 +7,12 @@ from Forecast import viewmodels
 import json
 import pickle
 from django.conf import settings
+from django.http import JsonResponse
 import os
 from Forecast import utils
 from NFMSbyDjango import settings
 from django.http import HttpResponse
-
+from django.core import serializers
 # Create your views here.
 
 download_url=settings.FTP_URL
@@ -31,7 +32,7 @@ def test(request):
     # 对于传统的?方式提交的参数直接通过request.GET.get('key')的方式获取
     name = request.GET.get('name', None)
     pwd = request.GET.get('pwd', None)
-    list_nodes=getActions(name,pwd)
+    list_nodes=getActionsList(name, pwd)
 
     return render(request, 'Forecast/Test.html', {'list_actions': list_nodes})
 
@@ -150,9 +151,45 @@ def logout(request):
     '''
     pass
 
-def getDropDownList(request):
-    #根据action id 获取该action对应的dropdowninfo集合
+
+def getDropDown(request):
+    #获取aid
     aid=request.GET.get('aid')
+    dict_list=getDropDownDict(aid)
+
+    '''
+            序列化：
+            使用两种方式序列化
+            1、json.dumps
+            只能传入字典类型的参数
+            2、serializers.serialize
+            需要指定序列化的类型（xml，json）
+            serializers支持的类型有：QuerySet以及list
+            以及序列化的对象
+            3、还可以看一下第三方的django-simple-serializer
+            '''
+    # from django.utils import simplejson
+    # json_data=JsonResponse(dict_list,ensure_ascii=False)
+    # json_data=serializers.serialize("json", dict_list, ensure_ascii=False)
+    json_data=json.dumps(dict_list, ensure_ascii=False)
+    # 注意此处若是直接返回json_data是会报错的
+    return HttpResponse(json_data)
+    # return JsonResponse
+    # dict_dropdowninfo=list_dropdowninfo.__dict__
+    # json.dumps(list_dropdowninfo, ensure_ascii=False)
+    # list_dropdowninfo.__dict__
+    # return render(request, 'Forecast/Test.html', {'list_actions': list_nodes})
+
+def getDropDownDict(aid):
+    '''
+    根据传入的action id获取该action对应的dropdownInfo字典
+    list_element,list_level,list_interval
+    :param aid:action id
+    :return:dict
+    '''
+    #根据action id 获取该action对应的dropdowninfo集合
+    # aid=request.GET.get('aid')
+    dropdown_dict={}
     if aid is not None:
         #找到指定id的action
         actions=models.ActionInfo.objects.filter(AID=aid)
@@ -166,41 +203,37 @@ def getDropDownList(request):
         [list_dropdowninfo.append(x.DId) for x in action_temp.r_dropdowninfo_actioninfo_set.all()]
         select_list=lambda index:[x for x in list_dropdowninfo if x.Stamp==index]
         list_element=select_list(0)
+        # dropdown_dict["list_element"]=list_element
+        '''
+        如果使用utf-8或者其他的非ascii编码数据，然后用json序列器
+        需要传一个ensure_ascii参数进去，否则输出的编码将会不正常
+        '''
+        dropdown_dict["list_element"] = serializers.serialize("json", list_element,ensure_ascii=False)
         list_level=select_list(1)
+        # dropdown_dict["list_level"]=list_level
+        dropdown_dict["list_level"] = serializers.serialize("json", list_level,ensure_ascii=False)
         list_interval=select_list(2)
-        '''
-        序列化：
-        使用两种方式序列化
-        1、json.dumps
-        只能传入字典类型的参数
-        2、serializers.serialize
-        需要指定序列化的类型（xml，json）
-        serializers支持的类型有：QuerySet以及list
-        以及序列化的对象
-        3、还可以看一下第三方的django-simple-serializer
-        '''
-        from django.core import serializers
-        data=serializers.serialize("json",list_element)
-        print(data)
-        data1=serializers.serialize("json",actions)
-        print(data1)
+        # dropdown_dict["list_interval"]=list_interval
+        dropdown_dict["list_interval"] = serializers.serialize("json", list_interval,ensure_ascii=False)
+
+        # 此处是测试list 类型的序列化——可行
+        # data = serializers.serialize("json", list_element)
+        # print(data)
+        # # 此处时测试queryset 类型的序列化——可行
+        # data1 = serializers.serialize("json", actions)
+        # print(data1)
         # dict_list={'list_element':serializers.serialize("json",list_element),'list_interval':serializers.serialize("json",list_interval),'list_level':serializers.serialize("json",list_level)}
-        dict_list["list_element"]=serializers.serialize("json",list_element)
-        dict_list["list_interval"]=serializers.serialize("json",list_interval)
-        dict_list["list_level"]=serializers.serialize("json",list_level)
+        # dict_list["list_element"] = serializers.serialize("json", list_element)
+        # dict_list["list_interval"] = serializers.serialize("json", list_interval)
+        # dict_list["list_level"] = serializers.serialize("json", list_level)
         # 注意使用pickle.dumps这种方式进行序列化序列化后的结果是二进制数据
         # ss= pickle.dumps(dict_list)
         # 此种方式序列化后，前台是否可以解析（待测试）
-        result_data=json.dumps(dict_list)
+        # result_data = json.dumps(dict_list)
 
-        return result_data
-        # dict_dropdowninfo=list_dropdowninfo.__dict__
-        # json.dumps(list_dropdowninfo, ensure_ascii=False)
-        # list_dropdowninfo.__dict__
-    # return render(request, 'Forecast/Test.html', {'list_actions': list_nodes})
-    return None
+    return dropdown_dict
 
-def getActions(name,pwd):
+def getActionsList(name, pwd):
     '''
     根据用户名及密码获取该用户所拥有的菜单集合
     :param name:用户名

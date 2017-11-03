@@ -34,12 +34,12 @@ urlpatterns = [
     url(r'^Forecast/Test*',views.test),
     url(r'Forecast/init',views.initModelData),
     #url(r'Forecast/actions?(?P<uid>\d+)&(?P<pwd>\s+)',views.getActions)
-    url(r'Forecast/actions*',views.getActions),
+    url(r'Forecast/actions*', views.getActionsList),
     url(r'^Forecast/searchInit',views.searchInit),
     url(r'^Forecast/searchHistory',views.searchHistory),
     url(r'Forecast/produceImg*',views.produceImg),
     # url(r'Forecast/getDropDownList*',views.getDropDownList)
-    url(r'Forecast/getDropDownList*',views.getDropDownList)
+    url(r'Forecast/getDropDown*',views.getDropDown)
     # url(r'^Forecast/',include("Forecast.urls"))
     # url(r'^download/(?P<path>.*)', 'django.views.static.serve', {'document_root':'/download'}),
     # url(r'^download/(?P<path>.*)','django.views.static.serve', {'document_root':'/download'}),
