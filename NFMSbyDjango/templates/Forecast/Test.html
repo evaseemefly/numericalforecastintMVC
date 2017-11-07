@@ -40,27 +40,80 @@
             padding-right: 0px;
             padding-bottom: 0px;
             padding-top: 0px;
+            background-color: #F5E79E;
+            height:100%;
         }
 
         #my_mapper {
             background-color: red;
+{#            改为行内元素#}
+            display: inline-flex;
+            flex-direction:column;
+            height:100%;
             /*height: 100%;*/
             /*position: absolute;*/
         }
+    #leafletMap{
+        height:100%;
+        background-color: #9d9d9d;
+    }
+    #leafletMap {
+{#				background-color: #00B83F;#}
+				height: 100%;
+				width: 100%;
+				/*width: 500px;*/
+				/*height: inherit;*/
+			}
     </style>
 
     <script type="application/javascript">
         var rectangleMeasureViewModel = new RectangleMeasureViewModel();
-        var elementViewModel = new ElementViewModel();
+var elementViewModel;
         var baseInfoViewModel = new BaseInfoViewModel();
         var toUrl = "Forecast/produceImg";
         //加入datetime的设置
 
         $(function () {
+{#            var elementViewModel=new ElementViewModel();#}
 
+            list_element = [];
+				list_interval = [];
+				list_level = [];
+				aid=2;
+				$.ajax({
+					type: "GET",
+					url: "http://127.0.0.1:8000/Forecast/getDropDown?aid="+aid,
+					dataType: "json",
+					success: function(data) {
+						list_element_str = data['list_element']
+						list_interval_str = data['list_interval']
+						list_level_str = data['list_level']
+						//注意$().each与$.each()的区别
+						//$().each主要对于dom元素用的较多
+						//$.each()主要处理数组
+						$.each(JSON.parse(list_element_str), function(index, temp) {
+							element_temp=new Element(temp.fields.Dkey,temp.fields.DText)
+							list_element.push(element_temp);
+
+						});
+						$.each(JSON.parse(list_interval_str), function(index, temp) {
+							interval=new Interval(temp.fields.Dkey,temp.fields.DText,temp.fields.PDId)
+							list_interval.push(interval)
+						})
+						$.each(JSON.parse(list_level_str), function(index, temp) {
+							level=new Level(temp.fields.Dkey,temp.fields.DText,temp.fields.PDId)
+							list_level.push(level)
+						})
+						//						model=JSON.parse(data);
+						//						model=$.parseJSON(data)
+                        elementViewModel=new ElementViewModel(list_element,list_level,list_interval);
+						ko.attach("ElementViewModel", elementViewModel);
+{#						ko.applyBindings(new myViewModel(list_element,list_level,list_interval));#}
+					}
+				});
             {#            ko.applyBindings(elementViewModel,document.getElementById("editForm"));#}
             ko.attach("RectangleMeasureViewModel", rectangleMeasureViewModel);
-            ko.attach("ElementViewModel", elementViewModel);
+
             ko.attach("BaseInfoViewModel", baseInfoViewModel);
             {#            ko.att#}
             {#                        ko.attach(rectangleMeasure,document.getElementById("editForm"));#}
@@ -86,12 +139,12 @@
         });
 
         //解决10月31日出现的新的bug
-        function doSubmit(){
-            $("#progressModal").modal();
-        }
+{#        function doSubmit(){#}
+{#            $("#progressModal").modal();#}
+{#        }#}
 
         //暂时不用 10-31
-        function doSubmit1() {
+        function doSubmit() {
             var finialViewModel = {
                 rectangleMeasureViewModel: rectangleMeasureViewModel.getData(),
                 elemenetViewModel: elementViewModel.getData(),
@@ -160,7 +213,7 @@
 {% block content %}
     {#    	<div class="container">#}
     <!--上面的菜单栏-->
-    <div class="col-md-12 " style="height: 200px;">
+    <div class=" " style="">
         <div class="panel panel-primary " style="margin-bottom: 0px;">
             <div class="panel-heading">预报信息</div>
             <div class="panel-body" style="padding:2px">
@@ -339,7 +392,7 @@
         </div>
     </div>
     <!--中间的导航栏-->
-    <div class="col-md-12 " style="height: 51px;">
+    <div class="" style="">
         <nav class="navbar navbar-default" style="margin-bottom: 0px;">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -387,11 +440,14 @@
 
     </div>
     <!--下部的巨幕-->
-    <div id="my_mapper" class="col-md-12 " style="">
-        <div class="jumbotron Nodistance" style="height:600px">
-            <div id="leafletMap" style="height:100%"></div>
-
-        </div>
+    <div id="my_mapper" class="" style="">
+     <div id="leafletMap" ></div>
+{#    <div class="innerdiv"></div>#}
+{#        <div id="myimg" style=""></div>#}
+{#        <div class="jumbotron Nodistance">#}
+{##}
+{##}
+{#        </div>#}
     </div>
    {% endblock %}
 

@@ -66,16 +66,39 @@ def request2obj(request):
     # obj_elemenetViewModel = dict_json["elemenetViewModel", None]
     # obj_baseInfoViewModel = dict_json["baseInfoViewModel", None]
     request_date = obj_baseInfoViewModel.get('targetdate', None)
-    request_lon_start = obj_rectangleMeasure.get('startlng', None)
-    request_lon_finish = obj_rectangleMeasure.get('finishlng', None)
-    request_lat_start = obj_rectangleMeasure.get('startlat', None)
-    request_lat_finish = obj_rectangleMeasure.get('finishlat', None)
+    '''
+    使用numpy创建二维数组
+    对有前台传过来的四个值进行排序
+    '''
+    import numpy as np
+    # 创建一个都是0的2*2数组
+    latlon_arr=np.zeros((2,2))
+    # latlon_arr=[]
+    latlon_arr[0,0]=obj_rectangleMeasure.get('startlng', None)
+    latlon_arr[0,1]=obj_rectangleMeasure.get('finishlng', None)
+    latlon_arr[1,0]=obj_rectangleMeasure.get('startlat', None)
+    latlon_arr[1,1]=obj_rectangleMeasure.get('finishlat', None)
+    latlon_arr.astype(np.float64)
+    latlon_arr[0].sort()
+    latlon_arr[1].sort()
+    print(latlon_arr)
+    # print(latlon_arr)
+    # latlon_arr.sort()
+    # request_lon_start = obj_rectangleMeasure.get('startlng', None)
+    # request_lon_finish = obj_rectangleMeasure.get('finishlng', None)
+    # request_lat_start = obj_rectangleMeasure.get('startlat', None)
+    # request_lat_finish = obj_rectangleMeasure.get('finishlat', None)
+    # 对二维数组进行排序
+    lon_start = latlon_arr[0,0]
+    lon_finish = latlon_arr[0,1]
+    lat_start = latlon_arr[1,0]
+    lat_finish = latlon_arr[1,1]
     request_element = obj_elemenetViewModel.get('element', None)
     request_level = obj_elemenetViewModel.get('level', None)
 
     request_interval = obj_elemenetViewModel.get('interval', None)
 
-    obj = viewmodels.Request_Data_Latlng(request_date, request_lon_start, request_lon_finish, request_lat_start, request_lat_finish,request_element, request_level, request_interval)
+    obj = viewmodels.Request_Data_Latlng(request_date, lon_start, lon_finish, lat_start, lat_finish,request_element, request_level, request_interval)
     return obj;
 
 def produceImg(request):
