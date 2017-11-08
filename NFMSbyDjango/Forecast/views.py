@@ -13,10 +13,18 @@ from Forecast import utils
 from NFMSbyDjango import settings
 from django.http import HttpResponse
 from django.core import serializers
+import time
+from django.contrib.auth.models import User
+from django.contrib.auth import login,logout,authenticate
 # Create your views here.
 
 download_url=settings.FTP_URL
 target_dir=settings.TARGET_DIR
+
+def createuser(request):
+    user=User.objects.create_user('test','123@126.com','123')
+    pass
+
 
 def selectMapping(request):
     #注意render也是需要返回的
@@ -41,6 +49,7 @@ def initModelData(request):
     obj.save()
     print("写入成功")
     return render(request, 'Forecast/Test.html', {})
+
 
 def request2obj(request):
     '''
@@ -164,6 +173,20 @@ def login(request):
     :param request:
     :return:
     '''
+    # 获取登录时的时间
+    currenttime=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
+
+    if request.method=='POST':
+        username=request.POST.get('username')
+        pwd=request.POST.get('pwd')
+        remember=request.POST.get('remeberme')
+        user=authenticate(username=username,password=pwd)
+        if user is not None:
+            login(request,user)
+            request.session.set_expiry(60*60)
+            return None
+
+
     pass
 
 def logout(request):

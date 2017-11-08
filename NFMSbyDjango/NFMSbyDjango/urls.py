@@ -39,7 +39,9 @@ urlpatterns = [
     url(r'^Forecast/searchHistory',views.searchHistory),
     url(r'Forecast/produceImg*',views.produceImg),
     # url(r'Forecast/getDropDownList*',views.getDropDownList)
-    url(r'Forecast/getDropDown*',views.getDropDown)
+    url(r'Forecast/getDropDown*',views.getDropDown),
+    url(r'Forecast/create*',views.createuser),
+    url(r'login*',views.login),
     # url(r'^Forecast/',include("Forecast.urls"))
     # url(r'^download/(?P<path>.*)', 'django.views.static.serve', {'document_root':'/download'}),
     # url(r'^download/(?P<path>.*)','django.views.static.serve', {'document_root':'/download'}),
