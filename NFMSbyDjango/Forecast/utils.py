@@ -419,11 +419,13 @@ class SFtpClient:
                 dirHelper = DirFileHelper()
                 result = dirHelper.checkTargetFileOrCreate(local, filename)
                 #不管本地是否存在均下载
+                result_return = models.ReturnResultInfo(result.code, result.result, result.message)
                 # 可能会出现重复文件会出错的问题，待测试
                 sftp.get(remotefilefullpath,localfilefullpath)
-                result.code=6
-                result.result="ok"
 
+                result_return.code=6
+                result_return.result="ok"
+                result_return.title="状态信息"
             # try:
             #     if os.path.isdir(local):  # 判断本地参数是目录还是文件
             #         for f in sftp.listdir(remote):  # 遍历远程目录
@@ -432,17 +434,18 @@ class SFtpClient:
             #         sftp.get(remote, local)  # 下载文件
             except IOError as ioerr:
                 print("io error %s"%ioerr)
-
-                result.result="ioerror"
-                result.message=ioerr
-                result.code = -1
+                result_return.title="内部错误"
+                result_return.result="ioerror"
+                result_return.message=ioerr.strerror
+                result_return.code = -1
             except Exception as e:
                 print('download exception:', e)
-                result.result = "ioerror"
-                result.message = e
-                result.code=-1
+                result_return.title = "内部错误"
+                result_return.result = "ioerror"
+                result_return.message = e
+                result_return.code=-1
             self.trans.close()
-        return result
+        return result_return
 
 class ParamikoConn(object):
     def __init__(self,host,port,user,pwd):

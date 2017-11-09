@@ -5,26 +5,31 @@
 {#{% extends "templates/shared/_Layout_Mapper.html" %}#}
 {% block body %}
 {#    相当于c#中的PartialView#}
+    <!--左侧的导航栏-->
     {% include "shared/_Partial_Navbar_Menu.html" %}
-{#    {% include "_Partial_Navbar_Menu.html" %}#}
+{#    {% include "_Partial_Navbar_Menu_bakup.html" %}#}
 {#@Html.Partial("_Navbar_Menu")#}
 <!--<div class="container">-->
-<div id="mypage" class="page-main" style="background:#23527C;height:100%;">
-    <ol class="breadcrumb" style="margin-bottom: 0px;">
-        <li>
-            <a href="#">Home</a>
-        </li>
-        <li>
-            <a href="#">Library</a>
-        </li>
-        <li class="active">Data</li>
-    </ol>
-    <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
-        {% block content %}body
-            {% endblock %}
-    </div>
-</div>
 
+{#    {% include "shared/_Partial_Center_myContent.html"%}#}
+<div class="mycontent col-md-offset-2" >
+<!--由于样式问题暂时去掉面包屑导航-->
+{#    <ol class="breadcrumb" style="margin-bottom: 0px;">#}
+{#        <li>#}
+{#            <a href="#">Home</a>#}
+{#        </li>#}
+{#        <li>#}
+{#            <a href="#">Library</a>#}
+{#        </li>#}
+{#        <li class="active">Data</li>#}
+{#    </ol>#}
+{#    <div class="container-fluid" id="" style="padding-left: 0px;padding-right: 0px;background-color: #59ff53;height: 100%;">#}
+        {% block content %}body
+         {% endblock %}
+{#    </div>#}
+
+</div>
+ {% include "shared/_Partial_Modal_MyWindow.html" %}
 {% endblock %}
 
 {#@RenderSection("scripts", required: false)#}

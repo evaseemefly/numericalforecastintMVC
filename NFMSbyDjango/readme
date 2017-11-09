@@ -1,0 +1,13 @@
+单位台式机python路径：C:\Program Files\
+
+地图绘制页：
+http://127.0.0.1:8000/Forecast/Test?name=root&pwd=123
+
+使用django自带的用户方式创建
+http://127.0.0.1:8000/Forecast/create
+
+登录页
+http://127.0.0.1:8000/log_in
+
+
+外星人python环境路径：C:\Program Files (x86)\Python36-32

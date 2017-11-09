@@ -1,0 +1,305 @@
+{#{% extends "shared/_Layout_Mapper_test.html" %}#}
+{%  extends "shared/_Layout_Mapper.html" %}
+{% block title %}历史查询
+{% endblock %}
+{% block top-js %}
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" media="all" href="/static/css/bootstrap-datetimepicker.css">
+		<script type="application/javascript" src="/static/js/jquery-3.2.1.js"></script>
+		<script type="application/javascript" src="/static/js/bootstrap.js"></script>
+		<script type="application/javascript" src="/static/js/moment.js"></script>
+		<script type="application/javascript" src="/static/js/bootstrap-datetimepicker.js"></script>
+		<script type="application/javascript" src="/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script type="text/javascript" src="/static/js/customPlugin.js"></script>
+		<script type="application/javascript" src="/static/js/knockout-3.4.2.debug.js"></script>
+		<style type="text/css">
+			.panel_module{
+				margin-left: -15px;
+				margin-right: -15px;
+			}
+			.row-margin-top{
+				margin-top: 10px;
+			}
+		</style>
+{% endblock %}
+{% block content %}
+{#    <div class="container">#}
+    <div class="col-md-10">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-primary">
+						<div class="panel-heading">历史搜索</div>
+							<div class="panel-body">
+								<!--
+                                	作者：826168013@qq.com
+                                	时间：2017-08-30
+                                	描述：搜索要素框
+                                -->
+								<form id="editForm">
+									<div class="form-group col-md-3">
+										<label>起始时间</label>
+										<div class="input-group date" id="datepicker_starttime" data-link-field="dtp_input1">
+											<input id="input_starttime" name="start_time" class="form-control" size="16" type="text" value="2017-09-01" readonly>
+											<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+										</div>
+										<label>结束时间</label>
+										<div class="input-group date" id="datepicker_endtime"  data-link-field="dtp_input1">
+											<input id="input_endtime" name="end_time" class="form-control" size="16" type="text" value="" readonly>
+											<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+										</div>
+									</div>
+									<div class="form-group col-md-2">
+										<label>区域</label><br />
+										<select id="select_area" name="area" data-bind="options: areaList,optionsCaption:'请选择区域'"></select>
+										<br/><label>类别</label><br />
+										<select id="select_category" name="category" data-bind="options: CategoryList,
+											optionsText:'Name',
+											optionsValue:'Code',
+											value:Category,
+											optionsCaption:'请选择类别'"></select>
+									</div>
+									<div class="form-group col-md-2">
+										<label>要素</label><br />
+										<select id="select_factor" name="factor" data-bind="options:CurrentFactorList,
+											optionsText:'Name',
+											optionsValue:'Code',
+											value:Factor,
+											optionsCaption:'请选择要素'">
+										</select>
+										<br/><label>层级</label><br />
+										<select id="select_layer" name="layer" data-bind="options:CurrentLayerList,
+											optionsText:'Name',
+											optionsValue:'Code',
+											value:Layer,
+											optionsCaption:'请选择层级'">
+										</select>
+									</div>
+									<div class="form-group col-md-2">
+										<label>时效</label><br />
+										<select id="select_moment" name="moment" data-bind="options:CurrentMomentList,
+											optionsText:'Name',
+											optionsValue:'Code',
+											value:Moment,
+											optionsCaption:'请选择时效'">
+										</select>
+									</div>
+									<div class="form-group col-md-2">
+										<button type="button" id="btn_search" class="btn btn-primary btn-block" style="padding: 25px;" onclick="doSubmit()">查询</button>
+									</div>
+								</form>
+							</div>
+					</div>
+				</div>
+			</div>
+			<!--
+            	作者：826168013@qq.com xiaoyuan
+            	时间：2017-09-05
+            	描述：下部图片展示
+            -->
+			<div class="row">
+				<div class="col-md-9">
+					<img id="img" src="{{ image_url }}" style="width: 100%"/>
+				</div>
+				<div class="col-md-3">
+
+					<ul id="img_list" class="list-group" style="overflow: scroll;height: 500px;">
+                        {% for key,value in data_dict.items %}
+                            <a href="#" class="list-group-item" data-imgurl="{{ value }}" onclick="changePic(this)">{{ key }}</a>
+                        {% endfor %}
+
+					</ul>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+{% block bottom-js %}
+    <script type="application/javascript">
+    $('#datepicker_starttime').datetimepicker({
+					language:"zh-CN",
+					format:"yyyy-mm-dd",
+					weekStart: 1,//start from Monday in a week
+					todayBtn: 1,
+					autoclose: 1,//close the selector when choose a date
+					todayHighlight: 1,
+					todayBtn:true,
+					startView: 2,
+					minView: "month",//the minimum factor is day
+					forceParse: 0,
+					showMeridian: 1
+			});
+			$('#datepicker_endtime').datetimepicker({
+					language:'zh-CN',
+					format:"yyyy-mm-dd",
+					weekStart: 1,//start from Monday in a week
+					todayBtn: 1,
+					autoclose: 1,//close the selector when choose a date
+					todayHighlight: 1,
+					todayBtn:true,
+					startView: 2,
+					minView: 2,//the minimum factor is day
+					forceParse: 0,
+					showMeridian: 1
+			});
+		</script>
+    <script type="application/javascript">
+			var Category = function(name,code){
+				this.Name=name;
+				this.Code=code;
+			}
+			var Factor = function(name, code,categorycode) {
+				this.Name = name;
+				this.Code = code;
+				this.CategoryCode=categorycode;
+			}
+			var Layer = function(name, code,factorcode) {
+				this.Name = name;
+				this.Code = code;
+				this.FactorCode=factorcode;
+			}
+			var Moment = function(name, code, layercode) {
+				this.Name = name;
+				this.Code = code;
+				this.LayerCode = layercode;
+			}
+			var area_data=['全球','西北太','北印度洋'];
+			var category_data=[
+				new Category("海洋","C0"),
+				new Category("气象","C1")
+			];
+			var factor_data=[
+				new Factor("有效波高","F0","C0"),
+				new Factor("海冰","F1","C0"),
+				new Factor("谱峰周期","F2","C0"),
+				new Factor("中尺度涡","F3","C0"),
+				new Factor("海流","F4","C0"),
+				new Factor("风","F5","C1"),
+				new Factor("雷暴","F6","C1"),
+                new Factor("跃层","F7","C0")
+			];
+			var layer_data=[
+				new Layer("表层","L0","F0"),
+				new Layer("表层","L1","F1"),
+				new Layer("表层","L2","F2"),
+				new Layer("表层","L3","F3"),
+				new Layer("表层","L4","F4"),
+				new Layer("表层","L5","F5"),
+				new Layer("500hPa","L6","F5"),
+				new Layer("750hPa","L7","F5"),
+				new Layer("1000hPa","L8","F5"),
+				new Layer("表层","L9","F6"),
+				new Layer("500hPa","L10","F6"),
+				new Layer("750hPa","L11","F6"),
+				new Layer("1000hPa","L12","F6"),
+                new Layer("表层","L13","F7"),
+			];
+			var moment_data=[
+				new Moment("03时--L0","M0","L0"),
+				new Moment("03时--L1","M1","L1"),
+				new Moment("03时--L2","M2","L2"),
+				new Moment("03时--L3","M3","L3"),
+				new Moment("03时--L4","M4","L4"),
+				new Moment("03时--L5","M5","L5"),
+				new Moment("03时--L6","M6","L6"),
+				new Moment("03时--L7","M7","L7"),
+				new Moment("03时--L8","M8","L8"),
+				new Moment("03时--L9","M9","L9"),
+				new Moment("03时--L10","M10","L10"),
+				new Moment("03时--L11","M11","L11"),
+				new Moment("03时--L12","M12","L12"),
+                new Moment("108时--L13","M13","L13"),
+			];
+
+			var ViewModel = function() {
+				var self = this;
+				self.areaList=ko.observableArray(area_data);
+				self.Name = ko.observable();
+				self.Category = ko.observable();
+				self.Factor=ko.observable();
+				self.Layer = ko.observable();
+				self.Moment = ko.observable();
+////				以下三个list是全部的初始list
+				self.CategoryList=ko.observableArray(category_data);
+				self.FactorList=ko.observableArray(factor_data);
+				self.LayerList = ko.observableArray(layer_data);
+				self.MomentList = ko.observableArray(moment_data);
+
+				self.CurrentFactorList=ko.computed(function(){
+					return ko.utils.arrayFilter(self.FactorList(),function(factor){
+						return factor.CategoryCode==self.Category();
+					});
+				},self);
+
+				//注意有两个return
+				//将CurrentCityList赋值为与self.Province()相等的City
+				self.CurrentLayerList = ko.computed(function() {
+					//将满足条件的area对象返回，并赋值给CurrentAreaList
+					//arrayFilter——使用指定的函数测试所有元素（self.CityList()），并创建一个包含所有通过测试的元素的新数组。
+					return ko.utils.arrayFilter(self.LayerList(), function(layer) {
+						//遍历self.CityList，并判断当前viewModel中的可观察变量Province是否与当前遍历的City的ProvinceCode相等，若相等则返回该City；
+						//如此遍历生成一个新的City集合
+						//注意此处的Province是1（也就是id）
+						return layer.FactorCode == self.Factor();
+					});
+				}, self);
+
+				self.CurrentMomentList=ko.computed(function(){
+					return ko.utils.arrayFilter(self.MomentList(),function(moment){
+						return moment.LayerCode == self.Layer();
+					});
+				},self);
+
+			}
+			$(function() {
+				ko.applyBindings(new ViewModel());
+			})
+
+            function doSubmit() {
+			    if($('#select_area').val().length==0){
+					alert("请填写区域");
+				}else if($('#select_category').val().length==0){
+					alert("请填写类别");
+				}
+{#				else if($('#select_factor').val().length==0){#}
+{#					alert("请填写要素");#}
+{#				}#}
+{#                else if($('#select_layer').val().length==0){#}
+{#					alert("请填写层级");#}
+{#				}#}
+				else{
+					var myForm = $('#editForm').serialize();
+					$.ajax({
+                        url: 'searchHistory',  // 请求连接
+                        type: 'POST',  // 请求类型
+                        data: myForm,  // post时请求体
+                        dataType: 'json',  // 返回请求的类型，有text/json两种
+    {#                    jsonp: 'callback',  // jsonp请求的标志，一般不改动#}
+    {#                    jsonpCallback: 'jsonpCallback',  //jsonp请求的函数名#}
+    {#                    async: true,   // 是否异步#}
+    {#                    cache: true,   // 是否缓存#}
+                        timeout:5000,  // 设置请求超时
+    {#                    contentType: 'application/x-www-form-urlencoded',#}
+                        success: function (data) {
+                            //更新图片url
+                            var img=document.getElementById('img');
+                            img.src=data.image_url;
+                            //更新list列表
+                            var pic_list=document.getElementById('img_list');
+                            var html=data.html;
+                            pic_list.innerHTML=html;
+                        },
+                        fail: function (data) {
+
+                        }   // 请求失败回调
+                    });
+				}
+            }
+        </script>
+    <script type="application/javascript">
+        function changePic(obj) {
+            var imgurl=$(obj).attr("data-imgurl");
+            var img= document.getElementById('img');
+            img.setAttribute('src',imgurl);
+        }
+    </script>
+{% endblock %}
