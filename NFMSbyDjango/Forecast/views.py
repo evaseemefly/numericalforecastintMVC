@@ -167,7 +167,7 @@ def produceImg(request):
     return HttpResponse(recv_str, content_type="application/json")
     # return recv_str
 
-def login(request):
+def log_in(request):
     '''
     等待补充的登录操作
     :param request:
@@ -176,7 +176,10 @@ def login(request):
     # 获取登录时的时间
     currenttime=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 
-    if request.method=='POST':
+    if request.method=='POST' or request.method=="GET":
+        # username = request.GET.get('username')
+        # pwd = request.GET.get('pwd')
+        # remember = request.GET.get('remeberme')
         username=request.POST.get('username')
         pwd=request.POST.get('pwd')
         remember=request.POST.get('remeberme')
