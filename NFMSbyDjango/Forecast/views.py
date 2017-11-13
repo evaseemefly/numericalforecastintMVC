@@ -183,10 +183,16 @@ def log_in(request):
         username=request.POST.get('username')
         pwd=request.POST.get('pwd')
         remember=request.POST.get('remeberme')
+
+        '''
+        使用django框架中的auth中的authenticate与login方法进行用户验证及登录
+        登录成功后应跳转至首页
+        '''
         user=authenticate(username=username,password=pwd)
         if user is not None:
             login(request,user)
             request.session.set_expiry(60*60)
+            #
             return None
 
 
