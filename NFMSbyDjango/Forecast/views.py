@@ -16,6 +16,8 @@ from django.core import serializers
 import time
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 
 download_url=settings.FTP_URL
@@ -34,6 +36,7 @@ def selectMapping(request):
 
 def routeMapping():
     return "routeMapping"
+
 
 def test(request):
     # 1 获取请求中的用户名及密码
@@ -167,6 +170,7 @@ def produceImg(request):
     return HttpResponse(recv_str, content_type="application/json")
     # return recv_str
 
+# @csrf_protect
 def log_in(request):
     '''
     等待补充的登录操作
@@ -176,7 +180,7 @@ def log_in(request):
     # 获取登录时的时间
     currenttime=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 
-    if request.method=='POST' or request.method=="GET":
+    if request.method=='POST':
         # username = request.GET.get('username')
         # pwd = request.GET.get('pwd')
         # remember = request.GET.get('remeberme')
@@ -194,9 +198,13 @@ def log_in(request):
             request.session.set_expiry(60*60)
             #
             return None
-
-
+    elif request.method=="GET":
+        return render(request, 'Forecast/login.html')
+        # pass
     pass
+
+
+
 
 def logout(request):
     '''
