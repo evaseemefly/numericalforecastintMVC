@@ -42,6 +42,11 @@ urlpatterns = [
     url(r'Forecast/getDropDown*',views.getDropDown),
     url(r'Forecast/create*',views.createuser),
     url(r'login*',views.log_in),
+    # url(r'create_permission*',views.test_login),
+    url(r'test*',views.test_login),
+    url(r'create_group',views.create_group),
+    url(r'create_permission',views.create_permission),
+    # url(r'test*',views.test_login1),
     # url(r'^Forecast/',include("Forecast.urls"))
     # url(r'^download/(?P<path>.*)', 'django.views.static.serve', {'document_root':'/download'}),
     # url(r'^download/(?P<path>.*)','django.views.static.serve', {'document_root':'/download'}),

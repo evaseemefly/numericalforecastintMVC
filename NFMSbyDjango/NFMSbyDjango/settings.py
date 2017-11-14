@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'NFMS',
     'Forecast',
+    'guardian',
     # 'ForecastTest',
 ]
 
@@ -189,6 +190,16 @@ STATICFILES_DIRS = [
     # ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
     # ('upload', os.path.join(STATIC_ROOT, 'upload').replace('\\', '/')),
 ]
+
+
+AUTHENTICATION_BACKENDS= (
+    'django.contrib.auth.backends.ModelBackend',
+    # django默认的backend
+    'guardian.backends.ObjectPermissionBackend',
+)
+
+# 当登录验证未通过时跳转至的页面
+LOGIN_URL = '/login/'
 #
 # STATICFILES_DIRS = [
 #     # STATIC_ROOT,

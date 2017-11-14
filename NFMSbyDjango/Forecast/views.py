@@ -11,12 +11,19 @@ from django.http import JsonResponse
 import os
 from Forecast import utils
 from NFMSbyDjango import settings
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.core import serializers
 import time
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group,Permission
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
+
+from guardian.shortcuts import assign_perm, get_perms
+from guardian.core import ObjectPermissionChecker
+from guardian.decorators import permission_required
+
+
 from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 
@@ -27,6 +34,18 @@ def createuser(request):
     user=User.objects.create_user('test','123@126.com','123')
     pass
 
+def create_group(request):
+    group_name="ceshi"
+    # 添加group 群组
+    group=Group.objects.create(name=group_name)
+    group.save()
+
+def create_permission(request):
+    permission_name="ceshi"
+    permission_codename="ceshi_forecast"
+    content_type=ContentType.objects.get_for_model()
+    permission=Permission.objects.create(name=permission_name,codename=permission_codename)
+    permission.save()
 
 def selectMapping(request):
     #注意render也是需要返回的
@@ -170,6 +189,15 @@ def produceImg(request):
     return HttpResponse(recv_str, content_type="application/json")
     # return recv_str
 
+@login_required
+def test_login(request):
+    pass
+
+def test_login1(request):
+    if not request.user.is_authenticated():
+        isok=True
+    pass
+
 # @csrf_protect
 def log_in(request):
     '''
@@ -197,7 +225,8 @@ def log_in(request):
             login(request,user)
             request.session.set_expiry(60*60)
             #
-            return None
+            return HttpResponseRedirect('Forecast/Test?name=root&pwd=123')
+            # return None
     elif request.method=="GET":
         return render(request, 'Forecast/login.html')
         # pass
