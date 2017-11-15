@@ -19,6 +19,8 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 
+from Forecast.permissions import check_permission
+
 from guardian.shortcuts import assign_perm, get_perms
 from guardian.core import ObjectPermissionChecker
 from guardian.decorators import permission_required
@@ -30,19 +32,21 @@ from django.views.decorators.csrf import csrf_protect
 download_url=settings.FTP_URL
 target_dir=settings.TARGET_DIR
 
-def createuser(request):
-    user=User.objects.create_user('test','123@126.com','123')
+def create_user(request):
+    user=User.objects.create_user('guest','123@126.com','123')
     pass
 
 def create_group(request):
-    group_name="ceshi"
+    group_name="guest"
     # 添加group 群组
     group=Group.objects.create(name=group_name)
     group.save()
+    #
 
 def create_permission(request):
-    permission_name="ceshi"
-    permission_codename="ceshi_forecast"
+    permission_name="测试用"
+
+    permission_codename="guest_login"
     content_type=ContentType.objects.get_for_model()
     permission=Permission.objects.create(name=permission_name,codename=permission_codename)
     permission.save()
@@ -196,6 +200,10 @@ def test_login(request):
 def test_login1(request):
     if not request.user.is_authenticated():
         isok=True
+    pass
+
+@check_permission
+def guest_login(request):
     pass
 
 # @csrf_protect

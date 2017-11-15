@@ -31,21 +31,15 @@ urlpatterns = [
     # url(r'Forecast/init',views.initModelData),
     # url(r'Forecast/actions*',views.getActions),
     # url(r'^Forecast/selectMapping',views.selectMapping),
-    url(r'^Forecast/Test*',views.test),
-    url(r'Forecast/init',views.initModelData),
-    #url(r'Forecast/actions?(?P<uid>\d+)&(?P<pwd>\s+)',views.getActions)
-    url(r'Forecast/actions*', views.getActionsList),
-    url(r'^Forecast/searchInit',views.searchInit),
-    url(r'^Forecast/searchHistory',views.searchHistory),
-    url(r'Forecast/produceImg*',views.produceImg),
-    # url(r'Forecast/getDropDownList*',views.getDropDownList)
-    url(r'Forecast/getDropDown*',views.getDropDown),
-    url(r'Forecast/create*',views.createuser),
-    url(r'login*',views.log_in),
+    # 所有的Forecast开头的url的匹配规则统一放在Forecast中的urls.py中
+    url(r'^Forecast/', include('Forecast.urls')),
+
+    # url(r'login',views.log_in),
     # url(r'create_permission*',views.test_login),
     url(r'test*',views.test_login),
     url(r'create_group',views.create_group),
     url(r'create_permission',views.create_permission),
+    url(r'guest_login*',views.guest_login),
     # url(r'test*',views.test_login1),
     # url(r'^Forecast/',include("Forecast.urls"))
     # url(r'^download/(?P<path>.*)', 'django.views.static.serve', {'document_root':'/download'}),
