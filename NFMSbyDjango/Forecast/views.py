@@ -36,6 +36,32 @@ def create_user(request):
     user=User.objects.create_user('guest','123@126.com','123')
     pass
 
+def set_permission_nobind(request):
+    url_content_type=ContentType.objects.create(name='url permission',app_label='appguest',model='unused')
+    can_view_url = Permission.objects.create(name='can view url', content_type=url_content_type,codename='can_view_url')
+    user = User.objects.get(username='test', is_superuser=False)
+    user.user_permissions.add(can_view_url)
+    return HttpResponseRedirect('Forecast/Test?name=root&pwd=123')
+
+def set_permission(request):
+    '''
+    为指定用户赋予指定群组，
+    并未指定群组赋予指定权限
+    :param request:
+    :return:
+    '''
+    # 获取指定用户
+    user_now=User.objects.get(username='test')
+    # 为指定用户赋予指定群组
+    group_now=Group.objects.get(name='guest')
+    # 为群组赋予指定权限
+    # 注意此处若取不到会抛出异常
+    permission_now=Permission.objects.get(codename="guest_login")
+    group_now.permissions.add(permission_now)
+    # 为指定用户赋予指定群组
+    user_now.groups.add(group_now)
+    pass
+
 def create_group(request):
     group_name="guest"
     # 添加group 群组
@@ -47,8 +73,8 @@ def create_permission(request):
     permission_name="测试用"
 
     permission_codename="guest_login"
-    content_type=ContentType.objects.get_for_model()
-    permission=Permission.objects.create(name=permission_name,codename=permission_codename)
+    content_type=ContentType.objects.get_for_model(models.ActionInfo)
+    permission=Permission.objects.create(name=permission_name,codename=permission_codename,content_type=content_type)
     permission.save()
 
 def selectMapping(request):

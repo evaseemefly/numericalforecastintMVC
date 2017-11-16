@@ -3,6 +3,8 @@ from Forecast import models
 from django.db.models import Q
 from django.core.urlresolvers import resolve   #此方法可以将url地址转换成url的name
 
+from django.contrib.auth.models import User,Group,Permission
+
 def perm_check(request, *args, **kwargs):
     # 使用resolve无法获取到'/Forecast/guest_login',暂时注释掉，不使用这种方式
     # url_obj = resolve(request.path)
@@ -12,7 +14,10 @@ def perm_check(request, *args, **kwargs):
     # 获取pathes的最后一个值
     url_name=pathes[-1]
     #url_name = url_obj.url_name
-
+    dict_method={
+        'GET':1,
+        'POST':2
+    }
     perm_name = ''
     #权限必须和urlname配合使得
     if url_name:
@@ -24,11 +29,15 @@ def perm_check(request, *args, **kwargs):
             url_args_list.append(str(url_args[i]))
         url_args_list = ','.join(url_args_list)
         #操作数据库
-        get_perm = models.Permission.objects.filter(Q(url=url_name) and Q(per_method=url_method) and Q(argument_list=url_args_list))
-        if get_perm:
+        #get_perm = models.Permission.objects.filter(Q(url=url_name) and Q(per_method=dict_method[url_method]) and Q(argument_list=url_args_list))
+        get_perm = models.Permission.objects.filter(url=url_name,per_method=dict_method[url_method])
+        if get_perm.count()>0:
             for i in get_perm:
                 perm_name = i.name
-                perm_str = 'school.%s' % perm_name
+                perm_str = 'Forecast.%s' % perm_name
+                id_user=request.user.id
+                is_permission=User.objects.get(id=id_user).has_perm(perm_str)
+                # 注意此处存在问题，由于在后台为user重新分配了群组，群组重新分配了permission，所以在request中的user中的该群组及group中并未有该权限（我的猜测）
                 if request.user.has_perm(perm_str):
                     print('====》权限已匹配')
                     return True
