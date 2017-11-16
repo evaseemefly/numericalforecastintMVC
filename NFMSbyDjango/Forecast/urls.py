@@ -24,6 +24,10 @@ urlpatterns = [
     # url(r'Forecast/getDropDownList*',views.getDropDownList)
     url(r'getDropDown*',views.getDropDown),
     url(r'create_user',views.create_user),
+    url(r'create_permission',views.create_permission),
     url(r'guest_login',views.guest_login),
+    url(r'create_group',views.create_group),
+    url(r'set_permission$',views.set_permission),
+    url(r'set_permission_nobind$',views.set_permission_nobind),
 
 ]

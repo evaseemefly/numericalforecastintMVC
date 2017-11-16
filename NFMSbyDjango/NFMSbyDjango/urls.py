@@ -34,7 +34,7 @@ urlpatterns = [
     # 所有的Forecast开头的url的匹配规则统一放在Forecast中的urls.py中
     url(r'^Forecast/', include('Forecast.urls')),
 
-    # url(r'login',views.log_in),
+    url(r'login',views.log_in),
     # url(r'create_permission*',views.test_login),
     url(r'test*',views.test_login),
     url(r'create_group',views.create_group),
