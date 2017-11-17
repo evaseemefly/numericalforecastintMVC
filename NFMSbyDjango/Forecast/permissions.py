@@ -12,13 +12,14 @@ def perm_check(request, *args, **kwargs):
     pathes=request.path.split('/')
     # url_name = request.path
     # 获取pathes的最后一个值
+    # url_name对应的就是auth_permission中的codename
     url_name=pathes[-1]
     #url_name = url_obj.url_name
     dict_method={
         'GET':1,
         'POST':2
     }
-    perm_name = ''
+    perm_name = url_name
     #权限必须和urlname配合使得
     if url_name:
         #获取请求方法，和请求参数
@@ -28,27 +29,44 @@ def perm_check(request, *args, **kwargs):
         for i in url_args:
             url_args_list.append(str(url_args[i]))
         url_args_list = ','.join(url_args_list)
+        # 不使用以下方式
         #操作数据库
         #get_perm = models.Permission.objects.filter(Q(url=url_name) and Q(per_method=dict_method[url_method]) and Q(argument_list=url_args_list))
-        get_perm = models.Permission.objects.filter(url=url_name,per_method=dict_method[url_method])
-        if get_perm.count()>0:
-            for i in get_perm:
-                perm_name = i.name
-                perm_str = 'Forecast.%s' % perm_name
-                id_user=request.user.id
-                is_permission=User.objects.get(id=id_user).has_perm(perm_str)
-                # 注意此处存在问题，由于在后台为user重新分配了群组，群组重新分配了permission，所以在request中的user中的该群组及group中并未有该权限（我的猜测）
-                if request.user.has_perm(perm_str):
-                    print('====》权限已匹配')
-                    return True
-            else:
-                print('---->权限没有匹配')
-                return False
-        else:
-            return False
-    else:
-        return False   #没有权限设置，默认不放过
+        # get_perm = models.Permission.objects.filter(url=url_name,per_method=dict_method[url_method])
+        # if get_perm.count()>0:
+        #     for i in get_perm:
+        #         perm_name = i.name
+        #         perm_str =perm_name
+        #         # perm_str = 'Forecast.%s' % perm_name
+        #         id_user=request.user.id
+        #         is_permission=User.objects.get(id=id_user).has_perm(perm_str)
+        #         # 注意此处存在问题，由于在后台为user重新分配了群组，群组重新分配了permission，所以在request中的user中的该群组及group中并未有该权限（我的猜测）
+        #         if request.user.has_perm(perm_str):
+        #             print('====》权限已匹配')
+        #             return True
+        #     else:
+        #         print('---->权限没有匹配')
+        #         return False
+        # else:
+        #     return False
 
+        # 直接判断当前登录用户是否拥有访问此页面的权限
+        # 注意若用户未登录，此处的id为none，需要加入判断
+        id_user = request.user.id
+        if id_user is None:
+            return False
+        # 注意此处若未拥有该权限会抛出异常
+        # perm_str =perm_name
+        perm_str = 'Forecast.%s' % perm_name
+        # 在创建auth_permission表中的数据时，会为codename自动添加app的名字
+        is_permission= User.objects.get(id=id_user).has_perm(perm_str)
+        if is_permission:
+            print("用户%s拥有：%s权限" % (id_user, url_name))
+            return True
+        else:
+            print("用户%s未有：%s权限" % (id_user, url_name))
+            return False
+    return False
 
 def check_permission(fun):    #定义一个装饰器，在views中应用
     def wapper(request, *args, **kwargs):
