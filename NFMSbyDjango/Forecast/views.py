@@ -56,7 +56,7 @@ def set_permission(request):
     group_now=Group.objects.get(name='guest')
     # 为群组赋予指定权限
     # 注意此处若取不到会抛出异常
-    permission_now=Permission.objects.get(codename="guest_login")
+    permission_now=Permission.objects.get(codename="guest_permission")
     group_now.permissions.add(permission_now)
     # 为指定用户赋予指定群组
     user_now.groups.add(group_now)
@@ -72,7 +72,7 @@ def create_group(request):
 def create_permission(request):
     permission_name="测试用"
 
-    permission_codename="guest_login"
+    permission_codename="guest_permission"
     content_type=ContentType.objects.get_for_model(models.ActionInfo)
     permission=Permission.objects.create(name=permission_name,codename=permission_codename,content_type=content_type)
     permission.save()
@@ -229,6 +229,7 @@ def test_login1(request):
     pass
 
 @check_permission
+@login_required
 def guest_login(request):
     pass
 
