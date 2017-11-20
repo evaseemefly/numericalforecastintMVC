@@ -50,11 +50,11 @@ def set_permission(request):
     :param request:
     :return:
     '''
-    # 获取指定用户
+    # 1 获取指定用户
     user_now=User.objects.get(username='test')
-    # 为指定用户赋予指定群组
+    # 2 为指定用户赋予指定群组
     group_now=Group.objects.get(name='guest')
-    # 为群组赋予指定权限
+    # 3 为群组赋予指定权限
     # 注意此处若取不到会抛出异常
     permission_now=Permission.objects.get(codename="guest_permission")
     group_now.permissions.add(permission_now)
@@ -86,7 +86,7 @@ def selectMapping(request):
 def routeMapping():
     return "routeMapping"
 
-
+@check_permission
 def test(request):
     # 1 获取请求中的用户名及密码
     # 对于传统的?方式提交的参数直接通过request.GET.get('key')的方式获取
@@ -228,8 +228,8 @@ def test_login1(request):
         isok=True
     pass
 
-@check_permission
 @login_required
+@check_permission
 def guest_login(request):
     pass
 

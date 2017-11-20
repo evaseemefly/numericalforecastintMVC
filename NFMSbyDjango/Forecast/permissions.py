@@ -6,6 +6,7 @@ from django.core.urlresolvers import resolve   #此方法可以将url地址转�
 from django.contrib.auth.models import User,Group,Permission
 
 def perm_check(request, *args, **kwargs):
+    # 1 获取请求类型以及url
     # 使用resolve无法获取到'/Forecast/guest_login',暂时注释掉，不使用这种方式
     # url_obj = resolve(request.path)
     # 对'/Forecast/guest_login'根据/进行切分
@@ -20,6 +21,7 @@ def perm_check(request, *args, **kwargs):
         'POST':2
     }
     perm_name = url_name
+    # 2 根据url与post或get请求查找permission对象找到唯一的权限
     #权限必须和urlname配合使得
     if url_name:
         #获取请求方法，和请求参数
@@ -57,7 +59,17 @@ def perm_check(request, *args, **kwargs):
             return False
         # 注意此处若未拥有该权限会抛出异常
         # perm_str =perm_name
-        perm_str = 'Forecast.%s' % perm_name
+        # get_perm = models.Permission.objects.filter(
+        #     Q(url=url_name) and Q(per_method=dict_method[url_method]) and Q(argument_list=url_args_list))
+        # 2.1 查询
+        # 使用Q对象的方式查询，对于多参数较为遍历，不使用拼接参数的方式
+        # 注意不要使用and和or关键字，不知为何and和or实际效果是反的，使用&和|实现或与操作
+        permission_temp = models.Permission.objects.filter(
+             Q(url=url_name) & Q(per_method=dict_method[url_method])).first()
+        if permission_temp is None:
+            return False
+        # 3 根据permission对象中的url判断当前用户是否拥有该请求
+        perm_str = 'Forecast.%s' % permission_temp.url
         # 在创建auth_permission表中的数据时，会为codename自动添加app的名字
         is_permission= User.objects.get(id=id_user).has_perm(perm_str)
         if is_permission:
