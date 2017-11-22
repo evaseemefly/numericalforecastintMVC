@@ -62,6 +62,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="90">
               <caret line="209" column="20" lean-forward="true" selection-start-line="209" selection-start-column="20" selection-end-line="209" selection-end-column="20" />
 =======
@@ -76,6 +77,10 @@
             <state relative-caret-position="339">
               <caret line="83" column="28" lean-forward="true" selection-start-line="83" selection-start-column="28" selection-end-line="83" selection-end-column="28" />
 >>>>>>> aab6a3ce6fc7623d64687bc870a265ade542e92c
+=======
+            <state relative-caret-position="175">
+              <caret line="88" column="1" lean-forward="false" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
               <folding>
                 <element signature="e#0#65#0" expanded="true" />
               </folding>
@@ -86,6 +91,7 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Forecast/models.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -101,6 +107,10 @@
             <state relative-caret-position="88">
               <caret line="5" column="31" lean-forward="false" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
 >>>>>>> aab6a3ce6fc7623d64687bc870a265ade542e92c
+=======
+            <state relative-caret-position="41">
+              <caret line="189" column="6" lean-forward="false" selection-start-line="189" selection-start-column="6" selection-end-line="189" selection-end-column="6" />
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -118,6 +128,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="135">
               <caret line="9" column="34" lean-forward="false" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
 =======
@@ -132,8 +143,16 @@
             <state relative-caret-position="270">
               <caret line="57" column="26" lean-forward="true" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
 >>>>>>> aab6a3ce6fc7623d64687bc870a265ade542e92c
+=======
+            <state relative-caret-position="308">
+              <caret line="87" column="9" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#275#3160#0" expanded="false" />
+                <element signature="e#295#348#0" expanded="false" />
+                <element signature="e#464#489#0" expanded="false" />
+                <element signature="e#1062#1071#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -185,7 +204,7 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NFMSbyDjango/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
+            <state relative-caret-position="704">
               <caret line="38" column="35" lean-forward="false" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
               <folding />
             </state>
@@ -196,6 +215,7 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NFMSbyDjango/settings.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <state relative-caret-position="75">
               <caret line="101" column="9" lean-forward="false" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="9" />
@@ -211,6 +231,9 @@
               <caret line="185" column="34" lean-forward="true" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
 =======
             <state relative-caret-position="601">
+=======
+            <state relative-caret-position="4268">
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
               <caret line="194" column="26" lean-forward="false" selection-start-line="194" selection-start-column="26" selection-end-line="194" selection-end-column="26" />
 >>>>>>> aab6a3ce6fc7623d64687bc870a265ade542e92c
               <folding />
@@ -221,8 +244,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Forecast/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="30" column="63" lean-forward="false" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="63" />
+            <state relative-caret-position="313">
+              <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="21" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -324,8 +347,8 @@
         <option value="$PROJECT_DIR$/Forecast/models.py" />
         <option value="$PROJECT_DIR$/NFMSbyDjango/urls.py" />
         <option value="$PROJECT_DIR$/Forecast/urls.py" />
-        <option value="$PROJECT_DIR$/Forecast/permissions.py" />
         <option value="$PROJECT_DIR$/Forecast/views.py" />
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <option value="$PROJECT_DIR$/Forecast/permissions.py" />
@@ -335,6 +358,9 @@
 >>>>>>> b3fec0834bd7636110fc17515e6725ed8f10e1a5
 =======
 >>>>>>> b3fec0834bd7636110fc17515e6725ed8f10e1a5
+=======
+        <option value="$PROJECT_DIR$/Forecast/permissions.py" />
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
       </list>
     </option>
   </component>
@@ -353,6 +379,7 @@
   </component>
   <component name="ProjectFrameBounds">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="y" value="22" />
     <option name="width" value="1280" />
     <option name="height" value="729" />
@@ -362,6 +389,12 @@
     <option name="width" value="1936" />
     <option name="height" value="1056" />
 >>>>>>> aab6a3ce6fc7623d64687bc870a265ade542e92c
+=======
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -473,6 +506,10 @@
               <option name="myItemId" value="Forecast" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views.py" />
+              <option name="myItemType" value="com.jetbrains.python.projectView.PyFileNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -486,10 +523,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Forecast" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="permissions.py" />
-              <option name="myItemType" value="com.jetbrains.python.projectView.PyFileNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -947,6 +980,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <frame x="0" y="22" width="1280" height="729" extended-state="0" />
     <editor active="true" />
     <layout>
@@ -959,9 +993,13 @@
 =======
     <frame x="-470" y="108" width="1936" height="1056" extended-state="0" />
 >>>>>>> aab6a3ce6fc7623d64687bc870a265ade542e92c
+=======
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15778251" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15953545" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290993" sideWeight="0.49755502" order="6" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -975,6 +1013,10 @@
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3515625" sideWeight="0.6945629" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3515625" sideWeight="0.3054371" order="12" side_tool="true" content_ui="tabs" />
 >>>>>>> aab6a3ce6fc7623d64687bc870a265ade542e92c
+=======
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36374134" sideWeight="0.6913203" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36374134" sideWeight="0.3086797" order="12" side_tool="true" content_ui="tabs" />
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
 >>>>>>> b3fec0834bd7636110fc17515e6725ed8f10e1a5
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1162,12 +1204,12 @@
           <option name="timeStamp" value="174" />
 =======
           <url>file://$PROJECT_DIR$/Forecast/permissions.py</url>
-          <line>11</line>
+          <line>12</line>
           <option name="timeStamp" value="171" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Forecast/permissions.py</url>
-          <line>34</line>
+          <line>36</line>
           <option name="timeStamp" value="173" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1188,6 +1230,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <url>file://$PROJECT_DIR$/Forecast/views.py</url>
           <line>58</line>
           <option name="timeStamp" value="175" />
@@ -1197,6 +1240,8 @@
           <option name="timeStamp" value="178" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+=======
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
           <url>file://$PROJECT_DIR$/Forecast/views.py</url>
           <line>233</line>
           <option name="timeStamp" value="179" />
@@ -1205,6 +1250,16 @@
           <url>file://$PROJECT_DIR$/Forecast/views.py</url>
           <line>74</line>
           <option name="timeStamp" value="180" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Forecast/permissions.py</url>
+          <line>71</line>
+          <option name="timeStamp" value="184" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Forecast/permissions.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="185" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/static/js/viewmodel/map/RectangleMeasureViewModel.js</url>
@@ -1239,15 +1294,14 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="181" />
+      <option name="time" value="186" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
-        <watch expression="User.objects.get(id=1)" language="Python" />
-        <watch expression="User.objects.get(id=1).has_perm(&quot;Forecast.views_action_info&quot;)" language="Python" />
-        <watch expression="User.objects.get(id=1).get_all_permissions()" language="Python" />
-        <watch expression="get_perm.count()" language="Python" />
-        <watch expression="get_perm.first()" language="Python" />
+        <watch expression="models.Permission.objects.filter(Q(url='test')&amp;Q(per_method=1)).first()" language="Python" />
+        <watch expression="models.Permission.objects.filter(Q(url='test') and Q(per_method=1)).first()" language="Python" />
+        <watch expression="models.Permission.objects.filter(Q(url='test') or Q(per_method=1)).first()" language="Python" />
+        <watch expression="models.Permission.objects.filter(Q(url='test') | Q(per_method=1)).first()" language="Python" />
       </configuration>
       <configuration name="PythonConfigurationType">
         <watch expression="stdout.read().decode()" language="Python" />
@@ -1608,6 +1662,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Forecast/models.py">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1650,25 +1705,27 @@
 =======
     <entry file="file://$PROJECT_DIR$/Forecast/urls.py">
 >>>>>>> aab6a3ce6fc7623d64687bc870a265ade542e92c
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="30" column="63" lean-forward="false" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+=======
     <entry file="file://$PROJECT_DIR$/NFMSbyDjango/urls.py">
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
+        <state relative-caret-position="704">
           <caret line="38" column="35" lean-forward="false" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/django/core/handlers/base.py">
+    <entry file="file://$PROJECT_DIR$/NFMSbyDjango/settings.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4268">
+          <caret line="194" column="26" lean-forward="false" selection-start-line="194" selection-start-column="26" selection-end-line="194" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Forecast/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="222">
           <caret line="185" column="34" lean-forward="true" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
@@ -1710,11 +1767,29 @@
           <caret line="194" column="26" lean-forward="false" selection-start-line="194" selection-start-column="26" selection-end-line="194" selection-end-column="26" />
           <folding />
 >>>>>>> aab6a3ce6fc7623d64687bc870a265ade542e92c
+=======
+        <state relative-caret-position="313">
+          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Forecast/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="189" column="6" lean-forward="false" selection-start-line="189" selection-start-column="6" selection-end-line="189" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Forecast/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="340">
           <caret line="45" column="28" lean-forward="true" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
@@ -1726,18 +1801,34 @@
         <state relative-caret-position="339">
           <caret line="83" column="28" lean-forward="true" selection-start-line="83" selection-start-column="28" selection-end-line="83" selection-end-column="28" />
 >>>>>>> aab6a3ce6fc7623d64687bc870a265ade542e92c
+=======
+        <state relative-caret-position="175">
+          <caret line="88" column="1" lean-forward="false" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
+>>>>>>> 43691fbafba589f2c876cbfd24ce36d1fa0ab87c
           <folding>
             <element signature="e#0#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="190" column="65" lean-forward="true" selection-start-line="190" selection-start-column="65" selection-end-line="190" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Forecast/permissions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="57" column="26" lean-forward="true" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
+        <state relative-caret-position="308">
+          <caret line="87" column="9" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#275#3160#0" expanded="false" />
+            <element signature="e#295#348#0" expanded="false" />
+            <element signature="e#464#489#0" expanded="false" />
+            <element signature="e#1062#1071#0" expanded="false" />
           </folding>
         </state>
       </provider>

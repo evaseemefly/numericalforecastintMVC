@@ -172,6 +172,23 @@
             ]
         },
         {
+            "name": "Django",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "pythonPath": "${config.python.pythonPath}",
+            "program": "${workspaceRoot}/manage.py",
+            "console":"externalTerminal",
+            "args": [
+                "runserver"
+            ],
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit",
+                "DjangoDebugging"
+            ]
+        },
+        {
             "name": "Watson",
             "type": "python",
             "request": "launch",
